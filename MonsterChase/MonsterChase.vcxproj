@@ -139,7 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MCGameManager.cpp" />
     <ClCompile Include="MonsterChase.cpp" />
+    <ClCompile Include="MonsterController.cpp" />
+    <ClCompile Include="PlayerController.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MCGameManager.h" />
+    <ClInclude Include="MonsterChase.h" />
+    <ClInclude Include="MonsterController.h" />
+    <ClInclude Include="PlayerController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

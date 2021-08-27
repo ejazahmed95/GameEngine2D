@@ -2,10 +2,27 @@
 //
 
 #include <iostream>
+#include "MCGameManager.h"
+#include "PlayerController.h"
+#include "MonsterController.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    bool hasQuit = false;
+    int gridSize, mCount;
+    std::string playerName;
+    while (!hasQuit) {
+        std::cout << "Enter Name" << std::endl;
+        std::cin >> playerName;
+        std::cout << "Enter the grid size and the number of monsters you want to add" << std::endl;
+        std::cin >> gridSize >> mCount;
+        break;
+    }
+    PlayerController pc(playerName);
+    MonsterController mc(mCount);
+    MCGameManager gm(pc, mc, gridSize);
+
+    gm.Play();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
