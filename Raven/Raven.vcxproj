@@ -13,13 +13,13 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{09ab2f7d-25fd-4831-9703-3c60e98c4c6b}</ProjectGuid>
-    <RootNamespace>MonsterChase</RootNamespace>
+    <ProjectGuid>{2af3e837-51e6-468b-a3e1-de08496acae4}</ProjectGuid>
+    <RootNamespace>Raven</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -80,20 +80,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MCGameManager.cpp" />
-    <ClCompile Include="MonsterChase.cpp" />
-    <ClCompile Include="MonsterController.cpp" />
-    <ClCompile Include="PlayerController.cpp" />
+    <ClInclude Include="src\Hello.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MCGameManager.h" />
-    <ClInclude Include="MonsterController.h" />
-    <ClInclude Include="PlayerController.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Raven\Raven.vcxproj">
-      <Project>{2af3e837-51e6-468b-a3e1-de08496acae4}</Project>
-    </ProjectReference>
+    <ClCompile Include="src\Hello.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

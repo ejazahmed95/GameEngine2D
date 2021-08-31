@@ -6,8 +6,12 @@
 #include "PlayerController.h"
 #include "MonsterController.h"
 
+namespace Raven {
+    _declspec(dllimport) void PrintHello();
+}
 int main()
 {
+    Raven::PrintHello();
     bool hasQuit = false;
     int gridSize, mCount;
     std::string playerName;
