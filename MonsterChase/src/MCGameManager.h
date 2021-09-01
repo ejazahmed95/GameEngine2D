@@ -7,10 +7,9 @@ class MCGameManager
 private:
 	PlayerController pc;
 	MonsterController mc;
-	int gridSize;
 	bool hasQuit;
 public:
-	MCGameManager(PlayerController pc, MonsterController mc, int gridSize) : pc(pc), mc(mc), gridSize(gridSize), hasQuit(false) {};
+	MCGameManager(PlayerController pc, MonsterController mc) : pc(pc), mc(mc), hasQuit(false) {};
 	void Play();
 };
 

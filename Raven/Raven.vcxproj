@@ -80,15 +80,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Raven\CoreModule\Point2D.h" />
     <ClInclude Include="src\Raven.h" />
     <ClInclude Include="src\Raven\Application.h" />
     <ClInclude Include="src\Hello.h" />
     <ClInclude Include="src\Raven\Core.h" />
+    <ClInclude Include="src\Raven\CoreModule\GameObject.h" />
     <ClInclude Include="src\Raven\EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Raven\CoreModule\Point2D.cpp" />
     <ClCompile Include="src\Raven\Application.cpp" />
     <ClCompile Include="src\Hello.cpp" />
+    <ClCompile Include="src\Raven\CoreModule\GameObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

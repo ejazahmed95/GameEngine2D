@@ -8,7 +8,7 @@ namespace Raven {
 	public:
 		Application();
 		virtual ~Application();
-		void Run();
+		virtual void Run();
 	private:
 
 	};

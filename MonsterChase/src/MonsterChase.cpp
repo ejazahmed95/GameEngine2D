@@ -14,18 +14,21 @@ Raven::Application* Raven::CreateApplication() {
 
 void MonsterChase::Run() {
     bool hasQuit = false;
-    int gridSize, mCount;
+    int mCount;
     std::string playerName;
     while (!hasQuit) {
-        std::cout << "Enter Name" << std::endl;
+        std::cout << "Enter Player Name" << std::endl;
         std::cin >> playerName;
-        std::cout << "Enter the grid size and the number of monsters you want to add" << std::endl;
-        std::cin >> gridSize >> mCount;
+        std::cout << "How many monsters do you want?" << std::endl;
+        std::cin >> mCount;
+        for (int i = 0; i < mCount; i++) {
+            std::cout << 
+        }
         break;
     }
     PlayerController pc(playerName);
     MonsterController mc(mCount);
-    MCGameManager gm(pc, mc, gridSize);
+    MCGameManager gm(pc, mc);
 
     gm.Play();
 }
