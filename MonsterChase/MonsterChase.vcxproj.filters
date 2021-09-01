@@ -15,28 +15,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MonsterChase.cpp">
+    <ClCompile Include="src\MonsterChase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MCGameManager.cpp">
+    <ClCompile Include="src\MCGameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerController.cpp">
+    <ClCompile Include="src\PlayerController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MonsterController.cpp">
+    <ClCompile Include="src\MonsterController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MCGameManager.h">
+    <ClInclude Include="src\MCGameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerController.h">
+    <ClInclude Include="src\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MonsterController.h">
+    <ClInclude Include="src\MonsterController.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MonsterChase.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

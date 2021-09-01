@@ -55,8 +55,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PLATFORM_WINDOWS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Raven\src;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -80,15 +81,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MCGameManager.cpp" />
-    <ClCompile Include="MonsterChase.cpp" />
-    <ClCompile Include="MonsterController.cpp" />
-    <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="src\MCGameManager.cpp" />
+    <ClCompile Include="src\MonsterChase.cpp" />
+    <ClCompile Include="src\MonsterController.cpp" />
+    <ClCompile Include="src\PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MCGameManager.h" />
-    <ClInclude Include="MonsterController.h" />
-    <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="src\MonsterChase.h" />
+    <ClInclude Include="src\MCGameManager.h" />
+    <ClInclude Include="src\MonsterController.h" />
+    <ClInclude Include="src\PlayerController.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Raven\Raven.vcxproj">

@@ -5,13 +5,14 @@
 #include "MCGameManager.h"
 #include "PlayerController.h"
 #include "MonsterController.h"
+#include "MonsterChase.h"
+#include "Raven.h"
 
-namespace Raven {
-    _declspec(dllimport) void PrintHello();
+Raven::Application* Raven::CreateApplication() {
+    return new MonsterChase();
 }
-int main()
-{
-    Raven::PrintHello();
+
+void MonsterChase::Run() {
     bool hasQuit = false;
     int gridSize, mCount;
     std::string playerName;
