@@ -54,6 +54,6 @@ void PlayerController::handleInput(char in)
 
 std::ostream& operator<<(std::ostream& lhs, const PlayerController& pc)
 {
-	lhs << pc.name() << "=> Pos = " << pc.position() << ", Vel = " << pc.velocity();
+	lhs << pc.name() << "=> Pos = " << pc.position().toString() << ", Vel = " << pc.velocity().toString();
 	return lhs;
 }

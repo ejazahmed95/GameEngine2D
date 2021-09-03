@@ -1,5 +1,4 @@
 #pragma once
-#include "Raven.h"
 #include "Entities/Monster.h"
 
 class MonsterController: Raven::GameObject

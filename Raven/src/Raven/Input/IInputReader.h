@@ -1,7 +1,7 @@
 #pragma once
 #include "../Core.h"
 
-class RAVEN_API IInputReader {
+class IInputReader {
 public:
 	virtual ~IInputReader() = default;
 	virtual char readChar() = 0;

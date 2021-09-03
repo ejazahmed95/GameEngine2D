@@ -1,7 +1,4 @@
 #include "Point2D.h"
-#include <iostream>
-#include <ostream>
-#include <string>
 
 namespace Raven
 {
@@ -24,6 +21,11 @@ namespace Raven
 		return { x_ * value, y_ * value };
 	}
 
+	std::string Point2D::toString()
+	{
+		return std::string("[") + std::to_string(x_) + ", " + std::to_string(y_) + "]";
+	}
+
 	void Point2D::setX(int i)
 	{
 		x_ = i;
@@ -32,12 +34,11 @@ namespace Raven
 	void Point2D::setY(int i)
 	{
 		y_ = i;
-		std::cout << *this;
 	}
-
-	std::ostream& operator<<(std::ostream& lhs, const Point2D& rhs)
+/*
+	std::ostream& operator<<(std::ostream& lhs, const Raven::Point2D& rhs)
 	{
-		lhs << "[" << rhs.x_ << ", " << rhs.y_ << "]";
+		lhs << "[" << rhs.x() << ", " << rhs.y() << "]";
 		return lhs;
-	}
+	}*/
 }

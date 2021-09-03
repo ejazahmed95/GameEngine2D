@@ -1,6 +1,8 @@
 #pragma once
-
 #include "Raven.h"
+#include "PlayerController.h"
+#include "MonsterController.h"
+#include<iostream>
 
 class MonsterChase: public Raven::Application
 {

@@ -2,9 +2,9 @@
 #include "IInputReader.h"
 #include "../Core.h"
 
-class RAVEN_API StandardInputReader: IInputReader
+class RAVEN_API StandardInputReader
 {
 public:
-	char readChar() override;
-	char* readString() override;
+	char readChar();
+	char* readString();
 };

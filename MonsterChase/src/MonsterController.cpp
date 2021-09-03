@@ -1,9 +1,5 @@
 #include "MonsterController.h"
 
-#include <cstdint>
-#include <cstring>
-#include <iostream>
-
 void MonsterController::addMonster(char* name)
 {
 	const auto m = new Monster(name);

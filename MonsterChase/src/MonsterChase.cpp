@@ -1,11 +1,6 @@
 // MonsterChase.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
-#include <iostream>
-#include "PlayerController.h"
-#include "MonsterController.h"
 #include "MonsterChase.h"
-#include "Raven.h"
 
 Raven::Application* Raven::CreateApplication() {
     return new MonsterChase();
@@ -16,10 +11,10 @@ char* readStringFromCIn() {
     std::cin >> a;
     int len = 1;
     while (len <= 20 && a[len-1] != '\n') len++;
-    a[len - 1] = '\0';
     //char* str = (char*)malloc(len * sizeof(char));
     char* str = new char[len];
-    memcpy(str, a, len);
+    memcpy(str, a, len-1);
+    str[len - 1] = '\0';
     return str;
 }
 
@@ -58,7 +53,6 @@ void MonsterChase::updateAllObjects() {
     pc_->update(0);
     mc_->update(0);
 }
-
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

@@ -1,7 +1,6 @@
 #pragma once
-#include <ostream>
-
 #include "../Core.h"
+#include <string>
 
 namespace Raven {
 	class RAVEN_API Point2D {
@@ -15,7 +14,9 @@ namespace Raven {
 		Point2D operator-(Point2D const& other) const;
 		Point2D operator*(Point2D const& other) const;
 		Point2D operator*(int const value) const;
-		friend std::ostream& operator<<(std::ostream& lhs, const Point2D& rhs);
+
+		//friend std::ostream& operator<<(std::ostream& lhs, const Point2D& rhs);
+		std::string toString();
 
 		// Getters & Setters
 		int x() const { return x_; }
