@@ -2,7 +2,6 @@
 //
 
 #include <iostream>
-#include "MCGameManager.h"
 #include "PlayerController.h"
 #include "MonsterController.h"
 #include "MonsterChase.h"
@@ -12,26 +11,54 @@ Raven::Application* Raven::CreateApplication() {
     return new MonsterChase();
 }
 
-void MonsterChase::Run() {
-    bool hasQuit = false;
-    int mCount;
-    std::string playerName;
-    while (!hasQuit) {
-        std::cout << "Enter Player Name" << std::endl;
-        std::cin >> playerName;
-        std::cout << "How many monsters do you want?" << std::endl;
-        std::cin >> mCount;
-        for (int i = 0; i < mCount; i++) {
-            std::cout << 
-        }
-        break;
-    }
-    PlayerController pc(playerName);
-    MonsterController mc(mCount);
-    MCGameManager gm(pc, mc);
-
-    gm.Play();
+char* readStringFromCIn() {
+    char a[20];
+    std::cin >> a;
+    int len = 1;
+    while (len <= 20 && a[len-1] != '\n') len++;
+    a[len - 1] = '\0';
+    //char* str = (char*)malloc(len * sizeof(char));
+    char* str = new char[len];
+    memcpy(str, a, len);
+    return str;
 }
+
+
+void MonsterChase::Run() {
+    int mCount;
+	this->mc_ = new MonsterController();
+
+    std::cout << "Enter Player Name" << std::endl;
+    char* playerName = readStringFromCIn();
+    this->pc_ = new PlayerController(playerName);
+
+    std::cout << "How many monsters do you want?" << std::endl;
+    std::cin >> mCount;
+    for (int i = 0; i < mCount; i++) {
+        std::cout << "Enter the name of monster " << i << ": ";
+        mc_->addMonster(readStringFromCIn());
+    }
+    startGame();
+    delete pc_;
+    delete mc_;
+}
+
+void MonsterChase::startGame() {
+    while (true) {
+        char in = standardInputReader().readChar();
+        if (in == 'q' || in == 'Q') break;
+        pc_->handleInput(in);
+        updateAllObjects();
+        std::cout << *pc_ << std::endl;
+        std::cout << *mc_ << std::endl;
+    }
+}
+
+void MonsterChase::updateAllObjects() {
+    pc_->update(0);
+    mc_->update(0);
+}
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

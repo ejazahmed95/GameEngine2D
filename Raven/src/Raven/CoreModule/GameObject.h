@@ -7,23 +7,23 @@ namespace Raven {
 	{
 	public:
 		GameObject();
-		~GameObject() {
-			delete name;
-		};
+		virtual ~GameObject();
 
-		virtual void Update(float delta);
-		
+		virtual void update(float delta);
+		virtual void onCollisionEnter(GameObject& obj);
+
 		// Getters
-		char* GetName() { return name; }
-		Point2D GetPosition() { return position; }
+		char* name() const { return name_; }
+		Point2D position() const { return position_; }
+		Point2D velocity() const { return velocity_; }
 
 		// Setters
-		void SetName(char* name) { this->name = name; }
-		void SetPosition(int x, int y) {
-			position = Point2D(x, y);
-		};
+		void setName(char* name) { name_ = name; }
+		void setPosition(int x, int y);
+		void setVelocity(int x, int y);
 	private:
-		char* name;
-		Point2D position;
+		char* name_;
+		Point2D position_;
+		Point2D velocity_;
 	};
 }

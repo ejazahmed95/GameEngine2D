@@ -3,6 +3,7 @@
 namespace Raven {
 	Application::Application()
 	{
+		
 	}
 
 	Application::~Application()
@@ -11,6 +12,11 @@ namespace Raven {
 
 	void Application::Run() {
 		while (true);
+	}
+
+	StandardInputReader Application::standardInputReader() const
+	{
+		return input_reader_;
 	}
 }
 

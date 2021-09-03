@@ -5,17 +5,11 @@
 class MonsterChase: public Raven::Application
 {
 public:
-	MonsterChase();
-	~MonsterChase();
+	MonsterChase(): pc_(nullptr), mc_(nullptr) {}
+	void updateAllObjects();
+	void startGame();
 	void Run();
 private:
-
+	MonsterController* mc_;
+	PlayerController* pc_;
 };
-
-MonsterChase::MonsterChase()
-{
-}
-
-MonsterChase::~MonsterChase()
-{
-}
