@@ -38,13 +38,13 @@ void PlayerController::handleInput(char in)
 		setVelocity(-1, 0);
 		break;
 	case InputAction::RIGHT: 
-		setVelocity(-1, 0);
+		setVelocity(1, 0);
 		break;
 	case InputAction::UP: 
-		setVelocity(-1, 0);
+		setVelocity(0, 1);
 		break;
 	case InputAction::DOWN: 
-		setVelocity(-1, 0);
+		setVelocity(0, -1);
 		break;
 	case InputAction::QUIT: break;
 	case InputAction::UNKNOWN: break;
@@ -54,6 +54,6 @@ void PlayerController::handleInput(char in)
 
 std::ostream& operator<<(std::ostream& lhs, const PlayerController& pc)
 {
-	lhs << pc.name() << "=> Pos = " << pc.position().toString() << ", Vel = " << pc.velocity().toString();
+	lhs << pc.player_name_ << "=> Pos = " << pc.position().toString() << ", Vel = " << pc.velocity().toString();
 	return lhs;
 }

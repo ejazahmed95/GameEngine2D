@@ -1,12 +1,12 @@
 #include "Monster.h"
 
 std::ostream& operator<<(std::ostream& lhs, const Monster& m) {
-	lhs << m.name_ << "=> Pos = "<< m.position().toString() << ", Vel = " << m.velocity().toString() <<
+	lhs << m.monster_name_ << "=> Pos = "<< m.position().toString() << ", Vel = " << m.velocity().toString() <<
 		", Age = " << m.age_;
 	return lhs;
 }
 
-void Monster::kill()
+void Monster::markForKill()
 {
 	is_dead_ = true;
 }

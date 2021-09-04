@@ -10,18 +10,42 @@ void MonsterController::addMonster(char* name)
 	monsters_[monster_count_] = m;
 	if(monster_count_ > 0) delete[] temp;
 	monster_count_++;
+	total_monster_count_++;
 }
 
 void MonsterController::update(float delta)
 {
 	GameObject::update(delta);
 	for(int i=0;i<monster_count_;i++) {
-		monsters_[i]->update(delta);
+		auto m = monsters_[i];
+		m->update(delta);
+		if(m->age() > 5) {
+			m->markForKill();
+		}
 	}
+
+	// Adding monsters
 	if(time_since_last_spawn_++ > spawn_interval_) {
-		addMonster(getCustomName("nagini-", monster_count_));
+		addMonster(getCustomName("nagini-", total_monster_count_));
 		time_since_last_spawn_ = 0;
 	}
+
+	// Killing monsters
+	for (int i = monster_count_-1; i >= 0; i--) {
+		auto m = monsters_[i];
+		if (m->age() > 5) {
+			removeMonster(i);
+		}
+	}
+}
+
+void MonsterController::removeMonster(int index)
+{
+	Monster* temp = monsters_[index];
+	monsters_[index] = monsters_[monster_count_ - 1];
+	monster_count_--;
+	delete temp;
+	
 }
 
 char* MonsterController::getCustomName(const char* name, int index) const

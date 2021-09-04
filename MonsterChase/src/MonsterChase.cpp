@@ -20,26 +20,31 @@ char* readStringFromCIn() {
 
 
 void MonsterChase::Run() {
-    int mCount;
-	this->mc_ = new MonsterController();
+    // _CrtSetBreakAlloc(451);
+    {
+        int mCount;
+        this->mc_ = new MonsterController();
 
-    std::cout << "Enter Player Name" << std::endl;
-    char* playerName = readStringFromCIn();
-    this->pc_ = new PlayerController(playerName);
+        std::cout << "Enter Player Name" << std::endl;
+        char* playerName = readStringFromCIn();
+        this->pc_ = new PlayerController(playerName);
 
-    std::cout << "How many monsters do you want?" << std::endl;
-    std::cin >> mCount;
-    for (int i = 0; i < mCount; i++) {
-        std::cout << "Enter the name of monster " << i << ": ";
-        mc_->addMonster(readStringFromCIn());
+        std::cout << "How many monsters do you want?" << std::endl;
+        std::cin >> mCount;
+        for (int i = 0; i < mCount; i++) {
+            std::cout << "Enter the name of monster " << i << ": ";
+            mc_->addMonster(readStringFromCIn());
+        }
+        startGame();
+        delete pc_;
+        delete mc_;
     }
-    startGame();
-    delete pc_;
-    delete mc_;
+    _CrtDumpMemoryLeaks();
 }
 
 void MonsterChase::startGame() {
     while (true) {
+        std::cout << "Please use WASD to move and Q to quit" << std::endl;
         char in = standardInputReader().readChar();
         if (in == 'q' || in == 'Q') break;
         pc_->handleInput(in);
