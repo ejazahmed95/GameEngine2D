@@ -8,6 +8,7 @@ class MonsterChase: public Raven::Application
 {
 public:
 	MonsterChase(): pc_(nullptr), mc_(nullptr) {}
+	~MonsterChase() override;
 	void updateAllObjects();
 	void startGame();
 	void Run();

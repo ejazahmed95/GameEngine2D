@@ -2,6 +2,12 @@
 #include <iostream>
 #include <conio.h>
 
+PlayerController::~PlayerController()
+{
+	// GameObject::~GameObject();
+	delete[] player_name_;
+}
+
 InputAction PlayerController::getInputAction(char in)
 {
 	InputAction action = InputAction::UNKNOWN;

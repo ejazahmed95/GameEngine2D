@@ -8,7 +8,7 @@ public:
 		time_since_last_spawn_ = 0;
 		total_monster_count_ = 0;
 	}
-
+	~MonsterController() override;
 	void addMonster(char* name);
 	void update(float delta) override;
 	void removeMonster(int index);

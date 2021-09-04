@@ -11,10 +11,7 @@ class PlayerController : public Raven::GameObject
 public:
 	PlayerController(char* name): player_name_(name) {}
 
-	~PlayerController() override
-	{
-		delete[] player_name_;
-	}
+	~PlayerController() override;
 	InputAction getInputAction(char in);
 	void handleInput(char in);
 

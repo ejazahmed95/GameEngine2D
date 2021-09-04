@@ -6,6 +6,7 @@ class Monster : public Raven::GameObject
 {
 public:
 	Monster(char* name) : monster_name_(name), is_dead_(false), age_(0) {}
+	~Monster() override;
 	friend std::ostream& operator<<(std::ostream& lhs, const Monster& m);
 
 	// Getters and setters

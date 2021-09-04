@@ -8,7 +8,7 @@ namespace Raven {
 
 	GameObject::~GameObject()
 	{
-		delete name_;
+		delete[] name_;
 	}
 
 	void GameObject::onCollisionEnter(GameObject& obj) {

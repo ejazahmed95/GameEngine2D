@@ -6,6 +6,12 @@ std::ostream& operator<<(std::ostream& lhs, const Monster& m) {
 	return lhs;
 }
 
+Monster::~Monster()
+{
+	// GameObject::~GameObject();
+	delete[] monster_name_;
+}
+
 void Monster::markForKill()
 {
 	is_dead_ = true;

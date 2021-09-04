@@ -1,5 +1,15 @@
 #include "MonsterController.h"
 
+MonsterController::~MonsterController()
+{
+	// GameObject::~GameObject();
+	for(int i=0;i<monster_count_;i++)
+	{
+		delete monsters_[i];
+	}
+	delete[] monsters_;
+}
+
 void MonsterController::addMonster(char* name)
 {
 	const auto m = new Monster(name);

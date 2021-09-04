@@ -20,26 +20,20 @@ char* readStringFromCIn() {
 
 
 void MonsterChase::Run() {
-    // _CrtSetBreakAlloc(451);
-    {
-        int mCount;
-        this->mc_ = new MonsterController();
+    int mCount;
+    this->mc_ = new MonsterController();
 
-        std::cout << "Enter Player Name" << std::endl;
-        char* playerName = readStringFromCIn();
-        this->pc_ = new PlayerController(playerName);
+    std::cout << "Enter Player Name" << std::endl;
+    char* playerName = readStringFromCIn();
+    this->pc_ = new PlayerController(playerName);
 
-        std::cout << "How many monsters do you want?" << std::endl;
-        std::cin >> mCount;
-        for (int i = 0; i < mCount; i++) {
-            std::cout << "Enter the name of monster " << i << ": ";
-            mc_->addMonster(readStringFromCIn());
-        }
-        startGame();
-        delete pc_;
-        delete mc_;
+    std::cout << "How many monsters do you want?" << std::endl;
+    std::cin >> mCount;
+    for (int i = 0; i < mCount; i++) {
+        std::cout << "Enter the name of monster " << i << ": ";
+        mc_->addMonster(readStringFromCIn());
     }
-    _CrtDumpMemoryLeaks();
+    startGame();
 }
 
 void MonsterChase::startGame() {
@@ -52,6 +46,12 @@ void MonsterChase::startGame() {
         std::cout << *pc_ << std::endl;
         std::cout << *mc_ << std::endl;
     }
+}
+
+MonsterChase::~MonsterChase()
+{
+    delete pc_;
+    delete mc_;
 }
 
 void MonsterChase::updateAllObjects() {
