@@ -8,8 +8,6 @@ enum class InputAction {
 
 class PlayerController : public Raven::GameObject
 {
-private:
-	char* player_name_;
 public:
 	PlayerController(char* name): player_name_(name) {}
 
@@ -19,7 +17,12 @@ public:
 	}
 	InputAction getInputAction(char in);
 	void handleInput(char in);
-	friend std::ostream& operator<<(std::ostream& lhs, const PlayerController& pc);
 
+	// Overrides
+	// void update(float delta) override;
+
+	friend std::ostream& operator<<(std::ostream& lhs, const PlayerController& pc);
+private:
+	char* player_name_;
 };
 
