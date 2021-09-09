@@ -2,7 +2,6 @@
 #include "Raven.h"
 #include "PlayerController.h"
 #include "MonsterController.h"
-#include<iostream>
 
 class MonsterChase: public Raven::Application
 {
@@ -12,7 +11,10 @@ public:
 	void updateAllObjects();
 	void startGame();
 	void Run();
+
+	// Removing copy constructors
+	MonsterChase& operator=(const MonsterChase& m) = delete;
 private:
-	MonsterController* mc_;
 	PlayerController* pc_;
+	MonsterController* mc_;
 };

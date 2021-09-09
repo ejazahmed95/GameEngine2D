@@ -1,14 +1,9 @@
 #include "Application.h"
 
 namespace Raven {
-	Application::Application()
-	{
-		
-	}
+	Application::Application() = default;
 
-	Application::~Application()
-	{
-	}
+	Application::~Application() = default;
 
 	void Application::Run() {
 		while (true);

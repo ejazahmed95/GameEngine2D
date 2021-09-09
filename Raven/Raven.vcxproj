@@ -19,7 +19,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -47,6 +47,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)-$(Configuration)-$(Platform)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -84,7 +85,6 @@
     <ClInclude Include="src\Raven\CoreModule\Point2D.h" />
     <ClInclude Include="src\Raven.h" />
     <ClInclude Include="src\Raven\Application.h" />
-    <ClInclude Include="src\Hello.h" />
     <ClInclude Include="src\Raven\Core.h" />
     <ClInclude Include="src\Raven\CoreModule\GameObject.h" />
     <ClInclude Include="src\Raven\EntryPoint.h" />
@@ -94,7 +94,6 @@
   <ItemGroup>
     <ClCompile Include="src\Raven\CoreModule\Point2D.cpp" />
     <ClCompile Include="src\Raven\Application.cpp" />
-    <ClCompile Include="src\Hello.cpp" />
     <ClCompile Include="src\Raven\CoreModule\GameObject.cpp" />
     <ClCompile Include="src\Raven\Input\StandardInputReader.cpp" />
   </ItemGroup>

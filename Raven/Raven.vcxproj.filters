@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Hello.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Raven\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -47,9 +44,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Hello.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Raven\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
