@@ -90,12 +90,14 @@
     <ClInclude Include="src\Raven\EntryPoint.h" />
     <ClInclude Include="src\Raven\Input\IInputReader.h" />
     <ClInclude Include="src\Raven\Input\StandardInputReader.h" />
+    <ClInclude Include="test\Point2DTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Raven\CoreModule\Point2D.cpp" />
     <ClCompile Include="src\Raven\Application.cpp" />
     <ClCompile Include="src\Raven\CoreModule\GameObject.cpp" />
     <ClCompile Include="src\Raven\Input\StandardInputReader.cpp" />
+    <ClCompile Include="test\Point2DTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
