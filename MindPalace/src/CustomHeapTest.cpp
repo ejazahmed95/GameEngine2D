@@ -1,11 +1,14 @@
 #include <cstdlib>
 #include <iostream>
 
+#include "TestHelpers.h"
 #include "HeapManager.h"
 
 bool HeapManager_CustomTest(void* heapStart, size_t sizeHeap, int num_descriptors) {
 	// Self Heap Test
 	HeapManager* hm = CreateHeapManager(heapStart, sizeHeap, num_descriptors);
+	hm->debug();
+	// return false;
 	do {
 		const size_t		maxTestAllocationSize = 256;
 
@@ -29,12 +32,12 @@ bool HeapManager_CustomTest(void* heapStart, size_t sizeHeap, int num_descriptor
 
 		// if allocation failed see if garbage collecting will create a large enough block
 		if (pPtr == nullptr) {
-			hm->collect();
+			// hm->coalesce();
 
 #ifdef SUPPORTS_ALIGNMENT
 			pPtr = alloc(pHeapManager, sizeAlloc, alignment);
 #else
-			pPtr = hm->alloc(sizeAlloc);
+			// pPtr = hm->alloc(sizeAlloc);
 #endif // SUPPORT_ALIGNMENT
 
 			// if not we're done. go on to cleanup phase of test
@@ -44,6 +47,7 @@ bool HeapManager_CustomTest(void* heapStart, size_t sizeHeap, int num_descriptor
 
 		
 		std::cout << "Pointer found:" << pPtr << std::endl;
+		hm->debug();
 		char* ch = static_cast<char*>(pPtr);
 
 		// Fill the allocated bytes with data

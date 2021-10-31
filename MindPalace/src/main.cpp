@@ -1,11 +1,10 @@
 #include <cassert>
 #include <cinttypes>
 #include <iostream>
-
-#include "HeapManager.h"
+#include "TestHelpers.h"
 
 int main() {
-	const size_t sizeHeap = 1024*32;
+	const size_t sizeHeap = 1024*4;
 	const size_t bufferSize = 32;
 	std::cout << "This is the memory manager" << std::endl;
 
@@ -30,6 +29,14 @@ int main() {
 	}
 	ch = static_cast<char*>(heapStart);
 	std::cout << heapStart << std::endl;
+
+	// auto mb = new MemoryBlock();
+	// std::cout << sizeof(MemoryBlock) << std::endl;
+	// std::cout << "Base Address" << &mb->pBaseAddress << std::endl;
+	// std::cout << "Size" << &mb->dataSize << std::endl;
+	// std::cout << "Next" << &mb->nextBlock << std::endl;
+	// std::cout << "Free" << &mb->free << std::endl;
+	// std::cout << "A" << &mb->a << std::endl;
 	HeapManager_CustomTest(heapStart, sizeHeap, 1024);
 
 	free(heap);

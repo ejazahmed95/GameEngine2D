@@ -149,9 +149,12 @@
     <ClCompile Include="src\HeapManager.cpp" />
     <ClCompile Include="src\HeapTest.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MemoryBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\HeapManager.h" />
+    <ClInclude Include="src\MemoryBlock.h" />
+    <ClInclude Include="src\TestHelpers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
