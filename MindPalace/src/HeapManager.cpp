@@ -50,22 +50,25 @@ void* HeapManager::alloc(size_t size, int alignment) {
 
 	while(next != nullptr) {
 		if(next->free) {
-			size_t availableSize = reinterpret_cast<uintptr_t>(curr) - reinterpret_cast<uintptr_t>(next) - sizeof(MemoryBlock);
+			size_t availableSize = reinterpret_cast<uintptr_t>(curr) - reinterpret_cast<uintptr_t>(next);
 			size_t alignedSize = size;
 			alignedSize += CalculateAligned(reinterpret_cast<uintptr_t>(curr) - size, alignment);
 
 			// std::cout << "Available Size = " << availableSize << " ; alignedSize = " << alignedSize << std::endl;
-			if(availableSize > alignedSize) {
+			if(availableSize > (alignedSize + sizeof(MemoryBlock))) {
+				size_t remainingSize = availableSize - (alignedSize + sizeof(MemoryBlock));
+
+				// Store this as new block can potentially override the value for next block
+				MemoryBlock* prevBlockOfNext = next->prevBlock;
+
 				MemoryBlock* newBlock = CreateNewBlock(reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(curr) - alignedSize - sizeof(MemoryBlock)), alignedSize + sizeof(MemoryBlock));
 				newBlock->occupy(true);
 
 				curr->prevBlock = newBlock;
 				newBlock->nextBlock = curr;
 				
-
-				size_t remainingSize = availableSize - alignedSize - sizeof(MemoryBlock);
-				if(remainingSize <= sizeof(MemoryBlock)) {
-					newBlock->prevBlock = next->prevBlock;
+				if(remainingSize <= sizeof(MemoryBlock)) { // Next variable is potentially overriden 
+					newBlock->prevBlock = prevBlockOfNext;
 					newBlock->prevBlock->nextBlock = newBlock;
 				} else {
 					newBlock->prevBlock = next;
@@ -83,13 +86,14 @@ void* HeapManager::alloc(size_t size, int alignment) {
 	return nullptr;
 }
 
-void HeapManager::free(void* dataPtr) {
+bool HeapManager::free(void* dataPtr) {
 	uintptr_t ptr = reinterpret_cast<uintptr_t>(dataPtr) - sizeof(MemoryBlock);
 	MemoryBlock* mb = reinterpret_cast<MemoryBlock*>(ptr);
 	mb->occupy(false);
+	return true;
 }
 
-void HeapManager::coalesce() {
+void HeapManager::coalesce() const {
 	MemoryBlock* curr = _head;
 	MemoryBlock* next = curr->nextBlock;
 	while(next != _tail) {
@@ -104,12 +108,20 @@ void HeapManager::coalesce() {
 	}
 }
 
-void HeapManager::debug() {
-	std::cout << "============== Printing All Blocks ===================" << std::endl;
-	MemoryBlock* mb = _head;
-	while(mb != nullptr) {
+void HeapManager::debug() const {
+	// std::cout << "============== Printing All Blocks ===================" << std::endl;
+	// MemoryBlock* mb = _head;
+	// while(mb != nullptr) {
+	// 	mb->print();
+	// 	mb = mb->nextBlock;
+	// }
+	// std::cout << "=================================" << std::endl;
+
+	std::cout << "============== Printing All Blocks 2 ===================" << std::endl;
+	MemoryBlock* mb = _tail;
+	while (mb != nullptr) {
 		mb->print();
-		mb = mb->nextBlock;
+		mb = mb->prevBlock;
 	}
 	std::cout << "=================================" << std::endl;
 }
