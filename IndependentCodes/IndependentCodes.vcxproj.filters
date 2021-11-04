@@ -21,6 +21,15 @@
     <ClCompile Include="src\MakeSentence\MakeSentence.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\InterviewQuestions\LinkedListProblems.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InterviewQuestions\ArrayQuestions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InterviewQuestions\TestQuestions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MakeSentence\MakeSentence.h">
@@ -30,6 +39,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Utilities\Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InterviewQuestions\LinkedListProblems.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InterviewQuestions\ArrayQuestions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InterviewQuestions\TestQuestions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

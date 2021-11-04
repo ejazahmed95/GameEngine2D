@@ -139,10 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\InterviewQuestions\ArrayQuestions.cpp" />
+    <ClCompile Include="src\InterviewQuestions\LinkedListProblems.cpp" />
+    <ClCompile Include="src\InterviewQuestions\TestQuestions.cpp" />
     <ClCompile Include="src\Source.cpp" />
     <ClCompile Include="src\MakeSentence\MakeSentence.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\InterviewQuestions\ArrayQuestions.h" />
+    <ClInclude Include="src\InterviewQuestions\LinkedListProblems.h" />
+    <ClInclude Include="src\InterviewQuestions\TestQuestions.h" />
     <ClInclude Include="src\MakeSentence\MakeSentence.h" />
     <ClInclude Include="src\Utilities\DynamicArray.h" />
     <ClInclude Include="src\Utilities\Utils.h" />
