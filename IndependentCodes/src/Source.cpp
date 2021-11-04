@@ -2,14 +2,20 @@
 //
 
 #include <iostream>
-#include "AllCodes.h"
+#include "MakeSentence/MakeSentence.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
-
-    // Assignment 1.05
+    /* Assignment 1.05 */ 
+    std::cout << "Welcome to Assignment 5" << std:: endl;;
     TestMakeSentence();
+
+    /* Assignment 1.06 */
+    // std::cout << "Welcome to Assignment 6" << std::endl;
+
+    /* Assignment 1.0 */
+    // std::cout << "Welcome to Assignment 7" << std::endl;
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

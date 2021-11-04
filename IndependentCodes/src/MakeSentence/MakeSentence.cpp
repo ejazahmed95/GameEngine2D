@@ -1,13 +1,13 @@
 #include <cassert>
 #include <conio.h>
 
-#include "AllCodes.h"
+#include "../Utilities/Utils.h"
 #include <iostream>
 
 char* readStringFromCIn() {
     char a[20];
     // std::cin >> a;
-    int len = 0;
+    size_t len = 0;
 	while (len <= 20) {
 		char c;
 		c = std::getchar();
@@ -32,7 +32,7 @@ int len(const char* word) {
 	return len;
 }
 
-char* MakeSentence(const char** arr) {
+char* MakeSentence(char** arr) {
 	int totalLength = 0;
 	for(int i=0;;i++) {
 		const char* word = arr[i];
@@ -68,20 +68,22 @@ void TestMakeSentence() {
 		nullptr
 	};
 
-	char** words = new char*[20];
+	DynamicArray<char*> words;
 	int wordsLen = 0;
 	char* currWord;
 	do {
 		std::cout << "Enter the next word, enter just q to quit: ";
 		currWord = readStringFromCIn();
-		words[wordsLen++] = currWord;
-	} while (currWord != nullptr && wordsLen < 20);
+		words.push_back(currWord);
+	} while (currWord != nullptr);
 
+	char** wordsArr = new char* [words.Size()];
+	for(size_t i =0;i<words.Size(); i++) {
+		wordsArr[i] = words[i];
+	}
 	std::cout << std::endl;
-	char* pSentence = MakeSentence(const_cast<const char**>(words));
-
+	char* pSentence = MakeSentence(wordsArr);
 	printf("The Sentence is: %s\n", pSentence);
-
 	
 	free(pSentence);
 

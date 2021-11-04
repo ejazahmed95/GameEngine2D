@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\IndependentCodes.cpp" />
-    <ClCompile Include="src\MakeSentence.cpp" />
+    <ClCompile Include="src\Source.cpp" />
+    <ClCompile Include="src\MakeSentence\MakeSentence.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\AllCodes.h" />
+    <ClInclude Include="src\MakeSentence\MakeSentence.h" />
+    <ClInclude Include="src\Utilities\DynamicArray.h" />
+    <ClInclude Include="src\Utilities\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
