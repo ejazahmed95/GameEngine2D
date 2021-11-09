@@ -72,7 +72,7 @@ void TestMakeSentence() {
 	int wordsLen = 0;
 	char* currWord;
 	do {
-		std::cout << "Enter the next word, enter just q to quit: ";
+		std::cout << "Enter the next word, simply enter to quit: ";
 		currWord = readStringFromCIn();
 		words.push_back(currWord);
 	} while (currWord != nullptr);
