@@ -3,19 +3,24 @@
 
 #include <iostream>
 #include "MakeSentence/MakeSentence.h"
+#include "InheritanceProbs.h"
 
 int main()
 {
-    /* Assignment 1.05 */ 
-    std::cout << "Welcome to Assignment 5" << std:: endl;;
-    TestMakeSentence();
+    {
+        /* Assignment 1.05 */
+     // std::cout << "Welcome to Assignment 5" << std:: endl;;
+     // TestMakeSentence();
 
-    /* Assignment 1.06 */
-    // std::cout << "Welcome to Assignment 6" << std::endl;
+     /* Assignment 1.06 */
+     // std::cout << "Welcome to Assignment 6" << std::endl;
 
-    /* Assignment 1.0 */
-    // std::cout << "Welcome to Assignment 7" << std::endl;
-
+     /* Assignment 1.07 */
+        std::cout << "Welcome to Assignment 7" << std::endl;
+        TestProblemOne();
+        TestProblemTwo();
+    }
+    _CrtDumpMemoryLeaks();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
