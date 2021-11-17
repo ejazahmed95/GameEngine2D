@@ -84,9 +84,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\CustomHeapTest.cpp" />
+    <ClCompile Include="src\TestHeap.cpp" />
     <ClCompile Include="src\HeapManager.cpp" />
-    <ClCompile Include="src\HeapTest.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MemoryBlock.cpp" />
   </ItemGroup>
