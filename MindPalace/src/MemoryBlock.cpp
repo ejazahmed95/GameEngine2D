@@ -11,7 +11,7 @@ size_t MemoryBlock::blockSize() {
 	return dataSize + sizeof(MemoryBlock);
 }
 
-void MemoryBlock::shrink(size_t size) {
+void MemoryBlock::setDataSize(size_t size) {
 	dataSize = size;
 }
 
@@ -26,8 +26,10 @@ void MemoryBlock::occupy(bool used) {
 }
 
 void MemoryBlock::print() {
-	std::cout << "BLOCK " << this << " | " << pBaseAddress << " | ";
+	// std::cout << "BLOCK " << this << " | ";
+	std::cout << "Location: " << pBaseAddress << " | ";
 	if (free) std::cout << "FREE | ";
 	else std::cout << "USED | ";
-	std::cout << "DataSize = "<< dataSize << "; SIZE=" << blockSize() << std::endl;
+	std::cout << "DataSize = " << dataSize << std::endl;
+	// << "; SIZE=" << blockSize() << std::endl;
 }

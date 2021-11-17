@@ -3,19 +3,13 @@
 #include <iostream>
 
 HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors) {
-	char* ch = static_cast<char*>(pHeapMemory);
-	ch = WriteChars(ch, "HEAP");
-	HeapManager* hm = (HeapManager*)(ch);
-	size_t hSize = sizeof(HeapManager) + static_cast<size_t>(8);
+	const auto hm = static_cast<HeapManager*>(pHeapMemory);
+	constexpr size_t headerSize = sizeof(HeapManager);
 
-	std::cout << "HSize=" << hSize << "||| Available Size=" << heapSize - hSize << std::endl;
-	std::cout << "Start mem location = " << pHeapMemory << std::endl;
+	// std::cout << "HSize=" << headerSize << "||| Available Size=" << heapSize - headerSize << std::endl;
+	// std::cout << "Start mem location = " << pHeapMemory << std::endl;
 
-	hm->Initialize(static_cast<char*>(pHeapMemory) + hSize, heapSize - hSize, numDescriptors);
-	ch += sizeof(HeapManager);
-	ch = WriteChars(ch, "HEAP");
-
-
+	hm->Initialize(static_cast<char*>(pHeapMemory) + headerSize, heapSize - headerSize, numDescriptors);
 	return hm;
 }
 
@@ -75,7 +69,7 @@ void* HeapManager::alloc(size_t size, int alignment) {
 					next->nextBlock = newBlock;
 
 					size_t newSize = reinterpret_cast<uintptr_t>(newBlock) - reinterpret_cast<uintptr_t>(next) - sizeof(MemoryBlock);
-					next->shrink(newSize);
+					next->setDataSize(newSize);
 				}
 				return newBlock->pBaseAddress;
 			}
@@ -100,10 +94,12 @@ void HeapManager::coalesce() const {
 		if(curr->free && next->free) {
 			curr->nextBlock = next->nextBlock;
 			next->nextBlock->prevBlock = curr;
+			uintptr_t diff = reinterpret_cast<uintptr_t>(curr->nextBlock) - reinterpret_cast<uintptr_t>(curr);
+			// if (a < sizeof(MemoryBlock)) std::cout << "AAA:: " << a << " | " << curr << " | " << curr->nextBlock << std::endl;
+			curr->setDataSize(diff - sizeof(MemoryBlock));
 		} else {
 			curr = curr->nextBlock;
 		}
-
 		next = curr->nextBlock;
 	}
 }
@@ -126,6 +122,64 @@ void HeapManager::debug() const {
 	std::cout << "=================================" << std::endl;
 }
 
+void HeapManager::destroy() {
+	// TODO: Implementation
+}
+
+bool HeapManager::contains(void* ptr) const {
+	MemoryBlock* block = _head->nextBlock;
+	const auto ptrLoc = getBlockPtrForDataPtr(ptr);
+	while (block) {
+		if(block == ptrLoc) {
+			return true;
+		}
+		block = block->nextBlock;
+	}
+	return false;
+}
+
+MemoryBlock* HeapManager::getBlockPtrForDataPtr(void* ptr) const {
+	return reinterpret_cast<MemoryBlock*>(reinterpret_cast<uintptr_t>(ptr) - sizeof(MemoryBlock));
+}
+
+size_t HeapManager::getLargestFreeBlock() const {
+	size_t largestBlockSize = 0;
+	MemoryBlock* block = _head->nextBlock;
+	while(block) {
+		if (block->free && block->dataSize > largestBlockSize) largestBlockSize = block->dataSize;
+		block = block->nextBlock;
+	}
+	return largestBlockSize;
+}
+
+bool HeapManager::isAllocated(void* p_ptr) const {
+	if(contains(p_ptr)) {
+		MemoryBlock* blockPtr = getBlockPtrForDataPtr(p_ptr);
+		return !blockPtr->free;
+	}
+	return true;
+}
+
+void HeapManager::showFreeBlocks() const {
+	std::cout << "============== Printing All Free Blocks ===================" << std::endl;
+	MemoryBlock* mb = _head->nextBlock;
+	while (mb != nullptr && mb != _tail) {
+		if(mb->free) mb->print();
+		mb = mb->nextBlock;
+	}
+	std::cout << "=============== ** END ** ==================" << std::endl;
+}
+
+void HeapManager::showOutstandingAllocations() const {
+	std::cout << "============== Printing All Outstanding Blocks ===================" << std::endl;
+	MemoryBlock* mb = _head->nextBlock;
+	while (mb != nullptr && mb != _tail) {
+		if (!mb->free) mb->print();
+		mb = mb->nextBlock;
+	}
+	std::cout << "=============== ** END ** ==================" << std::endl;
+}
+
 
 MemoryBlock* HeapManager::CreateNewBlock(void* pointer, size_t size) {
 	// assert(size > sizeof(MemoryBlock));
@@ -133,7 +187,7 @@ MemoryBlock* HeapManager::CreateNewBlock(void* pointer, size_t size) {
 	if (size < sizeof(MemoryBlock)) return nullptr;
 
 	
-	MemoryBlock* block = reinterpret_cast<MemoryBlock*>(pointer);
+	MemoryBlock* block = static_cast<MemoryBlock*>(pointer);
 	
 	block->pBaseAddress = reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(pointer) + sizeof(MemoryBlock));
 	block->dataSize = size - sizeof(MemoryBlock);
