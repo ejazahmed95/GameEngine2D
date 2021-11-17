@@ -16,7 +16,7 @@ struct MemoryBlock {
 
 	void* getBlockEnd();
 	size_t blockSize();
-	void shrink(size_t size);
+	void setDataSize(size_t size);
 	void occupy(bool used);
 	void print();
 };

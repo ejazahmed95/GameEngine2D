@@ -1,13 +1,12 @@
-#include <cassert>
-#include <cstdlib>
-#include <iostream>
+#include "HeapManager.h"
+#include <Windows.h>
+
+#include <assert.h>
+#include <algorithm>
 #include <vector>
 
-#include "HeapManager.h"
-#include "Windows.h"
-
 bool HeapManager_CustomTest() {
-	const size_t sizeHeap = 1024 * 4;
+	const size_t sizeHeap = 1024 * 1024;
 	const unsigned int 	numDescriptors = 2048;
 
 #ifdef USE_HEAP_ALLOC
@@ -35,45 +34,45 @@ bool HeapManager_CustomTest() {
 	// an allocation worked. Also helped test my ShowFreeBlocks() and ShowOutstandingAllocations().
 	{
 #ifdef SUPPORTS_SHOWFREEBLOCKS
-		ShowFreeBlocks(pHeapManager);
+		pHeapManager->showFreeBlocks();
 #endif // SUPPORTS_SHOWFREEBLOCKS
 
-		size_t largestBeforeAlloc = GetLargestFreeBlock(pHeapManager);
-		void* pPtr = alloc(pHeapManager, largestBeforeAlloc - HeapManager::s_MinumumToLeave);
+		size_t largestBeforeAlloc = pHeapManager->getLargestFreeBlock();
+		void* pPtr = pHeapManager->alloc(largestBeforeAlloc);
 
 		if (pPtr) {
 #if defined(SUPPORTS_SHOWFREEBLOCKS) || defined(SUPPORTS_SHOWOUTSTANDINGALLOCATIONS)
 			printf("After large allocation:\n");
 #ifdef SUPPORTS_SHOWFREEBLOCKS
-			ShowFreeBlocks(pHeapManager);
+			pHeapManager->showFreeBlocks();
 #endif // SUPPORTS_SHOWFREEBLOCKS
 #ifdef SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
-			ShowOutstandingAllocations(pHeapManager);
+			pHeapManager->showOutstandingAllocations();
 #endif // SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
 			printf("\n");
 #endif
 
-			size_t largestAfterAlloc = GetLargestFreeBlock(pHeapManager);
-			bool success = Contains(pHeapManager, pPtr) && IsAllocated(pHeapManager, pPtr);
+			size_t largestAfterAlloc = pHeapManager->getLargestFreeBlock();
+			bool success = pHeapManager->contains(pPtr) && pHeapManager->isAllocated(pPtr);
 			assert(success);
 
-			success = free(pHeapManager, pPtr);
+			success = pHeapManager->free(pPtr);
 			assert(success);
 
-			Collect(pHeapManager);
+			pHeapManager->coalesce();
 
 #if defined(SUPPORTS_SHOWFREEBLOCKS) || defined(SUPPORTS_SHOWOUTSTANDINGALLOCATIONS)
 			printf("After freeing allocation and garbage collection:\n");
 #ifdef SUPPORTS_SHOWFREEBLOCKS
-			ShowFreeBlocks(pHeapManager);
+			pHeapManager->showFreeBlocks();
 #endif // SUPPORTS_SHOWFREEBLOCKS
 #ifdef SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
-			ShowOutstandingAllocations(pHeapManager);
+			pHeapManager->showOutstandingAllocations();
 #endif // SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
 			printf("\n");
 #endif
 
-			size_t largestAfterCollect = GetLargestFreeBlock(pHeapManager);
+			size_t largestAfterCollect = pHeapManager->getLargestFreeBlock();
 		}
 	}
 #endif
@@ -85,7 +84,7 @@ bool HeapManager_CustomTest() {
 	long	numCollects = 0;
 
 	do {
-		const size_t		maxTestAllocationSize = 256;
+		const size_t		maxTestAllocationSize = 1024;
 
 		size_t	sizeAlloc = 1 + (rand() & (maxTestAllocationSize - 1));
 
@@ -119,7 +118,7 @@ bool HeapManager_CustomTest() {
 			if (pPtr == nullptr)
 				break;
 		}
-		std::cout << "Pointer found:" << pPtr << " || Size:: " << sizeAlloc << " || Alignment::" << alignment << std::endl;
+		// std::cout << "Pointer found:" << pPtr << " || Size:: " << sizeAlloc << " || Alignment::" << alignment << std::endl;
 		AllocatedAddresses.push_back(pPtr);
 		numAllocs++;
 
@@ -131,12 +130,18 @@ bool HeapManager_CustomTest() {
 			void* pPtr = AllocatedAddresses.back();
 			AllocatedAddresses.pop_back();
 
-			// bool success = Contains(pHeapManager, pPtr) && IsAllocated(pHeapManager, pPtr);
-			// assert(success);
+			bool success = pHeapManager->contains(pPtr) && pHeapManager->isAllocated(pPtr);
+			// if (!success) {
+			// 	std::cout << "Pointer in question is::" << pPtr << std::endl;
+			// 	std::cout << "Pointer in question is::" << pHeapManager->contains(pPtr) << std::endl;
+			// 	std::cout << "Pointer in question is::" << pHeapManager->isAllocated(pPtr) << std::endl;
+			// 	pHeapManager->debug();
+			// }
+			assert(success);
 
-			std::cout << "Freeing Pointer::" << pPtr << std::endl;
+			// std::cout << "Freeing Pointer::" << pPtr << std::endl;
 			
-			bool success = pHeapManager->free(pPtr);
+			success = pHeapManager->free(pPtr);
 			assert(success);
 
 			numFrees++;
@@ -149,8 +154,89 @@ bool HeapManager_CustomTest() {
 		}
 
 		// Testing Code
-		pHeapManager->debug();
+		// pHeapManager->debug();
 
 	} while (1);
+
+#if defined(SUPPORTS_SHOWFREEBLOCKS) || defined(SUPPORTS_SHOWOUTSTANDINGALLOCATIONS)
+	printf("After exhausting allocations:\n");
+#ifdef SUPPORTS_SHOWFREEBLOCKS
+	pHeapManager->showFreeBlocks();
+#endif // SUPPORTS_SHOWFREEBLOCKS
+#ifdef SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
+	pHeapManager->showOutstandingAllocations();
+#endif // SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
+	printf("\n");
+#endif
+
+	// now free those blocks in a random order
+	if (!AllocatedAddresses.empty()) {
+		// randomize the addresses
+		std::random_shuffle(AllocatedAddresses.begin(), AllocatedAddresses.end());
+
+		// return them back to the heap manager
+		while (!AllocatedAddresses.empty()) {
+			void* pPtr = AllocatedAddresses.back();
+			AllocatedAddresses.pop_back();
+
+			bool success = pHeapManager->contains(pPtr) && pHeapManager->isAllocated(pPtr);
+			assert(success);
+
+			success = pHeapManager->free(pPtr);
+			assert(success);
+		}
+
+#if defined(SUPPORTS_SHOWFREEBLOCKS) || defined(SUPPORTS_SHOWOUTSTANDINGALLOCATIONS)
+		printf("After freeing allocations:\n");
+#ifdef SUPPORTS_SHOWFREEBLOCKS
+		pHeapManager->showFreeBlocks();
+#endif // SUPPORTS_SHOWFREEBLOCKS
+
+#ifdef SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
+		pHeapManager->showOutstandingAllocations();
+#endif // SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
+		printf("\n");
+#endif
+
+		// do garbage collection
+		pHeapManager->coalesce();
+		// our heap should be one single block, all the memory it started with
+
+#if defined(SUPPORTS_SHOWFREEBLOCKS) || defined(SUPPORTS_SHOWOUTSTANDINGALLOCATIONS)
+		printf("After garbage collection:\n");
+#ifdef SUPPORTS_SHOWFREEBLOCKS
+		pHeapManager->showFreeBlocks();
+#endif // SUPPORTS_SHOWFREEBLOCKS
+
+#ifdef SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
+		pHeapManager->showOutstandingAllocations();
+#endif // SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
+		printf("\n");
+#endif
+
+		// do a large test allocation to see if garbage collection worked
+		void* pPtr = pHeapManager->alloc(sizeHeap / 2);
+		assert(pPtr);
+
+		if (pPtr) {
+			bool success = pHeapManager->contains(pPtr) && pHeapManager->isAllocated(pPtr);
+			assert(success);
+
+			success = pHeapManager->free(pPtr);
+			assert(success);
+
+		}
+	}
+
+	pHeapManager->destroy();
+	pHeapManager = nullptr;
+
+	if (pHeapMemory) {
+#ifdef USE_HEAP_ALLOC
+		HeapFree(GetProcessHeap(), 0, pHeapMemory);
+#else
+		VirtualFree(pHeapMemory, 0, MEM_RELEASE);
+#endif
+	}
 	return false;
 }
