@@ -5,15 +5,18 @@ template<typename T>
 class DynamicArray {
 public:
 	DynamicArray() {
-		Resize(2);
+		resize(2);
 	}
 	~DynamicArray() {
 		clear();
 		::operator delete(_data, _capacity * sizeof(T));
 	}
+	DynamicArray(const DynamicArray& other) = delete;
+	DynamicArray& operator=(const DynamicArray& other) = delete;
+
 	void push_back(const T& value) {
 		if(_size >= _capacity) {
-			Resize(_capacity + _capacity / 2);
+			resize(_capacity + _capacity / 2);
 		}
 		_data[_size++] = value;
 	}
@@ -30,15 +33,8 @@ public:
 		}
 		_size = 0;
 	}
-	// void add(T&& value) {
-	// 	// Todo: Use std::move to reduce copies
-	// 	if (_size >= _capacity) {
-	// 		Resize(_capacity + _capacity / 2);
-	// 	}
-	// 	_data[_size++] = std::move(value);
-	// }
 
-	size_t Size() const {
+	size_t size() const {
 		return _size;
 	}
 	const T& operator[](size_t index) const {
@@ -55,14 +51,13 @@ public:
 		return _data[index];
 	}
 private:
-	void Resize(size_t newCapacity) {
+	void resize(size_t newCapacity) {
 		T* newBlock = static_cast<T*>(::operator new(newCapacity * sizeof(T)));
 
 		if(newCapacity < _size) {
 			_size = newCapacity;
 		}
-
-		// Todo: Use std::move to reduce copies
+		
 		for(size_t i = 0;i<_size;i++) {
 			newBlock[i] = _data[i];
 		}
@@ -76,7 +71,7 @@ private:
 
 		_data = newBlock;
 		_capacity = newCapacity;
-	};
+	}
 private:
 	T* _data = nullptr;
 	size_t _size = 0;

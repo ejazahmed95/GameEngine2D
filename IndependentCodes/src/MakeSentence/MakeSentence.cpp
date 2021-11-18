@@ -60,14 +60,6 @@ char* MakeSentence(char** arr) {
 
 
 void TestMakeSentence() {
-	const char* strings[] = {
-		"This",
-		"is",
-		"a",
-		"test",
-		nullptr
-	};
-
 	DynamicArray<char*> words;
 	int wordsLen = 0;
 	char* currWord;
@@ -77,15 +69,16 @@ void TestMakeSentence() {
 		words.push_back(currWord);
 	} while (currWord != nullptr);
 
-	char** wordsArr = new char* [words.Size()];
-	for(size_t i =0;i<words.Size(); i++) {
+	size_t size = words.size();
+	char** wordsArr = new char* [size];
+	for(size_t i =0;i<size; i++) {
 		wordsArr[i] = words[i];
 	}
 	std::cout << std::endl;
 	char* pSentence = MakeSentence(wordsArr);
 	printf("The Sentence is: %s\n", pSentence);
 	
-	free(pSentence);
+	// free(pSentence);
 
 #if defined(_DEBUG)
 	_CrtDumpMemoryLeaks();

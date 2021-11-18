@@ -60,15 +60,15 @@ void MonsterController::removeMonster(int index)
 
 char* MonsterController::getCustomName(const char* name, int index) const
 {
-	int len = strlen(name);
+	size_t len = strlen(name);
 	auto s = std::to_string(index);
 	const char* suffix = s.c_str();
-	int newlen = strlen(name) + strlen(suffix) + 1;
-	char* n = new char[newlen];
+	size_t newLength = strlen(name) + strlen(suffix) + 1;
+	char* n = new char[newLength];
 	memcpy(n, name, sizeof(char)*strlen(name));
 	memcpy(n+len, suffix, sizeof(char)*strlen(suffix));
-	std::cout << "Length = " << len << ";" << newlen << ";" << suffix << std::endl;
-	n[newlen - 1] = '\0';
+	std::cout << "Length = " << len << ";" << newLength << ";" << suffix << std::endl;
+	n[newLength - 1] = '\0';
 	return n;
 }
 
