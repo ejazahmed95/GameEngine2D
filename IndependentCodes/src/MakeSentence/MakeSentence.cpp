@@ -77,10 +77,9 @@ void TestMakeSentence() {
 	std::cout << std::endl;
 	char* pSentence = MakeSentence(wordsArr);
 	printf("The Sentence is: %s\n", pSentence);
-	
-	// free(pSentence);
-
-#if defined(_DEBUG)
-	_CrtDumpMemoryLeaks();
-#endif // _DEBUG
+	for (size_t i = 0; i < size; i++) {
+		delete[] wordsArr[i];
+	}
+	delete[] wordsArr;
+	delete[] pSentence;
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "math/Vector2.h"
+#include "../math/Vector2.h"
 
 // This is our base class for a GameActor, something in our world that moves and has health
 class GameActor

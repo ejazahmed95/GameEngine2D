@@ -30,16 +30,7 @@
     <ClCompile Include="src\InterviewQuestions\TestQuestions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\problemone-master\math\Vector2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\problemone-master\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\problemtwo-master\math\Vector2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\problemtwo-master\main.cpp">
+    <ClCompile Include="src\math\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\problemone-master\TestProblemOne.cpp">
@@ -68,7 +59,7 @@
     <ClInclude Include="src\InterviewQuestions\TestQuestions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\problemone-master\math\Vector2.h">
+    <ClInclude Include="src\math\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\problemone-master\GameActor.h">
@@ -78,9 +69,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\problemone-master\Monster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\problemtwo-master\math\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\problemtwo-master\GameActor.h">
@@ -97,10 +85,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\problemone-master\math\Vector2.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="src\problemtwo-master\math\Vector2.inl">
+    <None Include="src\math\Vector2.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

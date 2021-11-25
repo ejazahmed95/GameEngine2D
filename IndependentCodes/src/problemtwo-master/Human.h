@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "GameActor.h"
-#include "math/Vector2.h"
+#include "../math/Vector2.h"
 
 #include <string.h>
 #include <stdlib.h>

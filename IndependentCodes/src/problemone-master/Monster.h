@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GameActor.h"
-#include "math/Vector2.h"
+#include "../math/Vector2.h"
 
 
 // This is a GameActor that's a monster

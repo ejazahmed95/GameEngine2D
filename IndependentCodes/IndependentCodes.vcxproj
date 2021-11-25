@@ -143,11 +143,8 @@
     <ClCompile Include="src\InterviewQuestions\ArrayQuestions.cpp" />
     <ClCompile Include="src\InterviewQuestions\LinkedListProblems.cpp" />
     <ClCompile Include="src\InterviewQuestions\TestQuestions.cpp" />
-    <ClCompile Include="src\problemone-master\main.cpp" />
-    <ClCompile Include="src\problemone-master\math\Vector2.cpp" />
+    <ClCompile Include="src\math\Vector2.cpp" />
     <ClCompile Include="src\problemone-master\TestProblemOne.cpp" />
-    <ClCompile Include="src\problemtwo-master\main.cpp" />
-    <ClCompile Include="src\problemtwo-master\math\Vector2.cpp" />
     <ClCompile Include="src\problemtwo-master\TestProblemTwo.cpp" />
     <ClCompile Include="src\Source.cpp" />
     <ClCompile Include="src\MakeSentence\MakeSentence.cpp" />
@@ -160,18 +157,16 @@
     <ClInclude Include="src\problemone-master\Game.h" />
     <ClInclude Include="src\problemone-master\GameActor.h" />
     <ClInclude Include="src\problemone-master\Human.h" />
-    <ClInclude Include="src\problemone-master\math\Vector2.h" />
+    <ClInclude Include="src\math\Vector2.h" />
     <ClInclude Include="src\problemone-master\Monster.h" />
     <ClInclude Include="src\problemtwo-master\GameActor.h" />
     <ClInclude Include="src\problemtwo-master\Human.h" />
     <ClInclude Include="src\InheritanceProbs.h" />
-    <ClInclude Include="src\problemtwo-master\math\Vector2.h" />
     <ClInclude Include="src\Utilities\DynamicArray.h" />
     <ClInclude Include="src\Utilities\Utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\problemone-master\math\Vector2.inl" />
-    <None Include="src\problemtwo-master\math\Vector2.inl" />
+    <None Include="src\math\Vector2.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
