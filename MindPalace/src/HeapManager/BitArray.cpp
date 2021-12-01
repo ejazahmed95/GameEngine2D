@@ -4,7 +4,7 @@
 #include <cstring>
 
 BitArray* BitArray::create(size_t num_bits, HeapManager* hm) {
-	void* ptr = hm->alloc(sizeof(t_BitData) * ((num_bits - 1) /bitsPerElement + 1));
+	void* ptr = hm->alloc(sizeof(BitArray));
 	return new(ptr) BitArray(num_bits);
 }
 
@@ -31,28 +31,52 @@ void BitArray::setBit(size_t bitIndex) {
 	while ((_bitElements[index] == 0) && (index < size))
 		index++;
 
-
+	t_BitData* dataElem = &_bitElements[bitIndex / bitsPerElement];
+	size_t bitPos = bitIndex % bitsPerElement;
+	*dataElem &= (static_cast<t_BitData>(1) << (bitsPerElement - bitPos - 1));
 }
 
-void BitArray::clearBit(size_t bitIndex) {}
+void BitArray::clearBit(size_t bitIndex) {
+	size_t index = 0;
+	size_t size = numElements();
+	while ((_bitElements[index] == 0) && (index < size))
+		index++;
+
+	t_BitData* dataElem = &_bitElements[bitIndex / bitsPerElement];
+	size_t bitPos = bitIndex % bitsPerElement;
+	*dataElem &= (static_cast<t_BitData>(1) << (bitsPerElement - bitPos - 1));
+}
 
 bool BitArray::getFirstSetBit(size_t& bitIndex) const {
 	size_t index = 0;
 	size_t size = numElements();
 	while ((_bitElements[index] == 0) && (index < size))
 		index++;
+	if (index == size) return false;
 
 	t_BitData data = _bitElements[index];
 	size_t bitPos = getSetBitPos(data);
 
 	bitIndex = index * bitsPerElement + bitPos;
-	return false;
+	return true;
 }
 
 bool BitArray::getFirstClearBit(size_t& bitIndex) const {
-	return false;
+	size_t index = 0;
+	size_t size = numElements();
+	while ((_bitElements[index] == ~static_cast<t_BitData>(0)) && (index < size))
+		index++;
+	if (index == size) return false;
+
+	t_BitData data = _bitElements[index];
+	size_t bitPos = getSetBitPos(data);
+
+	bitIndex = index * bitsPerElement + bitPos;
+	return true;
 }
 
 bool BitArray::operator[](size_t index) const {
-	return false;
+	t_BitData dataElem = _bitElements[index / bitsPerElement];
+	size_t bitPos = index % bitsPerElement;
+	return dataElem & (static_cast<t_BitData>(1) << (bitsPerElement - bitPos - 1));
 }

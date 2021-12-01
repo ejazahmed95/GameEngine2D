@@ -12,7 +12,8 @@ int main() {
 
 
 	// TestMemSet();
+	// TestBitScans();
+	TestBitToggle();
 
-	TestBitScans();
 	_CrtDumpMemoryLeaks();
 }

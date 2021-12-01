@@ -3,10 +3,16 @@
 #include "TestHelpers.h"
 #pragma intrinsic(_BitScanForward, _BitScanForward64, _BitScanReverse, _BitScanReverse64)
 
+#if WIN32
+typedef uint32_t t_TestInt;
+#else
+typedef uint64_t t_TestInt;
+#endif
+
 void TestMemSet() {
 	using namespace std;
 	std::cout << "Hello World\n";
-	uint32_t* values = new uint32_t[10];
+	t_TestInt* values = new t_TestInt[10];
 	//memset(values, ~0, 10);
 	for (int i = 0; i < 10; i++) {
 		values[i] = rand();
@@ -14,7 +20,7 @@ void TestMemSet() {
 	}
 
 	cout << "=======================" << endl;
-	memset(values, ~0, 10 * sizeof(uint32_t));
+	memset(values, ~0, 10 * sizeof(t_TestInt));
 
 	for (int i = 0; i < 10; i++) {
 		cout << "Value:" << values[i] << endl;
@@ -37,4 +43,27 @@ void TestBitScans() {
 	_BitScanReverse64(&reverseIndex, mask);
 #endif
 	cout << "Mask: " << mask << "\t Forward Index: " << forwardIndex << "\t Reverse Index: " << reverseIndex << endl;
+}
+
+void UpdateBit(t_TestInt& data, unsigned int index, bool set);
+void TestBitToggle() {
+	using namespace std;
+	t_TestInt val = 4 + 1; // ...101
+	unsigned int setIndex = 1;
+	unsigned int clearIndex = 2;
+
+	cout << "Number being tested:: " << val << endl;
+
+	UpdateBit(val, setIndex, true);
+	cout << "After setting index=" << setIndex << "; Value=" << val << endl;
+
+	UpdateBit(val, clearIndex, false);
+	cout << "After clearing index=" << clearIndex << "; Value=" << val << endl;
+}
+
+void UpdateBit(t_TestInt& data, unsigned int index, bool set) {
+	if(set)
+		data |= (static_cast<t_TestInt>(1) << index);
+	else
+		data &= ~(static_cast<t_TestInt>(1) << index);
 }

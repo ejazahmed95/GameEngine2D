@@ -48,7 +48,7 @@ private:
 #else
 		_BitScanReverse64(&pos, data);
 #endif
-		return bitsPerElement - pos + 1;
+		return bitsPerElement - pos - 1;
 	}
 private:
 	t_BitData* _bitElements;

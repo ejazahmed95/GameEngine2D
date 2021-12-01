@@ -7,3 +7,4 @@ bool HeapManager_CustomTest();
 // Custom Tests
 void TestMemSet();
 void TestBitScans();
+void TestBitToggle();
