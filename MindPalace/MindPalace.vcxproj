@@ -85,6 +85,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Allocators.cpp" />
+    <ClCompile Include="src\HeapManager\BitArray.cpp" />
+    <ClCompile Include="src\HeapManager\FixedSizeAllocator.cpp" />
     <ClCompile Include="src\MemorySystem.cpp" />
     <ClCompile Include="src\TestFinalHeapManager.cpp" />
     <ClCompile Include="src\TestHeapManagerBasic.cpp" />
@@ -94,6 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Allocators.h" />
+    <ClInclude Include="src\HeapManager\BitArray.h" />
+    <ClInclude Include="src\HeapManager\FixedSizeAllocator.h" />
     <ClInclude Include="src\HeapManager\HeapManager.h" />
     <ClInclude Include="src\HeapManager\MemoryBlock.h" />
     <ClInclude Include="src\MemorySystem.h" />
