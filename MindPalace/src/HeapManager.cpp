@@ -3,14 +3,13 @@
 #include <iostream>
 
 HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors) {
-	const auto hm = static_cast<HeapManager*>(pHeapMemory);
-	constexpr size_t headerSize = sizeof(HeapManager);
-
-	// std::cout << "HSize=" << headerSize << "||| Available Size=" << heapSize - headerSize << std::endl;
-	// std::cout << "Start mem location = " << pHeapMemory << std::endl;
-
-	hm->Initialize(static_cast<char*>(pHeapMemory) + headerSize, heapSize - headerSize, numDescriptors);
+	const auto hm = new(pHeapMemory) HeapManager(pHeapMemory, heapSize, numDescriptors);
 	return hm;
+}
+
+HeapManager::HeapManager(void* start, size_t size, int num_descriptors) {
+	constexpr size_t headerSize = sizeof(HeapManager);
+	Initialize(static_cast<char*>(start) + headerSize, size - headerSize, num_descriptors);
 }
 
 void HeapManager::Initialize(void* start, size_t size, int num_descriptors) {
