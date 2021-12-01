@@ -18,6 +18,7 @@ private:
 	MemoryBlock * _head = nullptr, * _tail = nullptr;
 	uintptr_t _heapStart = 0;
 public:
+	HeapManager(void* start, size_t size, int num_descriptors);
 	void Initialize(void* start, size_t size, int num_descriptors);
 	void* alloc(size_t size);
 	void* alloc(size_t size, int alignment);
