@@ -85,6 +85,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Allocators.cpp" />
+    <ClCompile Include="src\CustomTests.cpp" />
     <ClCompile Include="src\HeapManager\BitArray.cpp" />
     <ClCompile Include="src\HeapManager\FixedSizeAllocator.cpp" />
     <ClCompile Include="src\MemorySystem.cpp" />

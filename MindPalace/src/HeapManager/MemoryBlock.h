@@ -1,7 +1,6 @@
 #pragma once
 
 #define DEBUG_BLOCK 0
-#include <cstdint>
 
 struct MemoryBlock {
 #if DEBUG_BLOCK

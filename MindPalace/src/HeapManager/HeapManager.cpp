@@ -1,9 +1,13 @@
 #include "HeapManager.h"
 #include <iostream>
 
+HeapManager* HeapManager::instance = nullptr;
+
 HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors) {
-	const auto hm = new(pHeapMemory) HeapManager(pHeapMemory, heapSize, numDescriptors);
-	return hm;
+	if (HeapManager::instance == nullptr) {
+		HeapManager::instance = new(pHeapMemory) HeapManager(pHeapMemory, heapSize, numDescriptors);
+	}
+	return HeapManager::instance;
 }
 
 HeapManager::HeapManager(void* start, size_t size, int num_descriptors) {

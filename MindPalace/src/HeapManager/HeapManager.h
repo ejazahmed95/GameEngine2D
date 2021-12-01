@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 #include "MemoryBlock.h"
 
 // List of all supported flags
@@ -17,6 +18,7 @@ private:
 	int _numDescriptors = 0;
 	MemoryBlock * _head = nullptr, * _tail = nullptr;
 	uintptr_t _heapStart = 0;
+	bool _allocatorsInitialized = false;
 public:
 	HeapManager(void* start, size_t size, int num_descriptors);
 	void* alloc(size_t size);
@@ -34,6 +36,10 @@ private:
 	void initialize(void* start, size_t size, int num_descriptors);
 	MemoryBlock* getBlockPtrForDataPtr(void* ptr) const;
 	MemoryBlock* CreateNewBlock(void* pointer, size_t size);
+
+// Static variable for testing purposes;
+public:
+	static HeapManager* instance;
 };
 
 HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors);

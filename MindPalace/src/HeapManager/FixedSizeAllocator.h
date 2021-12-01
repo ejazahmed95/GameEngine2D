@@ -1,7 +1,14 @@
 #pragma once
+
+struct FSAInfo {
+	size_t size;
+	size_t numBlocks;
+};
+
 class FixedSizeAllocator {
 public:
-	FixedSizeAllocator():
+	FixedSizeAllocator(FSAInfo info);
 private:
-	_
+	// BitArray
+	size_t _blockSize, _numBlocks;
 };
