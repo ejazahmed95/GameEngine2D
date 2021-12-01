@@ -9,10 +9,10 @@ HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescri
 
 HeapManager::HeapManager(void* start, size_t size, int num_descriptors) {
 	constexpr size_t headerSize = sizeof(HeapManager);
-	Initialize(static_cast<char*>(start) + headerSize, size - headerSize, num_descriptors);
+	initialize(static_cast<char*>(start) + headerSize, size - headerSize, num_descriptors);
 }
 
-void HeapManager::Initialize(void* start, size_t size, int num_descriptors) {
+void HeapManager::initialize(void* start, size_t size, int num_descriptors) {
 	_heapSize = size;
 	_numDescriptors = num_descriptors;
 	_heapStart = reinterpret_cast<uintptr_t>(start);

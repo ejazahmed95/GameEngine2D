@@ -19,7 +19,6 @@ private:
 	uintptr_t _heapStart = 0;
 public:
 	HeapManager(void* start, size_t size, int num_descriptors);
-	void Initialize(void* start, size_t size, int num_descriptors);
 	void* alloc(size_t size);
 	void* alloc(size_t size, int alignment);
 	bool free(void* dataPtr);
@@ -32,6 +31,7 @@ public:
 	void debug() const;
 	void destroy();
 private:
+	void initialize(void* start, size_t size, int num_descriptors);
 	MemoryBlock* getBlockPtrForDataPtr(void* ptr) const;
 	MemoryBlock* CreateNewBlock(void* pointer, size_t size);
 };
