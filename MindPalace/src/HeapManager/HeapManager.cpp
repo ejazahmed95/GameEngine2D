@@ -1,5 +1,4 @@
 #include "HeapManager.h"
-#include "TestHelpers.h"
 #include <iostream>
 
 HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors) {

@@ -37,3 +37,5 @@ private:
 };
 
 HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors);
+size_t CalculateAligned(uintptr_t ptr, int alignment);
+char* WriteChars(char* ch, const char* str);

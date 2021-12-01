@@ -6,7 +6,8 @@
 
 int main() {
 	std::cout << "This is the memory manager" << std::endl;
-	HeapManager_CustomTest();
+	// HeapManager_CustomTest();
 
+	HeapTestFinal();
 	_CrtDumpMemoryLeaks();
 }

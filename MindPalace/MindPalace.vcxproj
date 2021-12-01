@@ -84,14 +84,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\TestHeap.cpp" />
-    <ClCompile Include="src\HeapManager.cpp" />
+    <ClCompile Include="src\Allocators.cpp" />
+    <ClCompile Include="src\MemorySystem.cpp" />
+    <ClCompile Include="src\TestFinalHeapManager.cpp" />
+    <ClCompile Include="src\TestHeapManagerBasic.cpp" />
+    <ClCompile Include="src\HeapManager\HeapManager.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\MemoryBlock.cpp" />
+    <ClCompile Include="src\HeapManager\MemoryBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\HeapManager.h" />
-    <ClInclude Include="src\MemoryBlock.h" />
+    <ClInclude Include="src\Allocators.h" />
+    <ClInclude Include="src\HeapManager\HeapManager.h" />
+    <ClInclude Include="src\HeapManager\MemoryBlock.h" />
+    <ClInclude Include="src\MemorySystem.h" />
     <ClInclude Include="src\TestHelpers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
