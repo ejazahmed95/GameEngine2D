@@ -26,7 +26,7 @@ void BitArray::setBit(size_t bitIndex) {
 
 	t_BitData* dataElem = &_bitElements[bitIndex / bitsPerElement];
 	size_t bitPos = bitIndex % bitsPerElement;
-	*dataElem &= (static_cast<t_BitData>(1) << (bitsPerElement - bitPos - 1));
+	*dataElem = *dataElem | (static_cast<t_BitData>(1) << (bitsPerElement - bitPos - 1));
 }
 
 void BitArray::clearBit(size_t bitIndex) {
@@ -37,7 +37,7 @@ void BitArray::clearBit(size_t bitIndex) {
 
 	t_BitData* dataElem = &_bitElements[bitIndex / bitsPerElement];
 	size_t bitPos = bitIndex % bitsPerElement;
-	*dataElem &= (static_cast<t_BitData>(1) << (bitsPerElement - bitPos - 1));
+	*dataElem = *dataElem & (~static_cast<t_BitData>(1) << (bitsPerElement - bitPos - 1));
 }
 
 bool BitArray::getFirstSetBit(size_t& bitIndex) const {

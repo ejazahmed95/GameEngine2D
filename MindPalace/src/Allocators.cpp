@@ -1,10 +1,4 @@
-#include <cinttypes>
-// #include <malloc.h>
-#include "HeapManager/HeapManager.h"
-
-#include <cstdio>
-#include <stdlib.h>
-#include <xutility>
+#include "Allocators.h"
 
 
 void* __cdecl malloc(size_t i_size, HeapManager* hm) {

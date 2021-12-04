@@ -1,11 +1,10 @@
 #pragma once
 #include <cstdint>
-#include "HeapManager.h"
 #include "intrin.h"
 
 #pragma intrinsic(_BitScanReverse, _BitScanReverse64)
 
-#if WIN32
+#if defined(WIN32)
 typedef uint32_t t_BitData;
 #else
 typedef uint64_t t_BitData;
@@ -41,7 +40,7 @@ private:
 
 	static inline size_t getSetBitPos(t_BitData data) {
 		unsigned long pos;
-#if WIN32
+#if defined(WIN32)
 		_BitScanReverse(&pos, data);
 #else
 		_BitScanReverse64(&pos, data);

@@ -47,6 +47,7 @@ void HeapTestFinal() {
 
 #if _DEBUG
 	std::cout << "\n\nMemory System Destroyed!!! " << std::endl;
+	hm->showOutstandingAllocations();
 #endif
 
 	HeapFree(GetProcessHeap(), 0, pHeapMemory);
@@ -115,6 +116,10 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 
 	} while (numAllocs < maxAllocations);
 
+#if _DEBUG
+	std::cout << "\n\nAllocation exhausted!! " << std::endl;
+	hm->showFreeBlocks();
+#endif
 	// now free those blocks in a random order
 	if (!AllocatedAddresses.empty()) {
 		// randomize the addresses

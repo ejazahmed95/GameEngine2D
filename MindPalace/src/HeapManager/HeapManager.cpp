@@ -15,10 +15,12 @@ HeapManager::HeapManager(void* start, size_t size, int num_descriptors) {
 	initialize(static_cast<char*>(start) + headerSize, size - headerSize, num_descriptors);
 }
 
-void HeapManager::initializeFSAs(FSAInfo* fsa_infos, size_t size) {
+void HeapManager::initializeFSAs(FSAInfo* fsaInfos, size_t size) {
 	auto allocators = new FixedSizeAllocator*[size];
 	for(int i=0;i<size;i++) {
-		allocators[i] = new FixedSizeAllocator(fsa_infos[i]);
+		FSAInfo info = fsaInfos[i];
+		info.startLoc = reinterpret_cast<uintptr_t>(alloc(info.size * info.numBlocks));
+		allocators[i] = new FixedSizeAllocator(info);
 	}
 	_allocators = allocators;
 	_numAllocators = size;
@@ -142,6 +144,7 @@ void HeapManager::debug() const {
 void HeapManager::destroy() {
 	for(size_t i=0;i<_numAllocators;i++) {
 		_allocators[i]->destroy();
+		free(reinterpret_cast<void*>(_allocators[i]->_startLoc));
 		delete _allocators[i];
 	}
 	delete[] _allocators;

@@ -13,6 +13,7 @@
 #define SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
 #endif
 
+
 // TODO: Override new for this that takes a heap pointer
 class HeapManager {
 private:
@@ -24,7 +25,7 @@ private:
 	size_t _numAllocators = 0;
 public:
 	HeapManager(void* start, size_t size, int num_descriptors);
-	void initializeFSAs(FSAInfo* fsa_infos, size_t size);
+	void initializeFSAs(FSAInfo* fsaInfos, size_t size);
 	void* alloc(size_t size);
 	void* alloc(size_t size, int alignment);
 	bool free(void* dataPtr);
