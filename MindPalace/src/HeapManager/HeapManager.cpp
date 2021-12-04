@@ -15,6 +15,14 @@ HeapManager::HeapManager(void* start, size_t size, int num_descriptors) {
 	initialize(static_cast<char*>(start) + headerSize, size - headerSize, num_descriptors);
 }
 
+void HeapManager::initializeFSAs(FSAInfo* fsa_infos, size_t size) {
+	auto allocators = new FixedSizeAllocator*[size];
+	for(int i=0;i<size;i++) {
+		allocators[i] = new FixedSizeAllocator(fsa_infos[i]);
+	}
+	_allocators = allocators;
+}
+
 void HeapManager::initialize(void* start, size_t size, int num_descriptors) {
 	_heapSize = size;
 	_numDescriptors = num_descriptors;
@@ -33,8 +41,6 @@ void HeapManager::initialize(void* start, size_t size, int num_descriptors) {
 	_tail->prevBlock = firstFreeBlock;
 	firstFreeBlock->prevBlock = _head;
 }
-
-
 
 void* HeapManager::alloc(size_t size) {
 	return alloc(size, 4);

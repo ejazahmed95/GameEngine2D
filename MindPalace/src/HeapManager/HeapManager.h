@@ -1,5 +1,7 @@
 #pragma once
 #include <cstdint>
+
+#include "FixedSizeAllocator.h"
 #include "MemoryBlock.h"
 
 // List of all supported flags
@@ -18,9 +20,11 @@ private:
 	int _numDescriptors = 0;
 	MemoryBlock * _head = nullptr, * _tail = nullptr;
 	uintptr_t _heapStart = 0;
-	bool _allocatorsInitialized = false;
+	FixedSizeAllocator** _allocators = nullptr;
+	size_t _numAllocators = 0;
 public:
 	HeapManager(void* start, size_t size, int num_descriptors);
+	void initializeFSAs(FSAInfo* fsa_infos, size_t size);
 	void* alloc(size_t size);
 	void* alloc(size_t size, int alignment);
 	bool free(void* dataPtr);

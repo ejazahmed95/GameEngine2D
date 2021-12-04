@@ -43,7 +43,7 @@ void HeapTestFinal() {
 }
 
 bool MemorySystem_UnitTest(HeapManager* hm) {
-	const size_t maxAllocations = 10 * 1024;
+	const size_t maxAllocations = 1024 * 100;
 	std::vector<void*> AllocatedAddresses;
 
 	long	numAllocs = 0;

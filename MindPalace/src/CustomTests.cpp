@@ -1,6 +1,7 @@
 #include <iostream>
 #include <intrin.h>
 #include "TestHelpers.h"
+#include "HeapManager/HeapManager.h"
 #pragma intrinsic(_BitScanForward, _BitScanForward64, _BitScanReverse, _BitScanReverse64)
 
 #if WIN32
@@ -59,6 +60,25 @@ void TestBitToggle() {
 
 	UpdateBit(val, clearIndex, false);
 	cout << "After clearing index=" << clearIndex << "; Value=" << val << endl;
+}
+
+struct Vec {
+	int x, y;
+	Vec() : x(1), y(1) {
+		std::cout << "Vec constructor called" << std::endl;
+	}
+	~Vec() {
+		std::cout << "Vec destroyed\n";
+	}
+};
+void TestNewDelete() {
+	Vec* v = new Vec();
+	delete v;
+
+	std::cout << "===== Array construction and destruction ======" << std::endl;
+
+	Vec* vArr = new Vec[5];
+	delete[] vArr;
 }
 
 void UpdateBit(t_TestInt& data, unsigned int index, bool set) {

@@ -8,12 +8,13 @@ int main() {
 	std::cout << "This is the memory manager" << std::endl;
 	// HeapManager_CustomTest();
 
-	// HeapTestFinal();
+	HeapTestFinal();
 
 
 	// TestMemSet();
 	// TestBitScans();
-	TestBitToggle();
+	// TestBitToggle();
+	// TestNewDelete();
 
 	_CrtDumpMemoryLeaks();
 }

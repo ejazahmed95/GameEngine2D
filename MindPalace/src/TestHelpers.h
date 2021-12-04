@@ -8,3 +8,4 @@ bool HeapManager_CustomTest();
 void TestMemSet();
 void TestBitScans();
 void TestBitToggle();
+void TestNewDelete();

@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <intrin0.inl.h>
+#include "intrin.h"
 
 #include "HeapManager.h"
 
