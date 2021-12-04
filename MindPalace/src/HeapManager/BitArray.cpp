@@ -1,12 +1,5 @@
 #include "BitArray.h"
-#include <intrin.h>
-#include <new>
 #include <cstring>
-
-BitArray* BitArray::create(size_t num_bits, HeapManager* hm) {
-	void* ptr = hm->alloc(sizeof(BitArray));
-	return new(ptr) BitArray(num_bits);
-}
 
 BitArray::BitArray(size_t num_bits): _numBits(num_bits) {
 	_bitElements = new t_BitData[numElements()];

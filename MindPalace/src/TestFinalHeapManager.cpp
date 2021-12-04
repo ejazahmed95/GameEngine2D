@@ -28,6 +28,9 @@ void HeapTestFinal() {
 	// Create your HeapManager and FixedSizeAllocators.
 	auto hm = InitializeMemorySystem(pHeapMemory, sizeHeap, numDescriptors);
 
+	hm->debug();
+
+	return;
 	bool success = MemorySystem_UnitTest(hm);
 	assert(success);
 

@@ -1,6 +1,4 @@
 #pragma once
-#include "BitArray.h"
-#include "HeapManager.h"
 
 struct FSAInfo {
 	size_t size;

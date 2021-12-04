@@ -1,8 +1,7 @@
 #pragma once
 #include <cstdint>
-#include "intrin.h"
-
 #include "HeapManager.h"
+#include "intrin.h"
 
 #pragma intrinsic(_BitScanReverse, _BitScanReverse64)
 
@@ -14,7 +13,6 @@ typedef uint64_t t_BitData;
 
 class BitArray {
 public:
-	static BitArray* create(size_t num_bits, HeapManager* hm);
 	BitArray(size_t num_bits);
 	~BitArray();
 
