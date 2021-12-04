@@ -142,8 +142,9 @@ void HeapManager::debug() const {
 void HeapManager::destroy() {
 	for(size_t i=0;i<_numAllocators;i++) {
 		_allocators[i]->destroy();
+		delete _allocators[i];
 	}
-	// TODO: Implementation
+	delete[] _allocators;
 }
 
 bool HeapManager::contains(void* ptr) const {

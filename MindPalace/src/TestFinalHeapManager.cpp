@@ -5,13 +5,13 @@
 
 #include <assert.h>
 #include <algorithm>
-#include <iostream>
 #include <vector>
 
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
+#include <iostream>
 #endif // _DEBUG
 
 bool MemorySystem_UnitTest(HeapManager*);
@@ -29,16 +29,25 @@ void HeapTestFinal() {
 	// Create your HeapManager and FixedSizeAllocators.
 	auto hm = InitializeMemorySystem(pHeapMemory, sizeHeap, numDescriptors);
 
-	hm->debug();
-
+#if _DEBUG
+	std::cout << "\n\n Memory System Initialized!!! " << std::endl;
+	hm->showOutstandingAllocations();
+#endif
 	// return;
 	bool success = MemorySystem_UnitTest(hm);
 	assert(success);
 
+#if _DEBUG
+	std::cout << "\n\nMemory System Unit Test Completed!!! " << std::endl;
 	hm->showOutstandingAllocations();
+#endif
 
 	// Clean up your Memory System (HeapManager and FixedSizeAllocators)
 	DestroyMemorySystem(hm);
+
+#if _DEBUG
+	std::cout << "\n\nMemory System Destroyed!!! " << std::endl;
+#endif
 
 	HeapFree(GetProcessHeap(), 0, pHeapMemory);
 
@@ -49,7 +58,7 @@ void HeapTestFinal() {
 }
 
 bool MemorySystem_UnitTest(HeapManager* hm) {
-	const size_t maxAllocations = 1024;
+	const size_t maxAllocations = 1024*10;
 	std::vector<void*> AllocatedAddresses;
 	
 	long	numAllocs = 0;
@@ -60,7 +69,7 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 
 	// reserve space in AllocatedAddresses for the maximum number of allocation attempts
 	// prevents new returning null when std::vector expands the underlying array
-	AllocatedAddresses.reserve(1024);
+	AllocatedAddresses.reserve(10*1024);
 
 	// return true;
 	// allocate memory of random sizes up to 1024 bytes from the heap manager
@@ -119,12 +128,18 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 			delete[] pPtrToFree;
 		}
 
+#if _DEBUG
+		std::cout << "\n\nFreed all allocations " << std::endl;
+		hm->showOutstandingAllocations();
+#endif
 		// do garbage collection
 		Collect(hm);
 		// our heap should be one single block, all the memory it started with
-
+#if _DEBUG
+		std::cout << "\n\nGarbage collection completed " << std::endl;
+		hm->showFreeBlocks();
+#endif
 		// do a large test allocation to see if garbage collection worked
-		std::cout << "Doing a large allocation of size = " << totalAllocated / 2 << std::endl;
 		void* pPtr = malloc(totalAllocated / 2, hm);
 
 		if (pPtr) {

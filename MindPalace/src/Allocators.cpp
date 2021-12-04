@@ -21,16 +21,15 @@ void __cdecl free(void* i_ptr, HeapManager* hm) {
 
 void* operator new(size_t i_size) {
 	// replace with calls to your HeapManager or FixedSizeAllocators
-	printf("new %zu\n", i_size);
+	// printf("new %zu\n", i_size);
 	return malloc(i_size, HeapManager::instance);
 }
 
 void operator delete(void* i_ptr) {
 	// replace with calls to your HeapManager or FixedSizeAllocators
-	printf("delete 0x%" PRIXPTR "\n", reinterpret_cast<uintptr_t>(i_ptr));
+	// printf("delete 0x%" PRIXPTR "\n", reinterpret_cast<uintptr_t>(i_ptr));
 	free(i_ptr, HeapManager::instance);
 }
-
 
 void* operator new[](size_t i_size) {
 	// replace with calls to your HeapManager or FixedSizeAllocators
