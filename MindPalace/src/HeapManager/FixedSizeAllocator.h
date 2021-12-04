@@ -11,6 +11,9 @@ public:
 	FixedSizeAllocator(FSAInfo info);
 	void* alloc(size_t size);
 	bool free(void* data_ptr);
+	void destroy();
+	void showOutstandingBlocks() const;
+	void showFreeBlocks() const;
 private:
 	// BitArray
 	size_t _blockSize, _numBlocks;

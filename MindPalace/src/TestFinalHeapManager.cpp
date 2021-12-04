@@ -5,6 +5,7 @@
 
 #include <assert.h>
 #include <algorithm>
+#include <iostream>
 #include <vector>
 
 #ifdef _DEBUG
@@ -30,9 +31,11 @@ void HeapTestFinal() {
 
 	hm->debug();
 
-	return;
+	// return;
 	bool success = MemorySystem_UnitTest(hm);
 	assert(success);
+
+	hm->showOutstandingAllocations();
 
 	// Clean up your Memory System (HeapManager and FixedSizeAllocators)
 	DestroyMemorySystem(hm);
@@ -46,9 +49,9 @@ void HeapTestFinal() {
 }
 
 bool MemorySystem_UnitTest(HeapManager* hm) {
-	const size_t maxAllocations = 1024 * 100;
+	const size_t maxAllocations = 1024;
 	std::vector<void*> AllocatedAddresses;
-
+	
 	long	numAllocs = 0;
 	long	numFrees = 0;
 	long	numCollects = 0;
@@ -57,8 +60,9 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 
 	// reserve space in AllocatedAddresses for the maximum number of allocation attempts
 	// prevents new returning null when std::vector expands the underlying array
-	AllocatedAddresses.reserve(10 * 1024);
+	AllocatedAddresses.reserve(1024);
 
+	// return true;
 	// allocate memory of random sizes up to 1024 bytes from the heap manager
 	// until it runs out of memory
 	do {
@@ -111,9 +115,8 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 		while (!AllocatedAddresses.empty()) {
 			void* pPtrToFree = AllocatedAddresses.back();
 			AllocatedAddresses.pop_back();
-
-			//TODO: May need to enable this after overriding malloc:: delete[] pPtrToFree;
-			free(pPtrToFree, hm);
+			
+			delete[] pPtrToFree;
 		}
 
 		// do garbage collection
@@ -121,6 +124,7 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 		// our heap should be one single block, all the memory it started with
 
 		// do a large test allocation to see if garbage collection worked
+		std::cout << "Doing a large allocation of size = " << totalAllocated / 2 << std::endl;
 		void* pPtr = malloc(totalAllocated / 2, hm);
 
 		if (pPtr) {
@@ -133,13 +137,10 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 		return false;
 	}
 
-	/*
-	 * TODO: Reenable this block after overriding new and delete 
 	// this new [] / delete [] pair should run through your allocator
 	char* pNewTest = new char[1024];
 
 	delete[] pNewTest;
-	*/
 
 	hm->showFreeBlocks();
 	hm->showOutstandingAllocations();

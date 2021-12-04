@@ -27,7 +27,7 @@ void* operator new(size_t i_size) {
 
 void operator delete(void* i_ptr) {
 	// replace with calls to your HeapManager or FixedSizeAllocators
-	// printf("delete 0x%" PRIXPTR "\n", reinterpret_cast<uintptr_t>(i_ptr));
+	printf("delete 0x%" PRIXPTR "\n", reinterpret_cast<uintptr_t>(i_ptr));
 	free(i_ptr, HeapManager::instance);
 }
 
@@ -40,6 +40,6 @@ void* operator new[](size_t i_size) {
 
 void operator delete [](void* i_ptr) {
 	// replace with calls to your HeapManager or FixedSizeAllocators
-	printf("delete [] 0x%" PRIXPTR "\n", reinterpret_cast<uintptr_t>(i_ptr));
+	// printf("delete [] 0x%" PRIXPTR "\n", reinterpret_cast<uintptr_t>(i_ptr));
 	free(i_ptr, HeapManager::instance);
 }

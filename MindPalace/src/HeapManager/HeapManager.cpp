@@ -140,6 +140,9 @@ void HeapManager::debug() const {
 }
 
 void HeapManager::destroy() {
+	for(size_t i=0;i<_numAllocators;i++) {
+		_allocators[i]->destroy();
+	}
 	// TODO: Implementation
 }
 
@@ -179,6 +182,9 @@ bool HeapManager::isAllocated(void* p_ptr) const {
 
 void HeapManager::showFreeBlocks() const {
 	std::cout << "============== Printing All Free Blocks ===================" << std::endl;
+	for (size_t i = 0; i < _numAllocators; i++) {
+		_allocators[i]->showFreeBlocks();
+	}
 	MemoryBlock* mb = _head->nextBlock;
 	while (mb != nullptr && mb != _tail) {
 		if(mb->free) mb->print();
@@ -189,6 +195,9 @@ void HeapManager::showFreeBlocks() const {
 
 void HeapManager::showOutstandingAllocations() const {
 	std::cout << "============== Printing All Outstanding Blocks ===================" << std::endl;
+	for (size_t i = 0; i < _numAllocators; i++) {
+		_allocators[i]->showOutstandingBlocks();
+	}
 	MemoryBlock* mb = _head->nextBlock;
 	while (mb != nullptr && mb != _tail) {
 		if (!mb->free) mb->print();
