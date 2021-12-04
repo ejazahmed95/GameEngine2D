@@ -1,14 +1,31 @@
 #include <iostream>
 #include <intrin.h>
 #include "TestHelpers.h"
-#include "HeapManager/HeapManager.h"
 #pragma intrinsic(_BitScanForward, _BitScanForward64, _BitScanReverse, _BitScanReverse64)
 
-#if WIN32
-typedef uint32_t t_TestInt;
-#else
-typedef uint64_t t_TestInt;
-#endif
+void RepresentBits(t_TestInt value) {
+	using namespace std;
+	t_TestInt v = static_cast<t_TestInt>(1) << (sizeof(t_TestInt)*8 - 1);
+	for(t_TestInt i = 0; i<sizeof(t_TestInt)*8; i++) {
+		// cout << v << endl;
+		if ((value & v) == 0) cout << "0";
+		else cout << "1";
+		v = v >> 1;
+	}
+	cout << "=============" << endl;
+}
+
+void RepresentBitsChar(char value) {
+	using namespace std;
+	int v = 1 << (sizeof(char) * 8 - 1);
+	for (t_TestInt i = 0; i < sizeof(char)*8; i++) {
+		cout << static_cast<int>(v) << endl;
+		if ((value & v) == 0) cout << "0";
+		else cout << "1";
+		v = v >> 1;
+	}
+	cout << endl;
+}
 
 void TestMemSet() {
 	using namespace std;
@@ -21,10 +38,10 @@ void TestMemSet() {
 	}
 
 	cout << "=======================" << endl;
-	memset(values, ~0, 10 * sizeof(t_TestInt));
+	memset(values, 128, 10 * sizeof(t_TestInt));
 
 	for (int i = 0; i < 10; i++) {
-		cout << "Value:" << values[i] << endl;
+		RepresentBits(values[i]);
 	}
 
 	delete[] values;

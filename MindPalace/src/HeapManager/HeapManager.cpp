@@ -21,6 +21,7 @@ void HeapManager::initializeFSAs(FSAInfo* fsa_infos, size_t size) {
 		allocators[i] = new FixedSizeAllocator(fsa_infos[i]);
 	}
 	_allocators = allocators;
+	_numAllocators = size;
 }
 
 void HeapManager::initialize(void* start, size_t size, int num_descriptors) {
@@ -49,6 +50,11 @@ void* HeapManager::alloc(size_t size) {
 void* HeapManager::alloc(size_t size, int alignment) {
 	MemoryBlock* curr = _tail;
 	MemoryBlock* next = _tail->prevBlock;
+
+	for(size_t i=0;i < _numAllocators;i++) {
+		void* ptr = _allocators[i]->alloc(size);
+		if (ptr != nullptr) return ptr;
+	}
 
 	while(next != nullptr) {
 		if(next->free) {
@@ -89,8 +95,11 @@ void* HeapManager::alloc(size_t size, int alignment) {
 }
 
 bool HeapManager::free(void* dataPtr) {
-	uintptr_t ptr = reinterpret_cast<uintptr_t>(dataPtr) - sizeof(MemoryBlock);
-	MemoryBlock* mb = reinterpret_cast<MemoryBlock*>(ptr);
+	for(size_t i =0; i<_numAllocators; i++) {
+		if(_allocators[i]->free(dataPtr)) return true;
+	}
+	if (!contains(dataPtr)) return false;
+	MemoryBlock* mb = getBlockPtrForDataPtr(dataPtr);
 	mb->occupy(false);
 	return true;
 }

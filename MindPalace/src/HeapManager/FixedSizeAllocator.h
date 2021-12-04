@@ -9,6 +9,8 @@ struct FSAInfo {
 class FixedSizeAllocator {
 public:
 	FixedSizeAllocator(FSAInfo info);
+	void* alloc(size_t size);
+	bool free(void* data_ptr);
 private:
 	// BitArray
 	size_t _blockSize, _numBlocks;

@@ -11,10 +11,11 @@ int main() {
 	HeapTestFinal();
 
 
-	// TestMemSet();
+	TestMemSet();
 	// TestBitScans();
 	// TestBitToggle();
 	// TestNewDelete();
+	// RepresentBitsChar(5);
 
 	_CrtDumpMemoryLeaks();
 }
