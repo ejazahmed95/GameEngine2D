@@ -32,6 +32,7 @@ public:
 	void debug() const;
 	void destroy();
 private:
+	bool isPowerofTwo(int alignment) const;
 	MemoryBlock* getBlockPtrForDataPtr(void* ptr) const;
 	MemoryBlock* CreateNewBlock(void* pointer, size_t size);
 };

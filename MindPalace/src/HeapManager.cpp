@@ -1,4 +1,5 @@
 #include "HeapManager.h"
+
 #include "TestHelpers.h"
 #include <iostream>
 
@@ -40,7 +41,10 @@ void* HeapManager::alloc(size_t size) {
 void* HeapManager::alloc(size_t size, int alignment) {
 	MemoryBlock* curr = _tail;
 	MemoryBlock* next = _tail->prevBlock;
-
+	// assert(isPowerofTwo(alignment));
+	if(!isPowerofTwo(alignment)) {
+		return nullptr;
+	}
 	while(next != nullptr) {
 		if(next->free) {
 			size_t availableSize = reinterpret_cast<uintptr_t>(curr) - reinterpret_cast<uintptr_t>(next);
@@ -121,9 +125,7 @@ void HeapManager::debug() const {
 	std::cout << "=================================" << std::endl;
 }
 
-void HeapManager::destroy() {
-	// TODO: Implementation
-}
+void HeapManager::destroy() {}
 
 bool HeapManager::contains(void* ptr) const {
 	MemoryBlock* block = _head->nextBlock;
@@ -135,6 +137,12 @@ bool HeapManager::contains(void* ptr) const {
 		block = block->nextBlock;
 	}
 	return false;
+}
+
+bool HeapManager::isPowerofTwo(int alignment) const {
+	// Bitwise AND operator will return 0 if alignment is a power of 2.
+	if (alignment == 0) return false;
+	return !(alignment & (alignment - 1));
 }
 
 MemoryBlock* HeapManager::getBlockPtrForDataPtr(void* ptr) const {
