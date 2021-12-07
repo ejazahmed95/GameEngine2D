@@ -58,7 +58,7 @@ private:
 			return;
 		}
 		
-		for(size_t i = 0;i<_size;i++) {
+		for(size_t i = 0;i<newCapacity && i<_size;i++) {
 			newBlock[i] = _data[i];
 		}
 

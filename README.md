@@ -8,11 +8,10 @@ This is the main game project
 ### 2. MindPalace
 This is the heap manager
 
-### 3. MiscAssignments
+### 3. Assignments
 All the miscellaneous assignments that do not belong to any particular project
-1. Assignment 5 = Make Sentence
-2. Assignment 6 = Flaws in Inheritance
-3. Assignment 7 = Interview Questions
+- Assignment 5 = Make Sentence
+- Assignment 7 = Interview Questions
 
 ### 4. Raven
 Raven is the name of the game engine. It is a static library of all the game engine code
