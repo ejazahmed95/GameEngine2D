@@ -22,9 +22,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{d483ea48-7455-4ab3-8f9c-4edede6cc027}</ProjectGuid>
-    <RootNamespace>IndependentCodes</RootNamespace>
+    <RootNamespace>MiscAssignments</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>MiscAssignments</ProjectName>
+    <ProjectName>Assignments</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
