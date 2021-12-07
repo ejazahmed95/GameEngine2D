@@ -26,14 +26,14 @@ char* readStringFromCIn() {
     return str;
 }
 
-int len(const char* word) {
+size_t len(const char* word) {
 	int len = 0;
 	while (word[len] != '\n' && word[len]!='\0') len++;
 	return len;
 }
 
 char* MakeSentence(char** arr) {
-	int totalLength = 0;
+	size_t totalLength = 0;
 	for(int i=0;;i++) {
 		const char* word = arr[i];
 		if (word == nullptr) break;
@@ -45,12 +45,16 @@ char* MakeSentence(char** arr) {
 	assert(str);
 	str[totalLength - 1] = '\0';
 
-	int currIndex = 0;
+	size_t currIndex = 0;
 	for (int i = 0;; i++) {
 		const char* word = arr[i];
 		if (word == nullptr) break;
-		memcpy(str + currIndex, word, len(word));
-		currIndex += len(word);
+
+		size_t wordLength = len(word);
+		assert(currIndex < totalLength);
+		for (size_t j = 0; j < wordLength; j++) {
+			str[currIndex++] = word[j];
+		}
 		str[currIndex++] = ' ';
 		// std::cout << str << std::endl;
 	}
