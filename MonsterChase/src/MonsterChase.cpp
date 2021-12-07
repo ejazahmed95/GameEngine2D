@@ -7,15 +7,22 @@ Raven::Application* Raven::CreateApplication() {
 }
 
 char* readStringFromCIn() {
-    char a[20];
-    std::cin >> a;
-    int len = 1;
-    while (len <= 20 && a[len-1] != '\n') len++;
-    //char* str = (char*)malloc(len * sizeof(char));
+    char a[50];
+    size_t len = 0;
+    while (len <= 50) {
+        char c;
+        c = std::getchar();
+        if (c != '\n' && c != '\0') {
+            a[len++] = c;
+        } else break;
+    }
+    if (len == 0) return nullptr;
+    len++;
     char* str = new char[len];
-    memcpy(str, a, len-1);
+    memcpy(str, a, len - 1);
     str[len - 1] = '\0';
     return str;
+
 }
 
 
@@ -29,8 +36,9 @@ void MonsterChase::Run() {
 
     std::cout << "How many monsters do you want?" << std::endl;
     std::cin >> mCount;
+    std::cin.ignore();
     for (int i = 0; i < mCount; i++) {
-        std::cout << "Enter the name of monster " << i << ": ";
+        std::cout << "Enter the name of monster " << i + 1 << ": ";
         mc_->addMonster(readStringFromCIn());
     }
     startGame();
