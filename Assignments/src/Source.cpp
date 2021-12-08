@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "MakeSentence/MakeSentence.h"
-#include "InheritanceProbs.h"
 #include "InterviewQuestions/TestQuestions.h"
 
 int main()
@@ -16,7 +15,6 @@ int main()
         do {
             std::cout << "Following assignments are available to test in this project (See README.md for other assignments)" << std::endl;
             std::cout << "5 = Make Sentence" << endl;
-            std::cout << "6 = Run Flawed Inheritance test cases" << endl;
             std::cout << "7 = Test Interview Questions" << endl;
             std::cout << "Enter 0 to exit the program" << endl;
             std::cout << "Enter your choice:: ";
@@ -26,12 +24,6 @@ int main()
                 std::cout << "\n========== Welcome to Assignment 5 ============" << std::endl;
                 cin.ignore();
                 TestMakeSentence();
-                std::cout << "=========== ** END ** =============" << std::endl;
-                break;
-            case 6: /* Assignment 1.06 */
-                std::cout << "\n========== Welcome to Assignment 6 ============" << std::endl;
-                TestProblemOne();
-                TestProblemTwo();
                 std::cout << "=========== ** END ** =============" << std::endl;
                 break;
             case 7: /* Assignment 1.07 */

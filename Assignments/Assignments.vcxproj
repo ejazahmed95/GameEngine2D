@@ -13,19 +13,20 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{2af3e837-51e6-468b-a3e1-de08496acae4}</ProjectGuid>
-    <RootNamespace>Raven</RootNamespace>
+    <ProjectGuid>{d483ea48-7455-4ab3-8f9c-4edede6cc027}</ProjectGuid>
+    <RootNamespace>MiscAssignments</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Assignments</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -59,7 +60,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PLATFORM_WINDOWS;RAVEN_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -73,7 +74,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PLATFORM_WINDOWS;RAVEN_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -84,23 +85,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Raven\CoreModule\CoreModule.h" />
-    <ClInclude Include="src\Raven\CoreModule\Point2D.h" />
-    <ClInclude Include="src\Raven.h" />
-    <ClInclude Include="src\Raven\Application.h" />
-    <ClInclude Include="src\Raven\Core.h" />
-    <ClInclude Include="src\Raven\CoreModule\GameObject.h" />
-    <ClInclude Include="src\Raven\EntryPoint.h" />
-    <ClInclude Include="src\Raven\Input\IInputReader.h" />
-    <ClInclude Include="src\Raven\Input\StandardInputReader.h" />
-    <ClInclude Include="test\Point2DTest.h" />
+    <ClCompile Include="src\InterviewQuestions\ArrayQuestions.cpp" />
+    <ClCompile Include="src\InterviewQuestions\LinkedListProblems.cpp" />
+    <ClCompile Include="src\InterviewQuestions\TestQuestions.cpp" />
+    <ClCompile Include="src\Source.cpp" />
+    <ClCompile Include="src\MakeSentence\MakeSentence.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Raven\CoreModule\Point2D.cpp" />
-    <ClCompile Include="src\Raven\Application.cpp" />
-    <ClCompile Include="src\Raven\CoreModule\GameObject.cpp" />
-    <ClCompile Include="src\Raven\Input\StandardInputReader.cpp" />
-    <ClCompile Include="test\Point2DTest.cpp" />
+    <ClInclude Include="src\InterviewQuestions\ArrayQuestions.h" />
+    <ClInclude Include="src\InterviewQuestions\LinkedListProblems.h" />
+    <ClInclude Include="src\InterviewQuestions\TestQuestions.h" />
+    <ClInclude Include="src\MakeSentence\MakeSentence.h" />
+    <ClInclude Include="src\Utilities\DynamicArray.h" />
+    <ClInclude Include="src\Utilities\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

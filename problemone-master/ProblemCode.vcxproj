@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d483ea48-7455-4ab3-8f9c-4edede6cc027}</ProjectGuid>
-    <RootNamespace>IndependentCodes</RootNamespace>
+    <ProjectGuid>{18f17608-18a4-44ea-a003-84b3d8fddc25}</ProjectGuid>
+    <RootNamespace>ProblemCode</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>MiscAssignments</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -144,33 +143,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\InterviewQuestions\ArrayQuestions.cpp" />
-    <ClCompile Include="src\InterviewQuestions\LinkedListProblems.cpp" />
-    <ClCompile Include="src\InterviewQuestions\TestQuestions.cpp" />
-    <ClCompile Include="src\math\Vector2.cpp" />
-    <ClCompile Include="src\problemone-master\TestProblemOne.cpp" />
-    <ClCompile Include="src\problemtwo-master\TestProblemTwo.cpp" />
-    <ClCompile Include="src\Source.cpp" />
-    <ClCompile Include="src\MakeSentence\MakeSentence.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="math\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\InterviewQuestions\ArrayQuestions.h" />
-    <ClInclude Include="src\InterviewQuestions\LinkedListProblems.h" />
-    <ClInclude Include="src\InterviewQuestions\TestQuestions.h" />
-    <ClInclude Include="src\MakeSentence\MakeSentence.h" />
-    <ClInclude Include="src\problemone-master\Game.h" />
-    <ClInclude Include="src\problemone-master\GameActor.h" />
-    <ClInclude Include="src\problemone-master\Human.h" />
-    <ClInclude Include="src\math\Vector2.h" />
-    <ClInclude Include="src\problemone-master\Monster.h" />
-    <ClInclude Include="src\problemtwo-master\GameActor.h" />
-    <ClInclude Include="src\problemtwo-master\Human.h" />
-    <ClInclude Include="src\InheritanceProbs.h" />
-    <ClInclude Include="src\Utilities\DynamicArray.h" />
-    <ClInclude Include="src\Utilities\Utils.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\math\Vector2.inl" />
+    <ClInclude Include="GameActor.h" />
+    <ClInclude Include="Human.h" />
+    <ClInclude Include="math\Vector2.inl" />
+    <ClInclude Include="math\Vector2.h" />
+    <ClInclude Include="Monster.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
