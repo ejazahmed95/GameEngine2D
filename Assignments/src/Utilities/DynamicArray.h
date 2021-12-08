@@ -53,7 +53,7 @@ public:
 private:
 	void resize(size_t newCapacity) { // Capacity can only be more than size
 		T* newBlock = static_cast<T*>(::operator new(newCapacity * sizeof(T)));
-
+		assert(newBlock);
 		if(newCapacity < _size) {
 			return;
 		}
