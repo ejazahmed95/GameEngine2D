@@ -7,7 +7,7 @@ bool HeapManager_CustomTest();
 #if defined(WIN32)
 typedef uint32_t t_TestInt;
 #else
-typedef uint64_t t_TestInt;
+typedef uint64_t t_TestInt; 
 #endif
 
 // Custom Tests
@@ -17,3 +17,4 @@ void TestMemSet();
 void TestBitScans();
 void TestBitToggle();
 void TestNewDelete();
+void TestBitArray();

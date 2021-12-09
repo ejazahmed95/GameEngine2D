@@ -33,6 +33,7 @@ public:
 	bool getFirstClearBit(size_t& bitIndex) const;
 
 	bool operator[](size_t index) const;
+	void printBits() const;
 private:
 	inline size_t numElements() const {
 		return (_numBits - 1) / bitsPerElement + 1;

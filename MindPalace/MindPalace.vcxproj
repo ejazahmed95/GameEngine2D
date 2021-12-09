@@ -156,6 +156,7 @@
     <ClCompile Include="src\HeapManager\BitArray.cpp" />
     <ClCompile Include="src\HeapManager\FixedSizeAllocator.cpp" />
     <ClCompile Include="src\MemorySystem.cpp" />
+    <ClCompile Include="src\TestBitArray.cpp" />
     <ClCompile Include="src\TestFinalHeapManager.cpp" />
     <ClCompile Include="src\TestHeapManagerBasic.cpp" />
     <ClCompile Include="src\HeapManager\HeapManager.cpp" />
