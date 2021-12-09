@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <vector>
 
-#ifdef _DEBUG
+#if defined(_DEBUG)
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
@@ -29,7 +29,7 @@ void HeapTestFinal() {
 	// Create your HeapManager and FixedSizeAllocators.
 	auto hm = InitializeMemorySystem(pHeapMemory, sizeHeap, numDescriptors);
 
-#if _DEBUG
+#if defined(_DEBUG)
 	std::cout << "\n\n Memory System Initialized!!! " << std::endl;
 	hm->showOutstandingAllocations();
 #endif
@@ -37,7 +37,7 @@ void HeapTestFinal() {
 	bool success = MemorySystem_UnitTest(hm);
 	assert(success);
 
-#if _DEBUG
+#if defined(_DEBUG)
 	std::cout << "\n\nMemory System Unit Test Completed!!! " << std::endl;
 	hm->showOutstandingAllocations();
 #endif
@@ -45,11 +45,11 @@ void HeapTestFinal() {
 	// Clean up your Memory System (HeapManager and FixedSizeAllocators)
 	DestroyMemorySystem(hm);
 
-#if _DEBUG
+#if defined(_DEBUG)
 	std::cout << "\n\nMemory System Destroyed!!! " << std::endl;
 	hm->showOutstandingAllocations();
 #endif
-
+	
 	HeapFree(GetProcessHeap(), 0, pHeapMemory);
 
 	// in a Debug build make sure we didn't leak any memory.
@@ -116,7 +116,7 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 
 	} while (numAllocs < maxAllocations);
 
-#if _DEBUG
+#if defined(_DEBUG)
 	std::cout << "\n\nAllocation exhausted!! " << std::endl;
 	hm->showFreeBlocks();
 #endif
@@ -133,14 +133,14 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 			delete[] pPtrToFree;
 		}
 
-#if _DEBUG
+#if defined(_DEBUG)
 		std::cout << "\n\nFreed all allocations " << std::endl;
 		hm->showOutstandingAllocations();
 #endif
 		// do garbage collection
 		Collect(hm);
 		// our heap should be one single block, all the memory it started with
-#if _DEBUG
+#if defined(_DEBUG)
 		std::cout << "\n\nGarbage collection completed " << std::endl;
 		hm->showFreeBlocks();
 #endif
