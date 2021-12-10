@@ -10,10 +10,25 @@ typedef uint32_t t_BitData;
 typedef uint64_t t_BitData;
 #endif
 
+/**
+ * Initializes a bit array for number of required bits.
+ * Allows setting and clearing bits at bit_index
+ */
 class BitArray {
 public:
 	BitArray(size_t num_bits);
+	BitArray(size_t num_bits, bool set);
 	~BitArray();
+
+	// Copy Constructor
+	BitArray(const BitArray& other): _numBits(other._numBits) {
+		size_t elementCount = other.numElements();
+		_bitElements = new t_BitData[elementCount];
+		for(int i=0;i<elementCount;i++) {
+			_bitElements[i] = other._bitElements[i];
+		}
+	}
+	BitArray& operator=(const BitArray& other) = delete;
 
 	void setAll();
 	void clearAll();
@@ -40,7 +55,7 @@ private:
 	}
 
 	static inline size_t getSetBitPos(t_BitData data) {
-		unsigned long pos;
+		unsigned long pos = 0;
 #if defined(WIN32)
 		_BitScanReverse(&pos, data);
 #else

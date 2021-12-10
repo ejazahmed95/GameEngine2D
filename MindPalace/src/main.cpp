@@ -6,10 +6,10 @@ int main() {
 	std::cout << "This is the memory manager" << std::endl;
 	// HeapManager_CustomTest();
 
-	// HeapTestFinal();
+	HeapTestFinal();
 
 
-	TestBitArray();
+	// TestBitArray();
 	// TestMemSet();
 	// TestBitScans();
 	// TestBitToggle();

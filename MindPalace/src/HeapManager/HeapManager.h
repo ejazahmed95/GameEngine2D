@@ -13,16 +13,10 @@
 #define SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
 #endif
 
-
-// TODO: Override new for this that takes a heap pointer
+/**
+ * Custom Heap Manager
+ */
 class HeapManager {
-private:
-	size_t _heapSize = 0;
-	int _numDescriptors = 0;
-	MemoryBlock * _head = nullptr, * _tail = nullptr;
-	uintptr_t _heapStart = 0;
-	FixedSizeAllocator** _allocators = nullptr;
-	size_t _numAllocators = 0;
 public:
 	HeapManager(void* start, size_t size, int num_descriptors);
 	void initializeFSAs(FSAInfo* fsaInfos, size_t size);
@@ -41,7 +35,14 @@ private:
 	void initialize(void* start, size_t size, int num_descriptors);
 	MemoryBlock* getBlockPtrForDataPtr(void* ptr) const;
 	MemoryBlock* CreateNewBlock(void* pointer, size_t size);
-
+private:
+	size_t _heapSize = 0;
+	int _numDescriptors = 0;
+	MemoryBlock* _head = nullptr, * _tail = nullptr;
+	uintptr_t _heapStart = 0;
+	FixedSizeAllocator** _allocators = nullptr;
+	size_t _numAllocators = 0;
+	AllocStats _allocStats;
 // Static variable for testing purposes;
 public:
 	static HeapManager* instance;

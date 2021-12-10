@@ -1,7 +1,11 @@
 #include "HeapManager.h"
+
+#ifdef _DEBUG
 #include <iostream>
+#endif
 
 HeapManager* HeapManager::instance = nullptr;
+
 
 HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors) {
 	if (HeapManager::instance == nullptr) {
@@ -132,6 +136,7 @@ void HeapManager::debug() const {
 	// }
 	// std::cout << "=================================" << std::endl;
 
+#ifdef _DEBUG
 	std::cout << "============== Printing All Blocks 2 ===================" << std::endl;
 	MemoryBlock* mb = _tail;
 	while (mb != nullptr) {
@@ -139,6 +144,7 @@ void HeapManager::debug() const {
 		mb = mb->prevBlock;
 	}
 	std::cout << "=================================" << std::endl;
+#endif
 }
 
 void HeapManager::destroy() {
@@ -185,6 +191,7 @@ bool HeapManager::isAllocated(void* p_ptr) const {
 }
 
 void HeapManager::showFreeBlocks() const {
+#ifdef _DEBUG
 	std::cout << "============== Printing All Free Blocks ===================" << std::endl;
 	for (size_t i = 0; i < _numAllocators; i++) {
 		_allocators[i]->showFreeBlocks();
@@ -195,9 +202,11 @@ void HeapManager::showFreeBlocks() const {
 		mb = mb->nextBlock;
 	}
 	std::cout << "=============== ** END ** ==================" << std::endl;
+#endif
 }
 
 void HeapManager::showOutstandingAllocations() const {
+#ifdef _DEBUG
 	std::cout << "============== Printing All Outstanding Blocks ===================" << std::endl;
 	for (size_t i = 0; i < _numAllocators; i++) {
 		_allocators[i]->showOutstandingBlocks();
@@ -208,6 +217,7 @@ void HeapManager::showOutstandingAllocations() const {
 		mb = mb->nextBlock;
 	}
 	std::cout << "=============== ** END ** ==================" << std::endl;
+#endif
 }
 
 

@@ -13,8 +13,12 @@ void TestBitArray() {
 	// Create your HeapManager and FixedSizeAllocators.
 	auto hm = CreateHeapManager(pHeapMemory, 1024 * 10, 0);
 
+	// TestMemSet();
 
+	srand(time(NULL));
 	BitArray* ba = new BitArray(100);
+	ba->printBits();
+
 	size_t firstClearBit = -1, firstSetBit = -1;
 	if (ba->getFirstClearBit(firstClearBit)) {
 		cout << "First cleared bit index=" << firstClearBit << endl;
@@ -27,8 +31,10 @@ void TestBitArray() {
 	for(int i=0;i<20;i++) {
 		int index = rand() % 100;
 		ba->setBit(index);
-		std::cout << "Set Index=" << index << std::endl;
+		std::cout << "Set Index=" << index << endl;
+		assert((*ba)[index]);
 	}
+	ba->setBit(99);
 
 	ba->printBits();
 

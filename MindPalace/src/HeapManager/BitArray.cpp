@@ -1,6 +1,6 @@
 #include "BitArray.h"
 #include <cstring>
-#include <xlocmon>
+
 #if defined(_DEBUG)
 #include <iostream>
 #endif
@@ -8,6 +8,15 @@
 BitArray::BitArray(size_t num_bits): _numBits(num_bits) {
 	_bitElements = new t_BitData[numElements()];
 	clearAll();
+}
+
+BitArray::BitArray(size_t num_bits, bool set) : _numBits(num_bits) {
+	_bitElements = new t_BitData[numElements()];
+	if(set) {
+		setAll();
+	} else {
+		clearAll();
+	}
 }
 
 BitArray::~BitArray() {
@@ -66,7 +75,7 @@ bool BitArray::getFirstClearBit(size_t& bitIndex) const {
 	if (index == size) return false;
 
 	t_BitData data = _bitElements[index];
-	size_t bitPos = getSetBitPos(data);
+	size_t bitPos = getSetBitPos(~data);
 
 	bitIndex = index * bitsPerElement + bitPos;
 	return true;
@@ -89,7 +98,7 @@ void BitArray::printBits() const {
 		t_BitData value = _bitElements[e];
 		for (t_BitData i = 0; i < bitsPerElement; i++) {
 			// cout << v << endl;
-			if ((money_base::value & v) == 0) cout << "0";
+			if ((value & v) == 0) cout << "0";
 			else cout << "1";
 			v = v >> 1;
 			if (++totalBits >= _numBits) break;
