@@ -1,19 +1,36 @@
 #include "HeapManager.h"
-#include "TestHelpers.h"
+
+#ifdef _DEBUG
 #include <iostream>
+#endif
+
+HeapManager* HeapManager::instance = nullptr;
+
 
 HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors) {
-	const auto hm = static_cast<HeapManager*>(pHeapMemory);
-	constexpr size_t headerSize = sizeof(HeapManager);
-
-	// std::cout << "HSize=" << headerSize << "||| Available Size=" << heapSize - headerSize << std::endl;
-	// std::cout << "Start mem location = " << pHeapMemory << std::endl;
-
-	hm->Initialize(static_cast<char*>(pHeapMemory) + headerSize, heapSize - headerSize, numDescriptors);
-	return hm;
+	if (HeapManager::instance == nullptr) {
+		HeapManager::instance = new(pHeapMemory) HeapManager(pHeapMemory, heapSize, numDescriptors);
+	}
+	return HeapManager::instance;
 }
 
-void HeapManager::Initialize(void* start, size_t size, int num_descriptors) {
+HeapManager::HeapManager(void* start, size_t size, int num_descriptors) {
+	constexpr size_t headerSize = sizeof(HeapManager);
+	initialize(static_cast<char*>(start) + headerSize, size - headerSize, num_descriptors);
+}
+
+void HeapManager::initializeFSAs(FSAInfo* fsaInfos, size_t size) {
+	auto allocators = new FixedSizeAllocator*[size];
+	for(int i=0;i<size;i++) {
+		FSAInfo info = fsaInfos[i];
+		info.startLoc = reinterpret_cast<uintptr_t>(alloc(info.size * info.numBlocks));
+		allocators[i] = new FixedSizeAllocator(info);
+	}
+	_allocators = allocators;
+	_numAllocators = size;
+}
+
+void HeapManager::initialize(void* start, size_t size, int num_descriptors) {
 	_heapSize = size;
 	_numDescriptors = num_descriptors;
 	_heapStart = reinterpret_cast<uintptr_t>(start);
@@ -32,8 +49,6 @@ void HeapManager::Initialize(void* start, size_t size, int num_descriptors) {
 	firstFreeBlock->prevBlock = _head;
 }
 
-
-
 void* HeapManager::alloc(size_t size) {
 	return alloc(size, 4);
 }
@@ -41,6 +56,11 @@ void* HeapManager::alloc(size_t size) {
 void* HeapManager::alloc(size_t size, int alignment) {
 	MemoryBlock* curr = _tail;
 	MemoryBlock* next = _tail->prevBlock;
+
+	for(size_t i=0;i < _numAllocators;i++) {
+		void* ptr = _allocators[i]->alloc(size);
+		if (ptr != nullptr) return ptr;
+	}
 
 	while(next != nullptr) {
 		if(next->free) {
@@ -81,8 +101,11 @@ void* HeapManager::alloc(size_t size, int alignment) {
 }
 
 bool HeapManager::free(void* dataPtr) {
-	uintptr_t ptr = reinterpret_cast<uintptr_t>(dataPtr) - sizeof(MemoryBlock);
-	MemoryBlock* mb = reinterpret_cast<MemoryBlock*>(ptr);
+	for(size_t i =0; i<_numAllocators; i++) {
+		if(_allocators[i]->free(dataPtr)) return true;
+	}
+	if (!contains(dataPtr)) return false;
+	MemoryBlock* mb = getBlockPtrForDataPtr(dataPtr);
 	mb->occupy(false);
 	return true;
 }
@@ -113,6 +136,7 @@ void HeapManager::debug() const {
 	// }
 	// std::cout << "=================================" << std::endl;
 
+#ifdef _DEBUG
 	std::cout << "============== Printing All Blocks 2 ===================" << std::endl;
 	MemoryBlock* mb = _tail;
 	while (mb != nullptr) {
@@ -120,10 +144,16 @@ void HeapManager::debug() const {
 		mb = mb->prevBlock;
 	}
 	std::cout << "=================================" << std::endl;
+#endif
 }
 
 void HeapManager::destroy() {
-	// TODO: Implementation
+	for(size_t i=0;i<_numAllocators;i++) {
+		_allocators[i]->destroy();
+		free(reinterpret_cast<void*>(_allocators[i]->_startLoc));
+		delete _allocators[i];
+	}
+	delete[] _allocators;
 }
 
 bool HeapManager::contains(void* ptr) const {
@@ -161,23 +191,33 @@ bool HeapManager::isAllocated(void* p_ptr) const {
 }
 
 void HeapManager::showFreeBlocks() const {
+#ifdef _DEBUG
 	std::cout << "============== Printing All Free Blocks ===================" << std::endl;
+	for (size_t i = 0; i < _numAllocators; i++) {
+		_allocators[i]->showFreeBlocks();
+	}
 	MemoryBlock* mb = _head->nextBlock;
 	while (mb != nullptr && mb != _tail) {
 		if(mb->free) mb->print();
 		mb = mb->nextBlock;
 	}
 	std::cout << "=============== ** END ** ==================" << std::endl;
+#endif
 }
 
 void HeapManager::showOutstandingAllocations() const {
+#ifdef _DEBUG
 	std::cout << "============== Printing All Outstanding Blocks ===================" << std::endl;
+	for (size_t i = 0; i < _numAllocators; i++) {
+		_allocators[i]->showOutstandingBlocks();
+	}
 	MemoryBlock* mb = _head->nextBlock;
 	while (mb != nullptr && mb != _tail) {
 		if (!mb->free) mb->print();
 		mb = mb->nextBlock;
 	}
 	std::cout << "=============== ** END ** ==================" << std::endl;
+#endif
 }
 
 
