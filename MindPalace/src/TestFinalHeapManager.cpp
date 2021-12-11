@@ -38,17 +38,12 @@ void HeapTestFinal() {
 	assert(success);
 
 #if defined(_DEBUG)
-	std::cout << "\n\nMemory System Unit Test Completed!!! " << std::endl;
-	hm->showOutstandingAllocations();
+	std::cout << "\n\nMemory System Unit Test Completed!!! Final Stats " << std::endl;
+	hm->showStats();
 #endif
 
 	// Clean up your Memory System (HeapManager and FixedSizeAllocators)
 	DestroyMemorySystem(hm);
-
-#if defined(_DEBUG)
-	std::cout << "\n\nMemory System Destroyed!!! " << std::endl;
-	hm->showOutstandingAllocations();
-#endif
 	
 	HeapFree(GetProcessHeap(), 0, pHeapMemory);
 
@@ -76,7 +71,7 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 	// allocate memory of random sizes up to 1024 bytes from the heap manager
 	// until it runs out of memory
 	do {
-		const size_t		maxTestAllocationSize = 1024;
+		const size_t		maxTestAllocationSize = 256;
 
 		size_t			sizeAlloc = 1 + (rand() & (maxTestAllocationSize - 1));
 
@@ -117,8 +112,8 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 	} while (numAllocs < maxAllocations);
 
 #if defined(_DEBUG)
-	std::cout << "\n\nAllocation exhausted!! " << std::endl;
-	hm->showFreeBlocks();
+	std::cout << "\n\nAllocation exhausted!!" << std::endl;
+	hm->showStats();
 #endif
 	// now free those blocks in a random order
 	if (!AllocatedAddresses.empty()) {
@@ -135,7 +130,7 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 
 #if defined(_DEBUG)
 		std::cout << "\n\nFreed all allocations " << std::endl;
-		hm->showOutstandingAllocations();
+		hm->showStats();
 #endif
 		// do garbage collection
 		Collect(hm);
@@ -163,9 +158,7 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 	delete[] pNewTest;
 
 #if defined(_DEBUG)
-	hm->showFreeBlocks();
-	hm->showOutstandingAllocations();
-	hm->showStats();
+	// hm->showStats();
 #endif
 	
 

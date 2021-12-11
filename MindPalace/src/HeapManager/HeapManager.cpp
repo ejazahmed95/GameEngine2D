@@ -1,4 +1,5 @@
 #include "HeapManager.h"
+#include <new>
 
 #ifdef _DEBUG
 #include <iostream>
@@ -91,7 +92,9 @@ void* HeapManager::alloc(size_t size, int alignment) {
 					size_t newSize = reinterpret_cast<uintptr_t>(newBlock) - reinterpret_cast<uintptr_t>(next) - sizeof(MemoryBlock);
 					next->setDataSize(newSize);
 				}
+#ifdef _DEBUG
 				_allocStats.numAllocs++;
+#endif
 				return newBlock->pBaseAddress;
 			}
 		}
@@ -108,7 +111,9 @@ bool HeapManager::free(void* dataPtr) {
 	if (!contains(dataPtr)) return false;
 	MemoryBlock* mb = getBlockPtrForDataPtr(dataPtr);
 	mb->occupy(false);
+#ifdef _DEBUG
 	_allocStats.numFrees++;
+#endif
 	return true;
 }
 
@@ -156,6 +161,14 @@ void HeapManager::destroy() {
 		delete _allocators[i];
 	}
 	delete[] _allocators;
+#ifdef _DEBUG
+	std::cout << "Heap Manager Destroyed!" << std::endl;
+	if(_allocStats.numAllocs != _allocStats.numFrees) {
+		showOutstandingAllocations();
+	} else {
+		std::cout << "Congratulations! No Outstanding Allocations" << std::endl;
+	}
+#endif
 }
 
 void HeapManager::showStats() const {
@@ -254,9 +267,6 @@ MemoryBlock* HeapManager::CreateNewBlock(void* pointer, size_t size) {
 	block->info[2] = '0';
 	block->info[3] = '\0';
 #endif
-
-	// std::cout << "Size and Mem block size: " << block->dataSize << std::endl;
-	// block->print();
 
 	return block;
 }

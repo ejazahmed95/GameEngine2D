@@ -3,11 +3,12 @@
 #include "TestHelpers.h"
 
 int main() {
-	std::cout << "This is the memory manager" << std::endl;
+	std::cout << "This is the custom memory manager" << std::endl;
 	// HeapManager_CustomTest();
 
 	HeapTestFinal();
 
+	// TestFSA();
 
 	// TestBitArray();
 	// TestMemSet();

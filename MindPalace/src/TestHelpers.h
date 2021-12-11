@@ -18,3 +18,4 @@ void TestBitScans();
 void TestBitToggle();
 void TestNewDelete();
 void TestBitArray();
+void TestFSA();

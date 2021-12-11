@@ -19,6 +19,7 @@ void* FixedSizeAllocator::alloc(size_t size) {
 	if ((*_freeList)[bitIndex]) _stats.numAllocs++;
 #endif
 	_freeList->clearBit(bitIndex);
+	// _freeList->printBits();
 	return reinterpret_cast<void*>(_startLoc + bitIndex * _blockSize);
 }
 
@@ -36,6 +37,12 @@ bool FixedSizeAllocator::free(void* dataPtr) {
 void FixedSizeAllocator::destroy() {
 #if defined(_DEBUG)
 	// Print existing allocations
+	if(_stats.numAllocs != _stats.numFrees) {
+		std::cout << "==== FSA destroyed! Allocations remaining ====" << std::endl;
+		showStats();
+		_freeList->printBits();
+		std::cout << "======= *END* ======" << std::endl;
+	}
 #else
 #endif
 	// Cleanup all memory
@@ -63,7 +70,8 @@ size_t FixedSizeAllocator::getRequiredMemory(FSAInfo& info) {
 
 void FixedSizeAllocator::showStats() const {
 #ifdef _DEBUG
-	std::cout << "FSA: BlockSize = " << _blockSize << " | Num Blocks = " << _numBlocks;
-	std::cout << "Total Allocs = "<<_stats.numAllocs << " | Total Frees = " << _stats.numFrees << std::endl;
+	std::cout << "FSA: BlockInfo = " << _blockSize << " x " << _numBlocks;
+	std::cout << "\tTotal Allocs = "<<_stats.numAllocs << " | Total Frees = " << _stats.numFrees << std::endl;
+	// _freeList->printBits();
 #endif
 }

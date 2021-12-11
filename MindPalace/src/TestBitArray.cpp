@@ -15,7 +15,7 @@ void TestBitArray() {
 
 	// TestMemSet();
 
-	srand(time(NULL));
+	// srand(time(NULL));
 	BitArray* ba = new BitArray(100);
 	ba->printBits();
 
