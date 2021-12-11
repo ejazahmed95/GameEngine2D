@@ -91,6 +91,7 @@ void* HeapManager::alloc(size_t size, int alignment) {
 					size_t newSize = reinterpret_cast<uintptr_t>(newBlock) - reinterpret_cast<uintptr_t>(next) - sizeof(MemoryBlock);
 					next->setDataSize(newSize);
 				}
+				_allocStats.numAllocs++;
 				return newBlock->pBaseAddress;
 			}
 		}
@@ -107,6 +108,7 @@ bool HeapManager::free(void* dataPtr) {
 	if (!contains(dataPtr)) return false;
 	MemoryBlock* mb = getBlockPtrForDataPtr(dataPtr);
 	mb->occupy(false);
+	_allocStats.numFrees++;
 	return true;
 }
 
@@ -154,6 +156,17 @@ void HeapManager::destroy() {
 		delete _allocators[i];
 	}
 	delete[] _allocators;
+}
+
+void HeapManager::showStats() const {
+#ifdef _DEBUG
+	std::cout << "==============Showing Heap Manager Stats!!!==============" << std::endl;
+	std::cout << "Total Allocs = " << _allocStats.numAllocs << " | Total Frees = " << _allocStats.numFrees << std::endl;
+	for (size_t i = 0; i < _numAllocators; i++) {
+		_allocators[i]->showStats();
+	}
+	std::cout << "============== ** END ** ==============" << std::endl;
+#endif
 }
 
 bool HeapManager::contains(void* ptr) const {

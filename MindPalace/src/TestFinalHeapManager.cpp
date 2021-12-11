@@ -162,8 +162,12 @@ bool MemorySystem_UnitTest(HeapManager* hm) {
 
 	delete[] pNewTest;
 
+#if defined(_DEBUG)
 	hm->showFreeBlocks();
 	hm->showOutstandingAllocations();
+	hm->showStats();
+#endif
+	
 
 	// we succeeded
 	return true;

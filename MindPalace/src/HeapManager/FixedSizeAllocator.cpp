@@ -1,5 +1,7 @@
 #include "FixedSizeAllocator.h"
 
+#include <iostream>
+
 FixedSizeAllocator::FixedSizeAllocator(FSAInfo info): _blockSize(info.size), _numBlocks(info.numBlocks), _startLoc(info.startLoc) {
 	_freeList = new BitArray(_numBlocks, true);
 	_freeList->clearBit(0);
@@ -46,13 +48,22 @@ bool FixedSizeAllocator::contains(void* dataPtr) const {
 }
 
 void FixedSizeAllocator::showOutstandingBlocks() const {
-	_freeList->printBits();
+	showStats();
+	// _freeList->printBits();
 }
 
 void FixedSizeAllocator::showFreeBlocks() const {
-	_freeList->printBits();
+	showStats();
+	// _freeList->printBits();
 }
 
 size_t FixedSizeAllocator::getRequiredMemory(FSAInfo& info) {
 	return info.numBlocks * info.size;
+}
+
+void FixedSizeAllocator::showStats() const {
+#ifdef _DEBUG
+	std::cout << "FSA: BlockSize = " << _blockSize << " | Num Blocks = " << _numBlocks;
+	std::cout << "Total Allocs = "<<_stats.numAllocs << " | Total Frees = " << _stats.numFrees << std::endl;
+#endif
 }

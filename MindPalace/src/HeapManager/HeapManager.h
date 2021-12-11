@@ -31,6 +31,7 @@ public:
 	void showOutstandingAllocations() const;
 	void debug() const;
 	void destroy();
+	void showStats() const;
 private:
 	void initialize(void* start, size_t size, int num_descriptors);
 	MemoryBlock* getBlockPtrForDataPtr(void* ptr) const;

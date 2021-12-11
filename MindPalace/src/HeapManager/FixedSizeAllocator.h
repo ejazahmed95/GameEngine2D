@@ -25,6 +25,7 @@ public:
 	void showOutstandingBlocks() const;
 	void showFreeBlocks() const;
 	static size_t getRequiredMemory(FSAInfo& info);
+	void showStats() const;
 private:
 	// BitArray
 	size_t _blockSize, _numBlocks;
