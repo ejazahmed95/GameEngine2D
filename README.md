@@ -1,5 +1,18 @@
 # EAE 6300 Assignments
 
+## Final Exam
+
+### Instructions
+- Please enable the folder view in Project Explorer
+- Ignore the README section of projects below for the final exam
+
+### Test Case Files
+Multiple test case files are used. Test cases are added for both the FSA and BitArray
+- TestBitArray.cpp : Tests the working of a single bit array
+- TestFSA.cpp: Tests the working of a single Fixed Size Allocator
+- CustomTests.cpp contains smaller tests for bit manipulation, memset, and more
+
+
 ## Projects
 The solution contains the following projects
 ### 1. Monster Chase
