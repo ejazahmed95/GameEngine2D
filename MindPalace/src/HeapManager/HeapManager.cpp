@@ -22,7 +22,7 @@ HeapManager::HeapManager(void* start, size_t size, int num_descriptors) {
 
 void HeapManager::initializeFSAs(FSAInfo* fsaInfos, size_t size) {
 	auto allocators = new FixedSizeAllocator*[size];
-	for(int i=0;i<size;i++) {
+	for(size_t i=0;i<size;i++) {
 		FSAInfo info = fsaInfos[i];
 		info.startLoc = reinterpret_cast<uintptr_t>(alloc(info.size * info.numBlocks));
 		allocators[i] = new FixedSizeAllocator(info);

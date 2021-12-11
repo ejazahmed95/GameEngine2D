@@ -2,11 +2,11 @@
 #include <cstdint>
 #include "intrin.h"
 
-#pragma intrinsic(_BitScanReverse, _BitScanReverse64)
-
 #if defined(WIN32)
+#pragma intrinsic(_BitScanReverse)
 typedef uint32_t t_BitData;
 #else
+#pragma intrinsic(_BitScanReverse64)
 typedef uint64_t t_BitData;
 #endif
 
@@ -24,7 +24,7 @@ public:
 	BitArray(const BitArray& other): _numBits(other._numBits) {
 		size_t elementCount = other.numElements();
 		_bitElements = new t_BitData[elementCount];
-		for(int i=0;i<elementCount;i++) {
+		for(size_t i=0;i<elementCount;i++) {
 			_bitElements[i] = other._bitElements[i];
 		}
 	}
