@@ -94,7 +94,7 @@ bool BitArray::operator[](size_t index) const {
 void BitArray::printBits() const {
 #if defined(_DEBUG)
 	using namespace std;
-	int size = numElements();
+	size_t size = numElements();
 	size_t totalBits = 0;
 	cout << "Num bits=" << _numBits << "\t Num Elements=" << size << "\t BitsPerElement=" << bitsPerElement << endl;
 	for(int e = 0; e <size; e++) {

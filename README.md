@@ -3,8 +3,10 @@
 ## Final Exam
 
 ### Instructions
-- Please enable the folder view in Project Explorer
+- Please enable the folder view in Solution Explorer
 - Ignore the README section of projects below for the final exam
+- Project Name is MindPalace
+- All Output Files are generated in `bin/` folder and intermediate files in `bin-int/`
 
 ### Test Case Files
 Multiple test case files are used. Test cases are added for both the FSA and BitArray
