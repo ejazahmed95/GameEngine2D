@@ -1,11 +1,39 @@
 #include "HeapManager.h"
 
-#include "TestHelpers.h"
-#include <iostream>
 
-HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors) {
+#include "TestHelpers.h"
+#include <cassert>
+#include <iostream>
+#include <Windows.h>
+
+HeapManager* CreateHeapManager(size_t heapSize, int numDescriptors) {
+#ifdef USE_HEAP_ALLOC
+	void* pHeapMemory = HeapAlloc(GetProcessHeap(), 0, heapSize);
+#else
+	// Get SYSTEM_INFO, which includes the memory page size
+	SYSTEM_INFO SysInfo;
+	GetSystemInfo(&SysInfo);
+	// round our size to a multiple of memory page size
+	assert(SysInfo.dwPageSize > 0);
+	size_t sizeHeapInPageMultiples = SysInfo.dwPageSize * ((heapSize + SysInfo.dwPageSize) / SysInfo.dwPageSize);
+	void* pHeapMemory = VirtualAlloc(NULL, sizeHeapInPageMultiples, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+#endif
+	assert(heapSize > sizeof(HeapManager));
+	assert(pHeapMemory);
+	
 	const auto hm = new(pHeapMemory) HeapManager(pHeapMemory, heapSize, numDescriptors);
 	return hm;
+}
+
+void DestroyHeapManager(HeapManager* hm) {
+	if (hm) {
+		hm->destroy();
+#ifdef USE_HEAP_ALLOC
+		HeapFree(GetProcessHeap(), 0, hm);
+#else
+		VirtualFree(hm, 0, MEM_RELEASE);
+#endif
+	}
 }
 
 HeapManager::HeapManager(void* start, size_t size, int num_descriptors) {
@@ -90,9 +118,19 @@ bool HeapManager::free(void* dataPtr) {
 	return true;
 }
 
-void HeapManager::coalesce() const {
+void HeapManager::coalesce() {
 	MemoryBlock* curr = _head;
 	MemoryBlock* next = curr->nextBlock;
+
+	// Handling the empty space after head and first block
+	if (next->free) {
+		auto nb = next->nextBlock;
+		next = CreateNewBlock(reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(_head) + _head->blockSize()), sizeof(MemoryBlock));
+		next->nextBlock = nb; nb->prevBlock = next;
+		next->prevBlock = curr; curr->nextBlock = next;
+
+		next->setDataSize(reinterpret_cast<uintptr_t>(next->nextBlock) - reinterpret_cast<uintptr_t>(next) - sizeof(MemoryBlock));
+	}
 	while(next != _tail) {
 		if(curr->free && next->free) {
 			curr->nextBlock = next->nextBlock;

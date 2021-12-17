@@ -6,6 +6,7 @@
 #define SUPPORT_FLAGS
 #define SUPPORTS_ALIGNMENT
 #define TEST_SINGLE_LARGE_ALLOCATION
+#define USE_HEAP_ALLOC
 #define SUPPORTS_SHOWFREEBLOCKS
 #define SUPPORTS_SHOWOUTSTANDINGALLOCATIONS
 #endif
@@ -23,7 +24,7 @@ public:
 	void* alloc(size_t size);
 	void* alloc(size_t size, int alignment);
 	bool free(void* dataPtr);
-	void coalesce() const;
+	void coalesce();
 	bool contains(void* ptr) const;
 	size_t getLargestFreeBlock() const;
 	bool isAllocated(void* p_ptr) const;
@@ -37,4 +38,5 @@ private:
 	MemoryBlock* CreateNewBlock(void* pointer, size_t size);
 };
 
-HeapManager* CreateHeapManager(void* pHeapMemory, size_t heapSize, int numDescriptors);
+HeapManager* CreateHeapManager(size_t heapSize, int numDescriptors);
+void DestroyHeapManager(HeapManager* hm);
