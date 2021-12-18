@@ -1,5 +1,6 @@
 #pragma once
 #include <cassert>
+#include "malloc.h"
 
 template<typename T>
 class DynamicArray {
@@ -9,7 +10,7 @@ public:
 	}
 	~DynamicArray() {
 		clear();
-		::operator delete(_data, _capacity * sizeof(T));
+		free(_data);
 	}
 	DynamicArray(const DynamicArray& other) = delete;
 	DynamicArray& operator=(const DynamicArray& other) = delete;
@@ -52,8 +53,9 @@ public:
 	}
 private:
 	void resize(size_t newCapacity) { // Capacity can only be more than size
-		T* newBlock = static_cast<T*>(::operator new(newCapacity * sizeof(T)));
+		T* newBlock = static_cast<T*>(malloc(newCapacity * sizeof(T)));
 		assert(newBlock);
+		assert(sizeof(T));
 		if(newCapacity < _size) {
 			return;
 		}
@@ -67,7 +69,7 @@ private:
 			_data[i].~T();
 		}
 		// Freeing the memory
-		::operator delete(_data, _capacity * sizeof(T));
+		free(_data);
 
 		_data = newBlock;
 		_capacity = newCapacity;

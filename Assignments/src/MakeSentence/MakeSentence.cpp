@@ -1,6 +1,6 @@
 #include <cassert>
 #include <conio.h>
-
+#include "malloc.h"
 #include "../Utilities/Utils.h"
 #include <iostream>
 
@@ -20,8 +20,10 @@ char* readStringFromCIn() {
 	// if (len == 2 && a[0]=='q') return nullptr;
 	if (len == 0) return nullptr;
 	len++;
-    char* str = new char[len];
-    memcpy(str, a, len - 1);
+    char* str = static_cast<char*>(malloc(len*sizeof(char)));
+	assert(str);
+	for (size_t i = 0; i < len - 1; i++) str[i] = a[i];
+    // memcpy(str, a, len - 1);
     str[len-1] = '\0';
     return str;
 }
@@ -74,7 +76,7 @@ void TestMakeSentence() {
 	} while (currWord != nullptr);
 
 	size_t size = words.size();
-	char** wordsArr = new char* [size];
+	char** wordsArr = static_cast<char**>(malloc(size* sizeof(char*)));
 	for(size_t i =0;i<size; i++) {
 		wordsArr[i] = words[i];
 	}
@@ -82,8 +84,8 @@ void TestMakeSentence() {
 	char* pSentence = MakeSentence(wordsArr);
 	printf("The Sentence is: %s\n", pSentence);
 	for (size_t i = 0; i < size; i++) {
-		delete[] wordsArr[i];
+		free(wordsArr[i]);
 	}
-	delete[] wordsArr;
-	delete[] pSentence;
+	free(wordsArr);
+	free(pSentence);
 }
