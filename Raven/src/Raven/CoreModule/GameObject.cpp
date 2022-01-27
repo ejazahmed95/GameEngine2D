@@ -29,5 +29,4 @@ namespace Raven {
 		position_ = position_ + velocity_;
 	}
 
-
 }

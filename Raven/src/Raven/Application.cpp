@@ -9,6 +9,10 @@ namespace Raven {
 		while (true);
 	}
 
+	void Application::RunWinApp() {
+		while (true);
+	}
+
 	StandardInputReader Application::standardInputReader() const
 	{
 		return input_reader_;

@@ -11,6 +11,7 @@ public:
 	~MonsterController() override;
 	void addMonster(char* name);
 	void update(float delta) override;
+	void draw();
 	void removeMonster(int index);
 	friend std::ostream& operator<<(std::ostream& lhs, const MonsterController& mc);
 	char* getCustomName(const char* name, int index) const;

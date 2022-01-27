@@ -10,6 +10,7 @@ namespace Raven {
 		Application();
 		virtual ~Application();
 		virtual void Run();
+		virtual void RunWinApp();
 		StandardInputReader standardInputReader() const;
 	private:
 		StandardInputReader input_reader_;

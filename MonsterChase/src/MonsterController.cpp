@@ -49,6 +49,13 @@ void MonsterController::update(float delta)
 	}
 }
 
+void MonsterController::draw() {
+	for (int i = 0; i < monster_count_; i++) {
+		auto m = monsters_[i];
+		
+	}
+}
+
 void MonsterController::removeMonster(int index)
 {
 	Monster* temp = monsters_[index];
