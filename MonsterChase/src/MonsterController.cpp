@@ -2,7 +2,6 @@
 
 MonsterController::~MonsterController()
 {
-	// GameObject::~GameObject();
 	for(int i=0;i<monster_count_;i++)
 	{
 		delete monsters_[i];
@@ -10,7 +9,7 @@ MonsterController::~MonsterController()
 	delete[] monsters_;
 }
 
-void MonsterController::addMonster(char* name)
+void MonsterController::addMonster(std::string name)
 {
 	const auto m = new Monster(name);
 	initialiseMonster(m);
@@ -65,18 +64,11 @@ void MonsterController::removeMonster(int index)
 	
 }
 
-char* MonsterController::getCustomName(const char* name, int index) const
+std::string MonsterController::getCustomName(const char* name, int index) const
 {
-	size_t len = strlen(name);
-	auto s = std::to_string(index);
-	const char* suffix = s.c_str();
-	size_t newLength = strlen(name) + strlen(suffix) + 1;
-	char* n = new char[newLength];
-	memcpy(n, name, sizeof(char)*strlen(name));
-	memcpy(n+len, suffix, sizeof(char)*strlen(suffix));
-	std::cout << "Length = " << len << ";" << newLength << ";" << suffix << std::endl;
-	n[newLength - 1] = '\0';
-	return n;
+	std::string	res = name;
+	res += std::to_string(index);
+	return res;
 }
 
 void MonsterController::initialiseMonster(Monster* m) const

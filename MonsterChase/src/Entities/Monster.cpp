@@ -9,7 +9,7 @@ std::ostream& operator<<(std::ostream& lhs, const Monster& m) {
 Monster::~Monster()
 {
 	// GameObject::~GameObject();
-	delete[] monster_name_;
+	// delete[] monster_name_;
 }
 
 void Monster::markForKill()

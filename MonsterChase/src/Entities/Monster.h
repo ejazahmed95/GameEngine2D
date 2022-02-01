@@ -5,7 +5,7 @@
 class Monster : public Raven::GameObject
 {
 public:
-	Monster(char* name) : monster_name_(name), is_dead_(false), age_(0) {}
+	Monster(std::string name) : monster_name_(name), is_dead_(false), age_(0) {}
 	~Monster() override;
 	friend std::ostream& operator<<(std::ostream& lhs, const Monster& m);
 
@@ -18,7 +18,7 @@ public:
 	// Overrides
 	void update(float delta) override;
 private:
-	char* monster_name_;
+	std::string monster_name_;
 	bool is_dead_;
 	int age_;
 };

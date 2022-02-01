@@ -17,6 +17,10 @@ public:
 	void startWinGame();
 	void drawAllObjects();
 
+	void GameStart() override;
+	void GameEnd() override;
+	void Update(float delta) override;
+
 	// Removing copy constructors
 	MonsterChase& operator=(const MonsterChase& m) = delete;
 private:

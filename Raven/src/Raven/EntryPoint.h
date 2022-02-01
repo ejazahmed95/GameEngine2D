@@ -26,13 +26,16 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 	{
 		// Raven::TEST_Point2DTest();
 		const auto app = Raven::CreateApplication();
+
 		bool success = GLib::Initialize(i_hInstance, i_nCmdShow, "RavenApp", -1, 800, 600, true);
 		if (!success) return 0;
 
+		app->startGame();
 		//GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
-		app->RunWinApp();
+		// app->RunWinApp();
 		GLib::Shutdown();
+
 		delete app;
 	}
 	_CrtDumpMemoryLeaks();

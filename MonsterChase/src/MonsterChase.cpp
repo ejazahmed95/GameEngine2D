@@ -69,31 +69,40 @@ void MonsterChase::updateAllObjects() {
 #include <DirectXColors.h>
 
 void MonsterChase::RunWinApp() {
-	int mCount = 3;
+	
+}
+
+
+
+void MonsterChase::GameStart() {
+	// Application::GameStart();
+	int mCount = 1;
 	char playerName[] = "Ejaz";
 	this->mc_ = new MonsterController();
 	this->pc_ = new PlayerController(playerName);
 	for (int i = 0; i < mCount; i++) {
-		std::cout << "Enter the name of monster " << i << ": ";
+		//std::cout << "Enter the name of monster " << i << ": ";
 		mc_->addMonster(mc_->getCustomName("monster-", 0));
 	}
 	startWinGame();
 }
 
 void MonsterChase::startWinGame() {
-	playerSprite = CreateSprite("assets\\sprites\\player.dds");
+	playerSprite = CreateSprite("assets\\sprites\\gastly.dds");
 	pc_->setVelocity(2, 0);
-	while (true) {
-		updateAllObjects();
+}
 
-		bool quit = false;
-		GLib::Service(quit);
-		GLib::BeginRendering(DirectX::Colors::Aqua);
-		drawAllObjects();
-		GLib::EndRendering();
-		
-	}
+void MonsterChase::GameEnd() {
 	GLib::Release(playerSprite);
+}
+
+void MonsterChase::Update(float delta) {
+	// Application::Update(delta);
+	// bool quit = false;
+	// GLib::Service(quit);
+	// GLib::BeginRendering(DirectX::Colors::Aqua);
+	// drawAllObjects();
+	// GLib::EndRendering();
 }
 
 void MonsterChase::drawAllObjects()
@@ -101,13 +110,13 @@ void MonsterChase::drawAllObjects()
 	GLib::Sprites::BeginRendering();
 
 	float xOffset = pc_->position().x() * 0.01;
-	GLib::Point2D	Offset = { -180.0f + xOffset, -100.0f};
-	
+	GLib::Point2D	Offset = { -180.0f + xOffset, -100.0f };
+
 	const size_t	lenBuffer = 65;
 	char			Buffer[lenBuffer];
 
-	sprintf_s(Buffer, lenBuffer, "The x position is::%f  || %f\n", xOffset, Offset.x);
-	OutputDebugStringA(Buffer);
+	//sprintf_s(Buffer, lenBuffer, "The x position is::%f  || %f\n", xOffset, Offset.x);
+	//OutputDebugStringA(Buffer);
 
 	// Tell GLib to render this sprite at our calculated location
 	if (playerSprite) {
@@ -116,6 +125,7 @@ void MonsterChase::drawAllObjects()
 
 	GLib::Sprites::EndRendering();
 }
+
 
 GLib::Sprite* CreateSprite(const char* i_pFilename)
 {

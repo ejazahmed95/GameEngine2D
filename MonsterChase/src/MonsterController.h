@@ -9,12 +9,12 @@ public:
 		total_monster_count_ = 0;
 	}
 	~MonsterController() override;
-	void addMonster(char* name);
+	void addMonster(std::string name);
 	void update(float delta) override;
 	void draw();
 	void removeMonster(int index);
 	friend std::ostream& operator<<(std::ostream& lhs, const MonsterController& mc);
-	char* getCustomName(const char* name, int index) const;
+	std::string getCustomName(const char* name, int index) const;
 private:
 	int monster_count_, spawn_range_, spawn_interval_;
 	int time_since_last_spawn_;

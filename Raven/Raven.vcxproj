@@ -85,7 +85,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Raven\AppConfig.h" />
     <ClInclude Include="src\Raven\CoreModule\CoreModule.h" />
+    <ClInclude Include="src\Raven\CoreModule\CoreSystem.h" />
+    <ClInclude Include="src\Raven\CoreModule\IComponent.h" />
+    <ClInclude Include="src\Raven\CoreModule\IGameObjectSystem.h" />
     <ClInclude Include="src\Raven\CoreModule\Point2D.h" />
     <ClInclude Include="src\Raven.h" />
     <ClInclude Include="src\Raven\Application.h" />
@@ -94,10 +98,15 @@
     <ClInclude Include="src\Raven\EntryPoint.h" />
     <ClInclude Include="src\Raven\Input\IInputReader.h" />
     <ClInclude Include="src\Raven\Input\StandardInputReader.h" />
+    <ClInclude Include="src\Raven\Physics\PhysicsComponent.h" />
     <ClInclude Include="src\Raven\Physics\PhysicsSystem.h" />
+    <ClInclude Include="src\Raven\Renderer\RenderComponent.h" />
+    <ClInclude Include="src\Raven\Renderer\RenderingSystem.h" />
+    <ClInclude Include="src\Raven\Systems.h" />
     <ClInclude Include="test\Point2DTest.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Raven\CoreModule\CoreSystem.cpp" />
     <ClCompile Include="src\Raven\CoreModule\Point2D.cpp" />
     <ClCompile Include="src\Raven\Application.cpp" />
     <ClCompile Include="src\Raven\CoreModule\GameObject.cpp" />

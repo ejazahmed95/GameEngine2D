@@ -1,14 +1,14 @@
 #include "GameObject.h"
 
 namespace Raven {
-	GameObject::GameObject()
-	{
-		name_ = new char[12]{ "Game Object" };
+	GameObject::GameObject() {
+		name_ = "Game Object";
+		RavenCore()->Register(this);
 	}
 
 	GameObject::~GameObject()
 	{
-		delete[] name_;
+		// delete[] name_;
 	}
 
 	void GameObject::onCollisionEnter(GameObject& obj) {
