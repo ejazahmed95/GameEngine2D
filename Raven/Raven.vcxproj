@@ -95,6 +95,7 @@
     <ClInclude Include="src\Raven\Application.h" />
     <ClInclude Include="src\Raven\Core.h" />
     <ClInclude Include="src\Raven\CoreModule\GameObject.h" />
+    <ClInclude Include="src\Raven\CoreModule\Point3D.h" />
     <ClInclude Include="src\Raven\EntryPoint.h" />
     <ClInclude Include="src\Raven\Input\IInputReader.h" />
     <ClInclude Include="src\Raven\Input\StandardInputReader.h" />
@@ -110,6 +111,7 @@
     <ClCompile Include="src\Raven\CoreModule\Point2D.cpp" />
     <ClCompile Include="src\Raven\Application.cpp" />
     <ClCompile Include="src\Raven\CoreModule\GameObject.cpp" />
+    <ClCompile Include="src\Raven\CoreModule\Point3D.cpp" />
     <ClCompile Include="src\Raven\Input\StandardInputReader.cpp" />
     <ClCompile Include="test\Point2DTest.cpp" />
   </ItemGroup>

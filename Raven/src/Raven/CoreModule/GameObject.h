@@ -2,7 +2,6 @@
 #include "IComponent.h"
 #include "../Core.h"
 #include "Point2D.h"
-#include "../Systems.h"
 
 namespace Raven {
 	class RAVEN_API GameObject : public IComponent {

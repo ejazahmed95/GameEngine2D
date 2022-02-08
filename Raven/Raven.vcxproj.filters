@@ -72,6 +72,9 @@
     <ClInclude Include="src\Raven\Systems.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Raven\CoreModule\Point3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Raven\Application.cpp">
@@ -90,6 +93,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Raven\CoreModule\CoreSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Raven\CoreModule\Point3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
