@@ -86,6 +86,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Raven\AppConfig.h" />
+    <ClInclude Include="src\Raven\Components\SpriteRenderer.h" />
     <ClInclude Include="src\Raven\Components\TComponent.h" />
     <ClInclude Include="src\Raven\Components\Transform.h" />
     <ClInclude Include="src\Raven\CoreModule\Types.h" />
@@ -107,9 +108,12 @@
     <ClInclude Include="src\Raven\Renderer\RenderComponent.h" />
     <ClInclude Include="src\Raven\Renderer\RenderingSystem.h" />
     <ClInclude Include="src\Raven\Systems.h" />
+    <ClInclude Include="src\Raven\Systems\BaseSystem.h" />
+    <ClInclude Include="src\Raven\Systems\RenderingSystem.h" />
     <ClInclude Include="test\Point2DTest.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Raven\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Raven\Components\TComponent.cpp" />
     <ClCompile Include="src\Raven\Components\Transform.cpp" />
     <ClCompile Include="src\Raven\CoreModule\CoreSystem.cpp" />
@@ -118,6 +122,8 @@
     <ClCompile Include="src\Raven\CoreModule\GameObject.cpp" />
     <ClCompile Include="src\Raven\CoreModule\Point3D.cpp" />
     <ClCompile Include="src\Raven\Input\StandardInputReader.cpp" />
+    <ClCompile Include="src\Raven\Systems\BaseSystem.cpp" />
+    <ClCompile Include="src\Raven\Systems\RenderingSystem.cpp" />
     <ClCompile Include="test\Point2DTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
