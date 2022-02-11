@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "../Systems.h"
 
 namespace Raven {
 	GameObject::GameObject() {
