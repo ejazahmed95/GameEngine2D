@@ -2,6 +2,10 @@
 
 #include "../Core.h"
 
+namespace Raven {
+	class GameObject;
+}
+
 namespace Raven { namespace System {
 
 	class RAVEN_API BaseSystem {
@@ -12,6 +16,11 @@ namespace Raven { namespace System {
 		virtual void Initialize() = 0;
 		virtual void Update(float dt) = 0;
 		virtual void Destroy() = 0;
+
+
+		// Virtual methods
+		void AddGameObject(GameObject* obj);
+		void RemoveGameObject(GameObject* obj);
 	private:
 
 	};

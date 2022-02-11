@@ -15,5 +15,40 @@ namespace Raven { namespace Components {
 			return s_id;
 		}
 	};
+
+	template <typename T>
+	class ComponentManager {
+	public:
+	private:
+		std::unordered_<Entity, TComponent<T>> components;
+	};
+
+	class Entity {
+		Types::t_id id;
+	};
+
+	class EntityWrapper {
+		Entity entity;
+
+	public:
+		template<typename T>
+		void addComponent(TComponent<T> component) {
+			getComponentManager().addEntity();
+			
+		}
+
+		template<typename T>
+		void removeComponent(TComponent<T> component) {
+			
+		}
+	};
+
+	class ComponentWrapper {
+		
+	};
+
+	void CreateEntity() {
+		
+	}
 }}
 
