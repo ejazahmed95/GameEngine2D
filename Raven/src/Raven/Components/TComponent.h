@@ -4,8 +4,8 @@
 
 namespace Raven { namespace Components {
 	struct ComponentId {
-		static Types::t_Uid s_id;
-		static Types::t_Uid Get();
+		static Types::t_uid s_id;
+		static Types::t_uid Get();
 	};
 
 	struct RAVEN_API IComponent {
@@ -14,8 +14,8 @@ namespace Raven { namespace Components {
 
 	template <typename T>
 	struct RAVEN_API TComponent: public IComponent {
-		static Types::t_Uid Id() {
-			static Types::t_Uid s_id = ComponentId::Get();
+		static Types::t_uid Id() {
+			static Types::t_uid s_id = ComponentId::Get();
 			return s_id;
 		}
 	};

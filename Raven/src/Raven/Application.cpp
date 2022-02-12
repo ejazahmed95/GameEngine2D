@@ -49,7 +49,6 @@ namespace Raven {
 		_coreSystem->Update(1.0f);
 	}
 
-
 	IGameObjectSystem* RavenCore() {
 		return Application::Instance()->RavenCore();
 	}

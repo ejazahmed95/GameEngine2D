@@ -109,6 +109,7 @@
     <ClInclude Include="src\Raven\Physics\PhysicsSystem.h" />
     <ClInclude Include="src\Raven\Systems.h" />
     <ClInclude Include="src\Raven\Systems\BaseSystem.h" />
+    <ClInclude Include="src\Raven\Systems\RenderingSystem.h" />
     <ClInclude Include="test\Point2DTest.h" />
   </ItemGroup>
   <ItemGroup>
