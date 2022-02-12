@@ -86,10 +86,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Raven\AppConfig.h" />
-    <ClInclude Include="src\Raven\ECS_Backup\Components\SpriteRenderer.h" />
-    <ClInclude Include="src\Raven\ECS_Backup\Components\TComponent.h" />
-    <ClInclude Include="src\Raven\ECS_Backup\Components\Transform.h" />
-    <ClInclude Include="src\Raven\ECS_Backup\Entity.h" />
+    <ClInclude Include="src\Raven\Components\SpriteRenderer.h" />
+    <ClInclude Include="src\Raven\Components\TComponent.h" />
+    <ClInclude Include="src\Raven\Components\Transform.h" />
+    <ClInclude Include="src\Raven\CoreModule\Entity.h" />
     <ClInclude Include="src\Raven\CoreModule\Types.h" />
     <ClInclude Include="src\Raven\CoreModule\CoreModule.h" />
     <ClInclude Include="src\Raven\CoreModule\CoreSystem.h" />
@@ -107,27 +107,24 @@
     <ClInclude Include="src\Raven\ECS_Backup\Managers\ComponentManager.h" />
     <ClInclude Include="src\Raven\Physics\PhysicsComponent.h" />
     <ClInclude Include="src\Raven\Physics\PhysicsSystem.h" />
-    <ClInclude Include="src\Raven\Components\RenderComponent.h" />
-    <ClInclude Include="src\Raven\Systems\RenderingSystem.h" />
     <ClInclude Include="src\Raven\Systems.h" />
-    <ClInclude Include="src\Raven\ECS_Backup\Systems\BaseSystem.h" />
-    <ClInclude Include="src\Raven\ECS_Backup\Systems\RenderingSystem.h" />
+    <ClInclude Include="src\Raven\Systems\BaseSystem.h" />
     <ClInclude Include="test\Point2DTest.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Raven\ECS_Backup\Components\SpriteRenderer.cpp" />
-    <ClCompile Include="src\Raven\ECS_Backup\Components\TComponent.cpp" />
-    <ClCompile Include="src\Raven\ECS_Backup\Components\Transform.cpp" />
+    <ClCompile Include="src\Raven\Components\SpriteRenderer.cpp" />
+    <ClCompile Include="src\Raven\Components\TComponent.cpp" />
+    <ClCompile Include="src\Raven\Components\Transform.cpp" />
     <ClCompile Include="src\Raven\CoreModule\CoreSystem.cpp" />
-    <ClCompile Include="src\Raven\ECS_Backup\Entity.cpp" />
+    <ClCompile Include="src\Raven\CoreModule\Entity.cpp" />
     <ClCompile Include="src\Raven\CoreModule\Point2D.cpp" />
     <ClCompile Include="src\Raven\Application.cpp" />
     <ClCompile Include="src\Raven\CoreModule\GameObject.cpp" />
     <ClCompile Include="src\Raven\CoreModule\Point3D.cpp" />
     <ClCompile Include="src\Raven\Input\StandardInputReader.cpp" />
     <ClCompile Include="src\Raven\ECS_Backup\Managers\ComponentManager.cpp" />
-    <ClCompile Include="src\Raven\ECS_Backup\Systems\BaseSystem.cpp" />
-    <ClCompile Include="src\Raven\ECS_Backup\Systems\RenderingSystem.cpp" />
+    <ClCompile Include="src\Raven\Systems\BaseSystem.cpp" />
+    <ClCompile Include="src\Raven\Systems\RenderingSystem.cpp" />
     <ClCompile Include="test\Point2DTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StandardLib.h">
+    <ClCompile Include="src\StandardLib.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math\mathutils.cpp">
+    <ClCompile Include="src\math\mathutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math\mathfutils.cpp">
+    <ClCompile Include="src\math\mathfutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="math\mathutils.h">
+    <ClInclude Include="src\math\mathutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

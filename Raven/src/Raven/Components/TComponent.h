@@ -1,17 +1,21 @@
 #pragma once
-#include "../../Core.h"
-#include "../../CoreModule/Types.h"
+#include "../Core.h"
+#include "../CoreModule/Types.h"
 
 namespace Raven { namespace Components {
 	struct ComponentId {
-		static Types::t_id s_id;
-		static Types::t_id Get();
+		static Types::t_Uid s_id;
+		static Types::t_Uid Get();
+	};
+
+	struct RAVEN_API IComponent {
+		
 	};
 
 	template <typename T>
-	class RAVEN_API TComponent {
-		static Types::t_id Id() {
-			static Types::t_id s_id = ComponentId::Get();
+	struct RAVEN_API TComponent: public IComponent {
+		static Types::t_Uid Id() {
+			static Types::t_Uid s_id = ComponentId::Get();
 			return s_id;
 		}
 	};
@@ -24,7 +28,7 @@ namespace Raven { namespace Components {
 	// };
 	//
 	// class Entity {
-	// 	Types::t_id id;
+	// 	Types::t_Uid id;
 	// };
 	//
 	// class EntityWrapper {

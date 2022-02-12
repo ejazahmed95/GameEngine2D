@@ -84,12 +84,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="math\mathfutils.cpp" />
-    <ClCompile Include="math\mathutils.cpp" />
-    <ClCompile Include="StandardLib.h" />
+    <ClCompile Include="src\math\mathfutils.cpp" />
+    <ClCompile Include="src\math\mathutils.cpp" />
+    <ClCompile Include="src\StandardLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="math\mathutils.h" />
+    <ClInclude Include="src\math\mathutils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

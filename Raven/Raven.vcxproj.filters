@@ -48,13 +48,7 @@
     <ClInclude Include="src\Raven\Physics\PhysicsSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\Systems\RenderingSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Raven\CoreModule\IComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Raven\Components\RenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Raven\Physics\PhysicsComponent.h">
@@ -75,25 +69,25 @@
     <ClInclude Include="src\Raven\CoreModule\Point3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\ECS_Backup\Components\TComponent.h">
+    <ClInclude Include="src\Raven\Components\TComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Raven\CoreModule\Types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\ECS_Backup\Components\Transform.h">
+    <ClInclude Include="src\Raven\Components\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\ECS_Backup\Components\SpriteRenderer.h">
+    <ClInclude Include="src\Raven\Components\SpriteRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\ECS_Backup\Systems\BaseSystem.h">
+    <ClInclude Include="src\Raven\Systems\BaseSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\ECS_Backup\Systems\RenderingSystem.h">
+    <ClInclude Include="src\Raven\Systems\RenderingSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\ECS_Backup\Entity.h">
+    <ClInclude Include="src\Raven\CoreModule\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Raven\ECS_Backup\Managers\ComponentManager.h">
@@ -122,22 +116,22 @@
     <ClCompile Include="src\Raven\CoreModule\Point3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Raven\ECS_Backup\Components\TComponent.cpp">
+    <ClCompile Include="src\Raven\Components\TComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Raven\ECS_Backup\Components\Transform.cpp">
+    <ClCompile Include="src\Raven\Components\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Raven\ECS_Backup\Components\SpriteRenderer.cpp">
+    <ClCompile Include="src\Raven\Components\SpriteRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Raven\ECS_Backup\Systems\BaseSystem.cpp">
+    <ClCompile Include="src\Raven\Systems\BaseSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Raven\ECS_Backup\Systems\RenderingSystem.cpp">
+    <ClCompile Include="src\Raven\Systems\RenderingSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Raven\ECS_Backup\Entity.cpp">
+    <ClCompile Include="src\Raven\CoreModule\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Raven\ECS_Backup\Managers\ComponentManager.cpp">

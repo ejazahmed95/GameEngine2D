@@ -3,8 +3,8 @@
 
 namespace Raven { namespace Types {
 #ifdef WIN_64
-	typedef int32_t t_id;
+	typedef int64_t t_uid;
 #else
-	typedef int64_t t_id;
+	typedef int32_t t_uid;
 #endif
 }}
