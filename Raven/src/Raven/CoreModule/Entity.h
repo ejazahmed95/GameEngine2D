@@ -18,7 +18,7 @@ namespace Raven { namespace Core {
 			}
 			m_Components.insert({ id, component });
 			componentMask.Add(id);
-			componentAdded(id);
+			//this->componentAdded(id);
 			return true;
 		}
 
@@ -45,8 +45,9 @@ namespace Raven { namespace Core {
 
 		Types::t_uid Id() const { return m_Id; }
 		BitMask& GetComponentMask() { return componentMask; }
-	private:
 		void componentAdded(Types::t_uid) const;
+	private:
+		void componentAdded2(Types::t_uid) const;
 	private:
 		int m_Id;
 		std::unordered_map<Types::t_uid, Components::IComponent*> m_Components;

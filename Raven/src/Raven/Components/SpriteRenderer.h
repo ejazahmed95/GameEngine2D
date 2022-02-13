@@ -4,7 +4,7 @@
 #include "../Core.h"
 
 namespace Raven { namespace Components {
-	struct RAVEN_API SpriteRenderer : TComponent<SpriteRenderer> {
+	struct RAVEN_API SpriteRenderer : public TComponent<SpriteRenderer> {
 		std::string m_spriteRef;
 		explicit SpriteRenderer(std::string& spriteRef): m_spriteRef(std::move(spriteRef)) {}
 	};

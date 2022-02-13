@@ -7,6 +7,9 @@
 #include "Raven/CoreModule/CoreModule.h"
 #include "Raven/Input/StandardInputReader.h"
 
+// Core
+#include "Raven/CoreModule/Types.h"
+
 // Components
 #include "Raven/Components/TComponent.h"
 #include "Raven/Components/Transform.h"

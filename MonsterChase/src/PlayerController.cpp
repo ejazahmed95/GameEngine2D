@@ -1,6 +1,5 @@
 #include "PlayerController.h"
 #include <iostream>
-#include <conio.h>
 
 PlayerController::~PlayerController()
 {
