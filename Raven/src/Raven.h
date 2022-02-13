@@ -5,7 +5,6 @@
 #include "Raven/Application.h"
 #include "Raven/Systems.h"
 #include "Raven/CoreModule/CoreModule.h"
-#include "Raven/Input/StandardInputReader.h"
 
 // Core
 #include "Raven/CoreModule/Types.h"

@@ -88,15 +88,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Entities\Monster.cpp" />
     <ClCompile Include="src\MonsterChase.cpp" />
-    <ClCompile Include="src\MonsterController.cpp" />
-    <ClCompile Include="src\PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Entities\Monster.h" />
     <ClInclude Include="src\MonsterChase.h" />
-    <ClInclude Include="src\MonsterController.h" />
     <ClInclude Include="src\PlayerController.h" />
   </ItemGroup>
   <ItemGroup>

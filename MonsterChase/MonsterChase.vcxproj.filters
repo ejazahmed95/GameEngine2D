@@ -18,28 +18,13 @@
     <ClCompile Include="src\MonsterChase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PlayerController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MonsterController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Monster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\MonsterController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\MonsterChase.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Monster.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

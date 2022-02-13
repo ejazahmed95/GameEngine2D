@@ -1,6 +1,6 @@
 #pragma once
 #include "Application.h"
-#include "Logger.h"
+#include "SLib/Logger.h"
 // #include "../../test/Point2DTest.h"
 
 #ifdef PLATFORM_WINDOWS

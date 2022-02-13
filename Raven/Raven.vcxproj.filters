@@ -27,40 +27,22 @@
     <ClInclude Include="src\Raven\EntryPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\CoreModule\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Raven\CoreModule\Point2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Raven\CoreModule\CoreModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\Input\IInputReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Raven\Input\StandardInputReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="test\Point2DTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\Physics\PhysicsSystem.h">
+    <ClInclude Include="src\Raven\Systems\PhysicsSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\CoreModule\IComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Raven\Physics\PhysicsComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Raven\CoreModule\IGameObjectSystem.h">
+    <ClInclude Include="src\Raven\Components\PhysicsComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Raven\AppConfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Raven\CoreModule\CoreSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Raven\Systems.h">
@@ -99,7 +81,13 @@
     <ClInclude Include="src\Raven\CoreModule\BitMask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raven\Logger.h">
+    <ClInclude Include="src\Raven\SLib\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Raven\SLib\StrongPtr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Raven\SLib\WeakPtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -107,19 +95,10 @@
     <ClCompile Include="src\Raven\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Raven\CoreModule\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Raven\CoreModule\Point2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Raven\Input\StandardInputReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test\Point2DTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Raven\CoreModule\CoreSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Raven\CoreModule\Point3D.cpp">
