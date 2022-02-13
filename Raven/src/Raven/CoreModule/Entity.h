@@ -1,6 +1,8 @@
 #pragma once
 #include "../Components/TComponent.h"
 #include <unordered_map>
+
+#include "BitMask.h"
 #include "IComponent.h"
 
 namespace Raven { namespace Core {
@@ -16,6 +18,8 @@ namespace Raven { namespace Core {
 				return false;
 			}
 			m_Components.insert({ id, component });
+			componentMask.Add(id);
+			componentAdded(id);
 			return true;
 		}
 
@@ -39,8 +43,14 @@ namespace Raven { namespace Core {
 		}
 
 		static int s_EntityCount;
+
+		Types::t_uid Id() const { return m_Id; }
+		BitMask& GetComponentMask() { return componentMask; }
+	private:
+		void componentAdded(Types::t_uid) const;
 	private:
 		int m_Id;
 		std::unordered_map<Types::t_uid, IComponent*> m_Components;
+		BitMask componentMask;
 	};
 }}

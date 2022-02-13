@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Raven\CoreModule\BitMask.h" />
     <ClInclude Include="src\Raven\AppConfig.h" />
     <ClInclude Include="src\Raven\Components\SpriteRenderer.h" />
     <ClInclude Include="src\Raven\Components\TComponent.h" />
@@ -101,6 +102,7 @@
     <ClInclude Include="src\Raven\Core.h" />
     <ClInclude Include="src\Raven\CoreModule\GameObject.h" />
     <ClInclude Include="src\Raven\CoreModule\Point3D.h" />
+    <ClInclude Include="src\Raven\ECSManager.h" />
     <ClInclude Include="src\Raven\EntryPoint.h" />
     <ClInclude Include="src\Raven\Input\IInputReader.h" />
     <ClInclude Include="src\Raven\Input\StandardInputReader.h" />
@@ -122,6 +124,7 @@
     <ClCompile Include="src\Raven\Application.cpp" />
     <ClCompile Include="src\Raven\CoreModule\GameObject.cpp" />
     <ClCompile Include="src\Raven\CoreModule\Point3D.cpp" />
+    <ClCompile Include="src\Raven\ECSManager.cpp" />
     <ClCompile Include="src\Raven\Input\StandardInputReader.cpp" />
     <ClCompile Include="src\Raven\ECS_Backup\Managers\ComponentManager.cpp" />
     <ClCompile Include="src\Raven\Systems\BaseSystem.cpp" />

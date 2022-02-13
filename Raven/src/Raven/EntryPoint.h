@@ -30,7 +30,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		bool success = GLib::Initialize(i_hInstance, i_nCmdShow, "RavenApp", -1, 800, 600, true);
 		if (!success) return 0;
 
-		app->startGame();
+		app->App_StartGame();
 		//GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
 		// app->RunWinApp();

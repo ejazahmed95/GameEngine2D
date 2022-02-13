@@ -1,27 +1,26 @@
 #pragma once
 
 #include "Core.h"
+#include "ECSManager.h"
 #include "CoreModule/CoreSystem.h"
-#include "Input/StandardInputReader.h"
-#include "Systems.h"
+#include "Systems/RenderingSystem.h"
 
 namespace Raven {
 	class RAVEN_API Application {
 	public:
 		Application();
 		virtual ~Application();
-		virtual void Run();
-		virtual void RunWinApp();
 		virtual void GameStart();
 		virtual void Update(float delta);
 		virtual void GameEnd();
-		StandardInputReader standardInputReader() const;
-		void startGame();
+		//StandardInputReader standardInputReader() const;
+		void App_StartGame();
 		static Application* Instance();
 	private:
-		void updateSystems() const;
-		StandardInputReader input_reader_;
-
+		void App_InitialiseSystems() const;
+		void App_UpdateSystems() const;
+		void App_DestroySystems() const;
+		//StandardInputReader input_reader_;
 
 		bool _gameStarted = false;
 		bool _gameEnded = false;
@@ -29,11 +28,14 @@ namespace Raven {
 
 		// Gameplay Systems
 	public:
-		Core::CoreSystem* RavenCore() const { return _coreSystem; }
+		ECSManager* ECS() const { return m_EcsManager;  }
+		Core::CoreSystem* RavenCore() const { return m_CoreSystem; }
 		// Physics::PhysicsSystem* Physics() const { return _physicsSystem; }
 	private:
 		// Physics::PhysicsSystem* _physicsSystem;
-		Core::CoreSystem* _coreSystem;
+		ECSManager* m_EcsManager;
+		Core::CoreSystem* m_CoreSystem;
+		System::RenderingSystem* m_RenderingSystem;
 	};
 
 	// To be defined in Client

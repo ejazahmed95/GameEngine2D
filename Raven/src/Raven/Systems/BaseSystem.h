@@ -1,7 +1,10 @@
 #pragma once
 
+#include <unordered_map>
+
 #include "../Core.h"
 #include <vector>
+#include "../CoreModule/BitMask.h"
 
 namespace Raven { namespace Core {
 	class Entity;
@@ -11,19 +14,20 @@ namespace Raven { namespace System {
 
 	class RAVEN_API BaseSystem {
 	public:
-		BaseSystem() = default;
+		BaseSystem();
 		virtual ~BaseSystem() = default;
+		void TryAddEntity(Core::Entity* entity);
 		BaseSystem(const BaseSystem&) = delete;
 		BaseSystem& operator=(const BaseSystem&) = delete;
 
-		virtual void Initialize() = 0;
+		virtual void Initialize();
 		virtual void Update(float dt) = 0;
 		virtual void Destroy() = 0;
+		virtual BitMask GetComponentMask() = 0;
 
-		// Virtual methods
 		void RegisterEntity(Core::Entity*);
 		void RemoveEntity();
-	private:
+	protected:
 		std::vector<Core::Entity*> m_RegisteredEntities;
 	};
 }}

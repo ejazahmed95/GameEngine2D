@@ -39,7 +39,8 @@ void MonsterChase::Run() {
 void MonsterChase::startGame() {
     while (true) {
         std::cout << "Please use WASD to move and Q to quit" << std::endl;
-        char in = standardInputReader().readChar();
+		char in = 'w';
+        //char in = standardInputReader().readChar();
         if (in == 'q' || in == 'Q') break;
         pc_->handleInput(in);
         updateAllObjects();
