@@ -20,16 +20,6 @@ void MonsterChase::GameStart() {
 	player->AddComponent(new Raven::Components::Transform());
 	player->AddComponent(new Raven::Components::SpriteRenderer(sprites[0]));
 
-
-	// int mCount = 1;
-	// char playerName[] = "Ejaz";
-	// this->mc_ = new MonsterController();
-	// this->pc_ = new PlayerController(playerName);
-	// for (int i = 0; i < mCount; i++) {
-		//std::cout << "Enter the name of monster " << i << ": ";
-		
-	// }
-	// startWinGame();
 }
 
 void MonsterChase::Update(float delta) {
