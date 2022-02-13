@@ -3,7 +3,6 @@
 #include <unordered_map>
 
 #include "BitMask.h"
-#include "IComponent.h"
 
 namespace Raven { namespace Core {
 
@@ -39,7 +38,7 @@ namespace Raven { namespace Core {
 			if(m_Components.find(id) == m_Components.end()) {
 				return nullptr;
 			}
-			return static_cast<Components::TComponent<T>*>(m_Components[id]);
+			return dynamic_cast<Components::TComponent<T>*>(m_Components[id]);
 		}
 
 		static int s_EntityCount;
@@ -50,7 +49,7 @@ namespace Raven { namespace Core {
 		void componentAdded(Types::t_uid) const;
 	private:
 		int m_Id;
-		std::unordered_map<Types::t_uid, IComponent*> m_Components;
+		std::unordered_map<Types::t_uid, Components::IComponent*> m_Components;
 		BitMask componentMask;
 	};
 }}

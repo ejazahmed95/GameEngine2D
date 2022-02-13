@@ -5,11 +5,14 @@
 namespace Raven { namespace Components {
 	struct ComponentId {
 		static Types::t_uid s_id;
-		static Types::t_uid Get();
+		static Types::t_uid Get() {
+			s_id++;
+			return s_id;
+		}
 	};
 
 	struct RAVEN_API IComponent {
-		
+		virtual void Test() {};
 	};
 
 	template <typename T>

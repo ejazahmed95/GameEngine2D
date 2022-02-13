@@ -5,10 +5,17 @@
 #include "../CoreModule/Entity.h"
 
 namespace Raven {namespace Components {
+	struct Transform;
 	struct SpriteRenderer;
 }}
 
 namespace Raven { namespace System {
+
+	RenderingSystem::RenderingSystem() {
+		using namespace Components;
+		m_Mask.Add(TComponent<Transform>::Id());
+		m_Mask.Add(TComponent<SpriteRenderer>::Id());
+	}
 
 	void RenderingSystem::Initialize() {
 		

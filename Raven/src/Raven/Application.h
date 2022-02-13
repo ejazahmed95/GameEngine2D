@@ -30,12 +30,13 @@ namespace Raven {
 	public:
 		ECSManager* ECS() const { return m_EcsManager;  }
 		Core::CoreSystem* RavenCore() const { return m_CoreSystem; }
+		System::RenderingSystem* Renderer() const { return m_RenderingSystem; }
 		// Physics::PhysicsSystem* Physics() const { return _physicsSystem; }
 	private:
 		// Physics::PhysicsSystem* _physicsSystem;
 		ECSManager* m_EcsManager;
 		Core::CoreSystem* m_CoreSystem;
-		System::RenderingSystem* m_RenderingSystem;
+		System::RenderingSystem* m_RenderingSystem{};
 	};
 
 	// To be defined in Client

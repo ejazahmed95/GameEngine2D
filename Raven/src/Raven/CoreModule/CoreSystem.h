@@ -17,5 +17,5 @@ namespace Core {
 		void Register(IComponent* component) override;
 	};
 
-}new 
+} 
 }

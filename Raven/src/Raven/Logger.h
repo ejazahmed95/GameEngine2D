@@ -14,12 +14,12 @@ namespace SLib {
 	
 	static class Log {
 	public:
-		template<typename... Args>
-		void I(Args&&... args) {
-			if (level < INFO) return;
+		// template<typename... Args>
+		static void I(std::string args) {
+			//if (level < INFO) return;
 
 			char buffer[100];
-			sprintf_s(buffer, 50, "%s %s %s %s", args...);
+			sprintf_s(buffer, 50, "%s", args);
 			OutputDebugStringA(buffer);
 		}
 	private:

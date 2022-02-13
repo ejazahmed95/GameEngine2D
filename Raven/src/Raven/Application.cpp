@@ -5,7 +5,7 @@ namespace Raven {
 
 	Application::Application() {
 		m_CoreSystem = new Core::CoreSystem();
-		m_EcsManager = new ECS();
+		m_EcsManager = new ECSManager();
 		m_RenderingSystem = new System::RenderingSystem();
 		// _physicsSystem = new Physics::PhysicsSystem();
 		_instance = this;
@@ -48,6 +48,7 @@ namespace Raven {
 
 	void Application::App_UpdateSystems() const {
 		m_CoreSystem->Update(1.0f);
+		m_RenderingSystem->Update(1.0f);
 	}
 
 	void Application::App_DestroySystems() const {
@@ -60,6 +61,10 @@ namespace Raven {
 
 	ECSManager* GetECS() {
 		return Application::Instance()->ECS();
+	}
+
+	System::RenderingSystem* GetRenderer() {
+		return Application::Instance()->Renderer();
 	}
 
 }

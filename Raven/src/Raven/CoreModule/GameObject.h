@@ -4,7 +4,7 @@
 #include "Point2D.h"
 
 namespace Raven {
-	class RAVEN_API GameObject : public IComponent {
+	class RAVEN_API GameObject:public IComponent {
 	public:
 		GameObject();
 		~GameObject();

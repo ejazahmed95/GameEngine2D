@@ -84,13 +84,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Logger.cpp" />
     <ClCompile Include="src\math\mathfutils.cpp" />
     <ClCompile Include="src\math\mathutils.cpp" />
     <ClCompile Include="src\StandardLib.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Logger.h" />
     <ClInclude Include="src\math\mathutils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

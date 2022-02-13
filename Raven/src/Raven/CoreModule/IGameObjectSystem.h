@@ -1,4 +1,5 @@
 #pragma once
+#include "IComponent.h"
 
 /// <summary>
 /// It is the base interface for systems that act on game objects

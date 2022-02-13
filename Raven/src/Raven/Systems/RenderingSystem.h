@@ -10,6 +10,8 @@ namespace GLib {
 namespace Raven { namespace System {
 	class RenderingSystem: public BaseSystem {
 	public:
+		RenderingSystem();
+
 		void Initialize() override;
 		void Update(float dt) override;
 		void Destroy() override;

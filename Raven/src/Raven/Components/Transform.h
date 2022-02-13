@@ -4,7 +4,7 @@
 #include "../Core.h"
 
 namespace Raven { namespace Components {
-	struct RAVEN_API Transform: TComponent<Transform> {
+	struct RAVEN_API Transform: public TComponent<Transform> {
 		Core::Point3D position;
 
 		Transform() : position(0) {}

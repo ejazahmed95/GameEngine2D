@@ -99,6 +99,9 @@
     <ClInclude Include="src\Raven\CoreModule\BitMask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Raven\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Raven\Application.cpp">

@@ -23,11 +23,12 @@ namespace Raven { namespace System {
 		virtual void Initialize();
 		virtual void Update(float dt) = 0;
 		virtual void Destroy() = 0;
-		virtual BitMask GetComponentMask() = 0;
+		BitMask& GetComponentMask() { return m_Mask; }
 
 		void RegisterEntity(Core::Entity*);
 		void RemoveEntity();
 	protected:
 		std::vector<Core::Entity*> m_RegisteredEntities;
+		BitMask m_Mask;
 	};
 }}

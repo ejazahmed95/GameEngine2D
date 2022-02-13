@@ -1,5 +1,6 @@
 #pragma once
 #include "Application.h"
+#include "Logger.h"
 // #include "../../test/Point2DTest.h"
 
 #ifdef PLATFORM_WINDOWS
@@ -14,7 +15,7 @@ int main(int argc, char** argv) {
 	{
 		// Raven::TEST_Point2DTest();
 		const auto app = Raven::CreateApplication();
-		app->Run();
+		// app->Run();
 		delete app;
 
 	}
@@ -29,7 +30,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 
 		bool success = GLib::Initialize(i_hInstance, i_nCmdShow, "RavenApp", -1, 800, 600, true);
 		if (!success) return 0;
-
+		SLib::Log::I("GLib Initialised");
 		app->App_StartGame();
 		//GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
