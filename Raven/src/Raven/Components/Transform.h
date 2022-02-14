@@ -8,5 +8,6 @@ namespace Raven { namespace Components {
 		Core::Point3D position;
 
 		Transform() : position(0) {}
+		void Translate(Core::Point3D);
 	};
 }}

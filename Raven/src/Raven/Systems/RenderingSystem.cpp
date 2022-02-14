@@ -15,9 +15,10 @@ namespace Raven {namespace Components {
 namespace Raven { namespace System {
 
 	RenderingSystem::RenderingSystem() {
+		// TODO: Find a better way for adding required components
 		using namespace Components;
-		m_Mask.Add(TComponent<Transform>::Id());
-		m_Mask.Add(TComponent<SpriteRenderer>::Id());
+		m_Mask.Add(Transform::Id());
+		m_Mask.Add(SpriteRenderer::Id());
 	}
 
 	void RenderingSystem::Initialize() {
@@ -39,22 +40,25 @@ namespace Raven { namespace System {
 			GLib::Render(*sprite, Offset, 0.0f, 0.0f);
 		}
 		GLib::Sprites::EndRendering();
-
 		GLib::EndRendering();
 	}
 
 	void RenderingSystem::Destroy() {
-		
+		BaseSystem::Destroy();
 	}
 
 	void RenderingSystem::LoadSprites(std::vector<std::string> paths) {
 		for (const auto & path : paths) {
 			GLib::Sprite* sprite = CreateSprite(path.c_str());
+			if(sprite == nullptr) {
+				// SLib::Log::
+			}
 			m_Sprites.insert({ path, sprite });
 		}
 	}
 
 	GLib::Sprite* RenderingSystem::getSprite(const std::string& string) {
+		// TODO: Return a default sprite and do not break the code
 		return m_Sprites[string];
 	}
 

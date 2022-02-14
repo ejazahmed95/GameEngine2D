@@ -8,6 +8,7 @@ namespace Raven {
 		_instance = this;
 		m_EcsManager = new ECSManager();
 		m_RenderingSystem = new System::RenderingSystem();
+		m_InputSystem = new System::InputSystem();
 	}
 
 	Application::~Application() = default;
@@ -22,19 +23,23 @@ namespace Raven {
 	// }
 
 	void Application::App_StartGame() {
-		if (_gameStarted) return;
+		if (m_GameStarted) return;
 
 		App_InitialiseSystems();
 		GameStart();
 
 		// TODO: Calculate and add the delta time for each of these
-		while(!_gameEnded) {
+		while(!m_GameEnded) {
 			App_UpdateSystems();
 			Update(1);
 		}
 
 		GameEnd();
 		App_DestroySystems();
+	}
+
+	void Application::Quit() {
+		m_GameEnded = true;
 	}
 
 	Application* Application::Instance() {
@@ -44,15 +49,18 @@ namespace Raven {
 	void Application::App_InitialiseSystems() const {
 		SLib::Log::I("Initializing Systems...");
 		m_RenderingSystem->Initialize();
+		m_InputSystem->Initialize();
 	}
 
 	void Application::App_UpdateSystems() const {
 		m_RenderingSystem->Update(1.0f);
+		m_InputSystem->Update(1.0f);
 	}
 
 	void Application::App_DestroySystems() const {
 		SLib::Log::I("Destroying Systems...");
 		m_RenderingSystem->Destroy();
+		m_InputSystem->Destroy();
 	}
 
 
@@ -62,6 +70,14 @@ namespace Raven {
 
 	System::RenderingSystem* GetRenderer() {
 		return Application::Instance()->Renderer();
+	}
+
+	System::InputSystem* GetInputSystem() {
+		return Application::Instance()->InputSystem();
+	}
+
+	void QuitGame() {
+		Application::Instance()->Quit();
 	}
 
 }

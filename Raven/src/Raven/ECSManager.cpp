@@ -18,7 +18,7 @@ namespace Raven {
 		for (const auto & system : m_AllSystems) {
 			BitMask systemCompMask = system->GetComponentMask();
 			if(!systemCompMask.At(static_cast<int>(componentId))) {
-				return;
+				continue;
 			}
 
 			if(entityMask.contains(systemCompMask)) {

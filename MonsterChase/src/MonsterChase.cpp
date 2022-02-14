@@ -2,6 +2,8 @@
 //
 #include "MonsterChase.h"
 
+#include "Raven/Components/InputComponent.h"
+
 Raven::Application* Raven::CreateApplication() {
     return new MonsterChase();
 }
@@ -16,9 +18,35 @@ void MonsterChase::GameStart() {
 	sprites.push_back("assets\\sprites\\gastly.dds");
 	Raven::GetRenderer()->LoadSprites(sprites);
 
+	using namespace Raven::Components;
 	auto player = Raven::ECSManager::CreateEntity();
-	player->AddComponent(new Raven::Components::Transform());
-	player->AddComponent(new Raven::Components::SpriteRenderer(sprites[0]));
+	player->AddComponent(new Transform());
+	player->AddComponent(new SpriteRenderer(sprites[0]));
+	auto transform = player->GetComponent<Transform>();
+	// bool a = false;
+	// unsigned b = 0;
+	// auto inputComp = new InputComponent();
+	// inputComp->OnInputChange = [b](bool) {
+	//
+	// };
+
+	
+	player->AddComponent(new InputComponent([transform](unsigned keyID, bool pressed) {
+		switch (keyID) {
+		case 0x0057:
+			transform->Translate({0, 30.0f, 0});
+			break;
+		case 0x0041:
+			transform->Translate({ -30.0f, 0.0f, 0 });
+			break;
+		case 0x0053:
+			transform->Translate({ 0, -30.0f, 0 });
+			break;
+		case 0x0044:
+			transform->Translate({ 30.0f, 0.0f, 0 });
+			break;
+		}
+		}));
 
 }
 
