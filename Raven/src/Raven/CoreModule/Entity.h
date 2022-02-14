@@ -18,7 +18,7 @@ namespace Raven { namespace Core {
 			}
 			m_Components.insert({ id, component });
 			componentMask.Add(id);
-			//this->componentAdded(id);
+			this->componentAdded(id);
 			return true;
 		}
 

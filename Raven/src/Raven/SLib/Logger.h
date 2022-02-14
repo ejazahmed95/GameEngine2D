@@ -19,10 +19,19 @@ namespace SLib {
 			if (level > ELogLevel::INFO) return;
 
 			char buffer[100];
-			sprintf_s(buffer, 50, "[INFO] %s\n", arg.c_str());
+			sprintf_s(buffer, 100, "[INFO] %s\n", arg.c_str());
+			OutputDebugStringA(buffer);
+		}
+
+		static void D(std::string arg) {
+			if (level > ELogLevel::DEBUG) return;
+
+			char buffer[100];
+			sprintf_s(buffer, 100, "[DEBUG] %s\n", arg.c_str());
 			OutputDebugStringA(buffer);
 		}
 	private:
+		//static void log(std::string& arg) {}
 	public:
 #ifdef _DEBUG
 		static ELogLevel level;

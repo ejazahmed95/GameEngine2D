@@ -16,13 +16,12 @@ namespace Raven { namespace System {
 	public:
 		BaseSystem();
 		virtual ~BaseSystem() = default;
-		void TryAddEntity(Core::Entity* entity);
 		BaseSystem(const BaseSystem&) = delete;
 		BaseSystem& operator=(const BaseSystem&) = delete;
 
 		virtual void Initialize();
 		virtual void Update(float dt) = 0;
-		virtual void Destroy() = 0;
+		virtual void Destroy();
 		BitMask& GetComponentMask() { return m_Mask; }
 
 		void RegisterEntity(Core::Entity*);

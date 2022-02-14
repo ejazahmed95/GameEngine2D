@@ -3,6 +3,7 @@
 #include "../ECSManager.h"
 #include "../CoreModule/Entity.h"
 #include "../Systems.h"
+#include <typeinfo>
 
 namespace Raven { namespace System {
 
@@ -11,11 +12,15 @@ namespace Raven { namespace System {
 	}
 
 	void BaseSystem::Initialize() {
-		
+		SLib::Log::D("Initializing " + std::string(typeid(*this).name()));
+	}
+
+	void BaseSystem::Destroy() {
+		SLib::Log::D("Destroying " + std::string(typeid(*this).name()));
 	}
 
 	void BaseSystem::RegisterEntity(Core::Entity* entity) {
-		SLib::Log::I("Registered Entity::" + std::to_string(entity->Id()));
+		SLib::Log::D(std::string(typeid(*this).name())+ " Registered Entity::" + std::to_string(entity->Id()));
 		m_RegisteredEntities.push_back(entity);
 	}
 

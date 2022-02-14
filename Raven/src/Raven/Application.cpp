@@ -42,6 +42,7 @@ namespace Raven {
 	}
 
 	void Application::App_InitialiseSystems() const {
+		SLib::Log::I("Initializing Systems...");
 		m_RenderingSystem->Initialize();
 	}
 
@@ -50,6 +51,7 @@ namespace Raven {
 	}
 
 	void Application::App_DestroySystems() const {
+		SLib::Log::I("Destroying Systems...");
 		m_RenderingSystem->Destroy();
 	}
 
