@@ -122,6 +122,7 @@
     <ClCompile Include="src\Raven\CoreModule\Point3D.cpp" />
     <ClCompile Include="src\Raven\ECSManager.cpp" />
     <ClCompile Include="src\Raven\ECS_Backup\Managers\ComponentManager.cpp" />
+    <ClCompile Include="src\Raven\SLib\Logger.cpp" />
     <ClCompile Include="src\Raven\Systems\BaseSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\RenderingSystem.cpp" />
     <ClCompile Include="test\Point2DTest.cpp" />

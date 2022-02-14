@@ -3,7 +3,7 @@
 #include "Windows.h"
 
 namespace SLib {
-	enum ELogLevel {
+	enum class ELogLevel {
 		TRACE = 1, // Debugging
 		DEBUG = 2, // For Debug Builds
 		INFO = 3, // For Release Builds
@@ -15,19 +15,19 @@ namespace SLib {
 	static class Log {
 	public:
 		// template<typename... Args>
-		static void I(std::string args) {
-			//if (level < INFO) return;
+		static void I(std::string arg) {
+			if (level > ELogLevel::INFO) return;
 
 			char buffer[100];
-			sprintf_s(buffer, 50, "%s", args);
+			sprintf_s(buffer, 50, "[INFO] %s\n", arg.c_str());
 			OutputDebugStringA(buffer);
 		}
 	private:
 	public:
 #ifdef _DEBUG
-		ELogLevel level = DEBUG;
+		static ELogLevel level;
 #else
-		ELogLevel level = INFO;
+		static ELogLevel level;
 #endif
 	};
 }

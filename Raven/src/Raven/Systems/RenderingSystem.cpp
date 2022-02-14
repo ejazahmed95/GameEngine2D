@@ -2,6 +2,9 @@
 
 #include <DirectXColors.h>
 #include <GLib.h>
+
+#include "../Components/SpriteRenderer.h"
+#include "../Components/Transform.h"
 #include "../CoreModule/Entity.h"
 
 namespace Raven {namespace Components {
@@ -18,7 +21,7 @@ namespace Raven { namespace System {
 	}
 
 	void RenderingSystem::Initialize() {
-		
+		BaseSystem::Initialize();
 	}
 
 	void RenderingSystem::Update(float dt) {
@@ -28,9 +31,11 @@ namespace Raven { namespace System {
 
 		GLib::Sprites::BeginRendering();
 		for (const auto& element : m_RegisteredEntities) {
-			auto SpriteRenderer = element->GetComponent<Components::SpriteRenderer>();
-			auto Transform = element->GetComponent<Components::Transform>();
-			// GLib::Render();
+			auto spriteRenderer = element->GetComponent<Components::SpriteRenderer>();
+			auto transform = element->GetComponent<Components::Transform>();
+			GLib::Point2D	Offset = { -180.0f + transform->position.X(), -100.0f + transform->position.Y() };
+			GLib::Sprite* sprite = getSprite(spriteRenderer->m_spriteRef);
+			GLib::Render(*sprite, Offset, 1.0f, 1.0f);
 		}
 		GLib::Sprites::EndRendering();
 
@@ -46,6 +51,10 @@ namespace Raven { namespace System {
 			GLib::Sprite* sprite = CreateSprite(path.c_str());
 			m_Sprites.insert({ path, sprite });
 		}
+	}
+
+	GLib::Sprite* RenderingSystem::getSprite(const std::string& string) {
+		return m_Sprites[string];
 	}
 
 

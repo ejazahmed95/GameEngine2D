@@ -15,6 +15,7 @@ namespace Raven { namespace System {
 	}
 
 	void BaseSystem::RegisterEntity(Core::Entity* entity) {
+		SLib::Log::I("Registered Entity::" + std::to_string(entity->Id()));
 		m_RegisteredEntities.push_back(entity);
 	}
 

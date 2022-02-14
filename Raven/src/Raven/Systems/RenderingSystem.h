@@ -18,6 +18,7 @@ namespace Raven { namespace System {
 
 		void LoadSprites(std::vector<std::string> locations);
 	private:
+		GLib::Sprite* getSprite(const std::string& string);
 		std::unordered_map<std::string, GLib::Sprite*> m_Sprites;
 
 		// Static Helpers

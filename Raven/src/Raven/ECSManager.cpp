@@ -1,5 +1,6 @@
 #include "ECSManager.h"
 #include "Systems.h"
+#include "SLib/Logger.h"
 #include "Systems/BaseSystem.h"
 
 namespace Raven {
@@ -31,6 +32,7 @@ namespace Raven {
 	}
 
 	void ECSManager::RegisterSystem(System::BaseSystem* system) {
+		SLib::Log::I("New System Registered");
 		m_AllSystems.push_back(system);
 	}
 

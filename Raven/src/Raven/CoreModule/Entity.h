@@ -33,12 +33,12 @@ namespace Raven { namespace Core {
 		}
 
 		template<class T>
-		Components::TComponent<T>* GetComponent() {
+		T* GetComponent() {
 			auto id = Components::TComponent<T>::Id();
 			if(m_Components.find(id) == m_Components.end()) {
 				return nullptr;
 			}
-			return dynamic_cast<Components::TComponent<T>*>(m_Components[id]);
+			return dynamic_cast<T*>(m_Components[id]);
 		}
 
 		static int s_EntityCount;

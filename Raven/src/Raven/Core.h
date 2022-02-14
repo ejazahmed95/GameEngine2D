@@ -15,3 +15,5 @@
 	#define RAVEN_API
 #endif
 
+#include "SLib/Logger.h"
+
