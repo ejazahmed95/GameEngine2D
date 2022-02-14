@@ -9,6 +9,8 @@ namespace Raven { namespace System {
 
 	class ECSManager {
 	public:
+		ECSManager() = default;
+		~ECSManager();
 		static Core::Entity* CreateEntity();
 		void OnComponentAdded(Types::t_uid entityId, Types::t_uid componentId);
 		void OnComponentRemoved(Types::t_uid entityId, Types::t_uid componentId);

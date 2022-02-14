@@ -5,6 +5,12 @@
 #include <typeinfo>
 
 namespace Raven {
+	ECSManager::~ECSManager() {
+		for (const auto & entity : m_AllEntities) {
+			delete entity.second;
+		}
+	}
+
 	Core::Entity* ECSManager::CreateEntity() {
 		const auto entity = new Core::Entity();
 		GetECS()->m_AllEntities.insert({ entity->Id(), entity });

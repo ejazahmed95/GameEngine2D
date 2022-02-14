@@ -11,7 +11,11 @@ namespace Raven {
 		m_InputSystem = new System::InputSystem();
 	}
 
-	Application::~Application() = default;
+	Application::~Application() {
+		delete m_InputSystem;
+		delete m_RenderingSystem;
+		delete m_EcsManager;
+	};
 
 	void Application::GameStart() {}
 	void Application::Update(float delta) {}

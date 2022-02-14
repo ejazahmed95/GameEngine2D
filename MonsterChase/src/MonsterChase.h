@@ -14,4 +14,5 @@ public:
 	// Removing copy constructors
 	MonsterChase& operator=(const MonsterChase& m) = delete;
 private:
+	void CreateMonsters();
 };

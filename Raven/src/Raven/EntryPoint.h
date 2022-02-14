@@ -36,7 +36,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 
 		// app->RunWinApp();
 		GLib::Shutdown();
-
+		
 		delete app;
 	}
 	_CrtDumpMemoryLeaks();

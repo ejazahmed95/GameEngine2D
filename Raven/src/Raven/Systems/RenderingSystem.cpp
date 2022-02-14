@@ -45,6 +45,10 @@ namespace Raven { namespace System {
 
 	void RenderingSystem::Destroy() {
 		BaseSystem::Destroy();
+
+		for (const auto& spritePair : m_Sprites) {
+			GLib::Release(spritePair.second);
+		}
 	}
 
 	void RenderingSystem::LoadSprites(std::vector<std::string> paths) {

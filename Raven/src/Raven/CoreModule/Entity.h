@@ -9,6 +9,7 @@ namespace Raven { namespace Core {
 	class Entity {
 	public:
 		Entity() : m_Id(++s_EntityCount) {}
+		~Entity();
 
 		template<class T>
 		bool AddComponent(Components::TComponent<T>* component) {
