@@ -26,7 +26,7 @@ namespace SLib {
 		static void D(std::string arg) {
 			if (level > ELogLevel::DEBUG) return;
 
-			char buffer[100];
+			char buffer[400];
 			sprintf_s(buffer, 100, "[DEBUG] %s\n", arg.c_str());
 			OutputDebugStringA(buffer);
 		}

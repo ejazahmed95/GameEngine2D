@@ -1,4 +1,5 @@
 #include "Point3D.h"
+#include <cmath>
 
 namespace Raven { namespace Core {
 	Point3D Point3D::operator+(Point3D const& rhs) const {
@@ -75,6 +76,14 @@ namespace Raven { namespace Core {
 
 	void Point3D::SetZ(float i) {
 		m_Z = i;
+	}
+
+	float Point3D::Mag() const {
+		return sqrt(Mag2());
+	}
+
+	float Point3D::Mag2() const {
+		return (m_X * m_X + m_Y * m_Y + m_Z * m_Z);
 	}
 
 	Point3D operator*(float const lhs, Point3D const& rhs)

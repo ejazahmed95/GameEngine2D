@@ -38,6 +38,8 @@ namespace Raven { namespace Core {
 		void SetX(float i);
 		void SetY(float i);
 		void SetZ(float i);
+		float Mag() const;
+		float Mag2() const;
 	private:
 		float m_X, m_Y, m_Z;
 	};

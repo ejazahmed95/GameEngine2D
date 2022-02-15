@@ -7,13 +7,15 @@ namespace Raven {
 		// _physicsSystem = new Physics::PhysicsSystem();
 		_instance = this;
 		m_EcsManager = new ECSManager();
-		m_RenderingSystem = new System::RenderingSystem();
 		m_InputSystem = new System::InputSystem();
+		m_PhysicsSystem = new System::PhysicsSystem();
+		m_RenderingSystem = new System::RenderingSystem();
 	}
 
 	Application::~Application() {
-		delete m_InputSystem;
 		delete m_RenderingSystem;
+		delete m_PhysicsSystem;
+		delete m_InputSystem;
 		delete m_EcsManager;
 	};
 
@@ -51,19 +53,23 @@ namespace Raven {
 	}
 
 	void Application::App_InitialiseSystems() const {
+		// TODO: Add Systems to list; Init and Destroy in order
 		SLib::Log::I("Initializing Systems...");
+		m_PhysicsSystem->Initialize();
 		m_RenderingSystem->Initialize();
 		m_InputSystem->Initialize();
 	}
 
 	void Application::App_UpdateSystems() const {
-		m_RenderingSystem->Update(1.0f);
 		m_InputSystem->Update(1.0f);
+		m_PhysicsSystem->Update(0.005f);
+		m_RenderingSystem->Update(1.0f);
 	}
 
 	void Application::App_DestroySystems() const {
 		SLib::Log::I("Destroying Systems...");
 		m_RenderingSystem->Destroy();
+		m_PhysicsSystem->Destroy();
 		m_InputSystem->Destroy();
 	}
 

@@ -127,6 +127,7 @@
     <ClCompile Include="src\Raven\SLib\Logger.cpp" />
     <ClCompile Include="src\Raven\Systems\BaseSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\InputSystem.cpp" />
+    <ClCompile Include="src\Raven\Systems\PhysicsSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\RenderingSystem.cpp" />
     <ClCompile Include="test\Point2DTest.cpp" />
   </ItemGroup>

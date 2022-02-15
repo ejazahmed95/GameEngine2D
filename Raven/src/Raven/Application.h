@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "ECSManager.h"
 #include "Systems/InputSystem.h"
+#include "Systems/PhysicsSystem.h"
 #include "Systems/RenderingSystem.h"
 
 namespace Raven {
@@ -32,12 +33,12 @@ namespace Raven {
 		ECSManager* ECS() const { return m_EcsManager;  }
 		System::RenderingSystem* Renderer() const { return m_RenderingSystem; }
 		System::InputSystem* InputSystem() const { return m_InputSystem; }
-		// Physics::PhysicsSystem* Physics() const { return _physicsSystem; }
+		System::PhysicsSystem* Physics() const { return m_PhysicsSystem; }
 	private:
-		// Physics::PhysicsSystem* _physicsSystem;
 		ECSManager* m_EcsManager;
 		System::RenderingSystem* m_RenderingSystem;
 		System::InputSystem* m_InputSystem;
+		System::PhysicsSystem* m_PhysicsSystem;
 	};
 
 	// To be defined in Client

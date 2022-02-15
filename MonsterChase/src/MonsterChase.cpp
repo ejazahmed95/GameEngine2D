@@ -5,14 +5,13 @@
 #include <ctime>
 
 #include "Raven/Components/InputComponent.h"
+#include "Raven/Components/PhysicsComponent.h"
 
 Raven::Application* Raven::CreateApplication() {
     return new MonsterChase();
 }
 
 MonsterChase::~MonsterChase() = default;
-
-
 
 void MonsterChase::GameStart() {
 	Application::GameStart();
@@ -26,21 +25,25 @@ void MonsterChase::GameStart() {
 	auto player = Raven::ECSManager::CreateEntity();
 	player->AddComponent(new Transform());
 	player->AddComponent(new SpriteRenderer(sprites[0]));
-	auto transform = player->GetComponent<Transform>();
+	player->AddComponent(new PhysicsComponent());
+	auto physics = player->GetComponent<PhysicsComponent>();
+	physics->coefficientOfFriction = 0.025f;
+	// physics->vel.SetX(10);
 	
-	player->AddComponent(new InputComponent([transform](unsigned keyID, bool pressed) {
+	player->AddComponent(new InputComponent([physics](unsigned keyID, bool pressed) {
+		float factor = pressed ? 1.0f : -1.0f;
 		switch (keyID) {
 		case 0x0057:
-			transform->Translate({0, 30.0f, 0});
+			physics->ApplyForce(Raven::Core::Point3D(0, 30.0f, 0)*factor);
 			break;
 		case 0x0041:
-			transform->Translate({ -30.0f, 0.0f, 0 });
+			physics->ApplyForce(Raven::Core::Point3D( -30.0f, 0.0f, 0 )*factor);
 			break;
 		case 0x0053:
-			transform->Translate({ 0, -30.0f, 0 });
+			physics->ApplyForce(Raven::Core::Point3D( 0, -30.0f, 0 )*factor);
 			break;
 		case 0x0044:
-			transform->Translate({ 30.0f, 0.0f, 0 });
+			physics->ApplyForce(Raven::Core::Point3D( 30.0f, 0.0f, 0 )*factor);
 			break;
 		}
 		}));
@@ -55,25 +58,14 @@ void MonsterChase::CreateMonsters() {
 		std::string monsterSprite = "assets\\sprites\\gastly.dds";
 		auto entity = Raven::ECSManager::CreateEntity();
 		auto transform = new Transform();
-		transform->Translate({ rand() % 400 - 200.0f, rand() % 400 - 200.0f, 0 });
+		transform->Translate({ rand() % 400 - 1.0f, rand() % 400 - 2.0f, 0 });
 		entity->AddComponent(transform);
 		entity->AddComponent(new SpriteRenderer(monsterSprite));
-		entity->AddComponent(new InputComponent([transform](unsigned keyID, bool pressed) {
-			switch (keyID) {
-			case 0x0057:
-				transform->Translate({ 0, -30.0f, 0 });
-				break;
-			case 0x0041:
-				transform->Translate({ 30.0f, 0.0f, 0 });
-				break;
-			case 0x0053:
-				transform->Translate({ 0, 30.0f, 0 });
-				break;
-			case 0x0044:
-				transform->Translate({ -30.0f, 0.0f, 0 });
-				break;
-			}
-			}));
+
+		auto physicsComp = new PhysicsComponent();
+		physicsComp->vel.SetX(0.1f * (rand() % 100 - 50));
+		physicsComp->vel.SetY(0.1f * (rand() % 100 - 50));
+		entity->AddComponent(physicsComp);
 	}
 }
 
