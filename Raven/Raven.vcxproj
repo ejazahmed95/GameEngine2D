@@ -112,6 +112,7 @@
     <ClInclude Include="src\Raven\Systems.h" />
     <ClInclude Include="src\Raven\Systems\BaseSystem.h" />
     <ClInclude Include="src\Raven\Systems\RenderingSystem.h" />
+    <ClInclude Include="src\Raven\Timing.h" />
     <ClInclude Include="test\Point2DTest.h" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +130,7 @@
     <ClCompile Include="src\Raven\Systems\InputSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\PhysicsSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\RenderingSystem.cpp" />
+    <ClCompile Include="src\Raven\Timing.cpp" />
     <ClCompile Include="test\Point2DTest.cpp" />
   </ItemGroup>
   <ItemGroup>
