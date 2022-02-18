@@ -6,6 +6,7 @@ namespace Raven {
 	Application::Application() {
 		// _physicsSystem = new Physics::PhysicsSystem();
 		_instance = this;
+		m_Timing = new Timing();
 		m_EcsManager = new ECSManager();
 		m_InputSystem = new System::InputSystem();
 		m_PhysicsSystem = new System::PhysicsSystem();
@@ -36,8 +37,10 @@ namespace Raven {
 
 		// TODO: Calculate and add the delta time for each of these
 		while(!m_GameEnded) {
-			App_UpdateSystems();
-			Update(1);
+			float delta = m_Timing->GetFrameTime();
+			SLib::Log::I("Last Frame Time = " + std::to_string(static_cast<int>(delta*1000)) + "ms");
+			App_UpdateSystems(delta);
+			Update(delta);
 		}
 
 		GameEnd();
@@ -60,10 +63,10 @@ namespace Raven {
 		m_InputSystem->Initialize();
 	}
 
-	void Application::App_UpdateSystems() const {
-		m_InputSystem->Update(1.0f);
-		m_PhysicsSystem->Update(0.005f);
-		m_RenderingSystem->Update(1.0f);
+	void Application::App_UpdateSystems(float delta) const {
+		m_InputSystem->Update(delta);
+		m_PhysicsSystem->Update(delta);
+		m_RenderingSystem->Update(delta);
 	}
 
 	void Application::App_DestroySystems() const {

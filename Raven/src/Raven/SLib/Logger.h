@@ -12,7 +12,7 @@ namespace SLib {
 		FATAL = 6 // Should crash the system
 	};
 	
-	static class Log {
+	class Log {
 	public:
 		// template<typename... Args>
 		static void I(std::string arg) {
@@ -33,10 +33,6 @@ namespace SLib {
 	private:
 		//static void log(std::string& arg) {}
 	public:
-#ifdef _DEBUG
 		static ELogLevel level;
-#else
-		static ELogLevel level;
-#endif
 	};
 }

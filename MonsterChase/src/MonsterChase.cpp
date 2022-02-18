@@ -20,30 +20,31 @@ void MonsterChase::GameStart() {
 	sprites.push_back("assets\\sprites\\gastly.dds");
 	Raven::GetRenderer()->LoadSprites(sprites);
 
-	srand(time(NULL));
+	srand(static_cast<int>(time(nullptr)));
 	using namespace Raven::Components;
 	auto player = Raven::ECSManager::CreateEntity();
 	player->AddComponent(new Transform());
 	player->AddComponent(new SpriteRenderer(sprites[0]));
 	player->AddComponent(new PhysicsComponent());
 	auto physics = player->GetComponent<PhysicsComponent>();
-	physics->coefficientOfFriction = 0.025f;
+	physics->coefficientOfFriction = 0.005f;
 	// physics->vel.SetX(10);
 	
 	player->AddComponent(new InputComponent([physics](unsigned keyID, bool pressed) {
 		float factor = pressed ? 1.0f : -1.0f;
+		float forceFactor = 500;
 		switch (keyID) {
 		case 0x0057:
-			physics->ApplyForce(Raven::Core::Point3D(0, 30.0f, 0)*factor);
+			physics->ApplyForce(Raven::Core::Point3D(0, forceFactor, 0)*factor);
 			break;
 		case 0x0041:
-			physics->ApplyForce(Raven::Core::Point3D( -30.0f, 0.0f, 0 )*factor);
+			physics->ApplyForce(Raven::Core::Point3D( -forceFactor, 0.0f, 0 )*factor);
 			break;
 		case 0x0053:
-			physics->ApplyForce(Raven::Core::Point3D( 0, -30.0f, 0 )*factor);
+			physics->ApplyForce(Raven::Core::Point3D( 0, -forceFactor, 0 )*factor);
 			break;
 		case 0x0044:
-			physics->ApplyForce(Raven::Core::Point3D( 30.0f, 0.0f, 0 )*factor);
+			physics->ApplyForce(Raven::Core::Point3D( forceFactor, 0.0f, 0 )*factor);
 			break;
 		}
 		}));

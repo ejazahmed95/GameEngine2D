@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "ECSManager.h"
+#include "Timing.h"
 #include "Systems/InputSystem.h"
 #include "Systems/PhysicsSystem.h"
 #include "Systems/RenderingSystem.h"
@@ -20,7 +21,7 @@ namespace Raven {
 		static Application* Instance();
 	private:
 		void App_InitialiseSystems() const;
-		void App_UpdateSystems() const;
+		void App_UpdateSystems(float delta) const;
 		void App_DestroySystems() const;
 		//StandardInputReader input_reader_;
 
@@ -35,6 +36,7 @@ namespace Raven {
 		System::InputSystem* InputSystem() const { return m_InputSystem; }
 		System::PhysicsSystem* Physics() const { return m_PhysicsSystem; }
 	private:
+		Timing* m_Timing;
 		ECSManager* m_EcsManager;
 		System::RenderingSystem* m_RenderingSystem;
 		System::InputSystem* m_InputSystem;

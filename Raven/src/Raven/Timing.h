@@ -2,7 +2,7 @@
 
 #define DESIRED_FPS 60.0f;
 #define DESIRED_DELTA (1000.0f /DESIRED_FPS)
-#define MAX_DELTA (2*DESIRED_DELTA)
+#define MAX_DELTA (2.0f*DESIRED_DELTA)
 #include <cstdint>
 #include "Windows.h"
 
@@ -11,13 +11,14 @@ namespace Raven {
 	class Timing {
 	public:
 		Timing();
-		float GetLastFrameTime_ms() const;
-
+		float GetFrameTime();
 		float GetTimeDiff_ms(tick_t startTime, tick_t endTime = GetCurrentTickCounter()) const;
-		static tick_t GetCurrentTickCounter();
 
+		static float GetLastFrameTime_ms();
+		static tick_t GetCurrentTickCounter();
+		
 	private:
-		float m_LastFrameTime = 0;
+		static float s_LastFrameTime;
 		LARGE_INTEGER m_PerformanceFreq = { 0 };
 	};
 }

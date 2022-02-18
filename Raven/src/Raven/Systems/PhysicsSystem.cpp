@@ -28,6 +28,7 @@ namespace Raven { namespace System {
 
 			Core::Point3D tempVel(0);
 			tempVel = physics->vel + physics->acc * (dt / 2);
+			SLib::Log::D(tempVel.toString());
 			transform->position += tempVel * dt;
 			physics->vel = tempVel + (physics->acc * (dt / 2));
 		}

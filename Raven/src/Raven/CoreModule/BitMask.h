@@ -4,11 +4,11 @@
 namespace Raven {
 	class BitMask {
 	public:
-		void Add(int bitIndex) {
+		void Add(Types::t_uid bitIndex) {
 			mask |= (static_cast<Types::t_uid>(1) << bitIndex);
 		}
 
-		void Remove(int bitIndex) {
+		void Remove(Types::t_uid bitIndex) {
 			mask &= ~(static_cast<Types::t_uid>(1) << bitIndex);
 		}
 
