@@ -1,5 +1,5 @@
 #include "Logger.h"
 
-namespace SLib {
+namespace RavenStd {
 	ELogLevel Log::level = ELogLevel::DEBUG;
 }

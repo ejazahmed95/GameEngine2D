@@ -1,7 +1,5 @@
 #pragma once
 
-#include <unordered_map>
-
 #include "../Core.h"
 #include <vector>
 #include "../CoreModule/BitMask.h"

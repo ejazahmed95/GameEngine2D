@@ -61,7 +61,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>PLATFORM_WINDOWS;WIN_64;RAVEN_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Imports\GLib;$(SolutionDir)StandardLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Imports\GLib;$(SolutionDir)RavenStd\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>PLATFORM_WINDOWS;WIN_64;RAVEN_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Imports\GLib;$(SolutionDir)StandardLib\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Imports\GLib;$(SolutionDir)RavenStd\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,12 +103,9 @@
     <ClInclude Include="src\Raven\ECSManager.h" />
     <ClInclude Include="src\Raven\EntryPoint.h" />
     <ClInclude Include="src\Raven\ECS_Backup\Managers\ComponentManager.h" />
-    <ClInclude Include="src\Raven\SLib\Logger.h" />
     <ClInclude Include="src\Raven\Components\PhysicsComponent.h" />
     <ClInclude Include="src\Raven\Systems\InputSystem.h" />
     <ClInclude Include="src\Raven\Systems\PhysicsSystem.h" />
-    <ClInclude Include="src\Raven\SLib\StrongPtr.h" />
-    <ClInclude Include="src\Raven\SLib\WeakPtr.h" />
     <ClInclude Include="src\Raven\Systems.h" />
     <ClInclude Include="src\Raven\Systems\BaseSystem.h" />
     <ClInclude Include="src\Raven\Systems\RenderingSystem.h" />
@@ -125,13 +122,17 @@
     <ClCompile Include="src\Raven\CoreModule\Point3D.cpp" />
     <ClCompile Include="src\Raven\ECSManager.cpp" />
     <ClCompile Include="src\Raven\ECS_Backup\Managers\ComponentManager.cpp" />
-    <ClCompile Include="src\Raven\SLib\Logger.cpp" />
     <ClCompile Include="src\Raven\Systems\BaseSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\InputSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\PhysicsSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\RenderingSystem.cpp" />
     <ClCompile Include="src\Raven\Timing.cpp" />
     <ClCompile Include="test\Point2DTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RavenStd\RavenStd.vcxproj">
+      <Project>{f049ebd0-aa61-43b6-8dc0-64a4a706c64a}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

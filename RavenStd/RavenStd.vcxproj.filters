@@ -18,21 +18,27 @@
     <ClCompile Include="src\RavenStd.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\math\mathutils.cpp">
+    <ClCompile Include="src\RavenStd\math\mathutils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\math\mathfutils.cpp">
+    <ClCompile Include="src\RavenStd\math\mathfutils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RavenStd\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\math\mathutils.h">
+    <ClInclude Include="src\RavenStd\math\mathutils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\memory\StrongPointer.h">
+    <ClInclude Include="src\RavenStd\memory\StrongPointer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\memory\WeakPointer.h">
+    <ClInclude Include="src\RavenStd\memory\WeakPointer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RavenStd\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

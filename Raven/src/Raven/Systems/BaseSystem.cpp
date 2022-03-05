@@ -5,6 +5,9 @@
 #include "../Systems.h"
 #include <typeinfo>
 
+#include "RavenStd/Logger.h"
+
+
 namespace Raven { namespace System {
 
 	BaseSystem::BaseSystem() {
@@ -12,15 +15,15 @@ namespace Raven { namespace System {
 	}
 
 	void BaseSystem::Initialize() {
-		SLib::Log::D("Initializing " + std::string(typeid(*this).name()));
+		RavenStd::Log::D("Initializing " + std::string(typeid(*this).name()));
 	}
 
 	void BaseSystem::Destroy() {
-		SLib::Log::D("Destroying " + std::string(typeid(*this).name()));
+		RavenStd::Log::D("Destroying " + std::string(typeid(*this).name()));
 	}
 
 	void BaseSystem::RegisterEntity(Core::Entity* entity) {
-		SLib::Log::D(std::string(typeid(*this).name())+ " Registered Entity::" + std::to_string(entity->Id()));
+		RavenStd::Log::D(std::string(typeid(*this).name())+ " Registered Entity::" + std::to_string(entity->Id()));
 		m_RegisteredEntities.push_back(entity);
 	}
 

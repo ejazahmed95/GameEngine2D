@@ -2,7 +2,7 @@
 #include "string"
 #include "Windows.h"
 
-namespace SLib {
+namespace RavenStd {
 	enum class ELogLevel {
 		TRACE = 1, // Debugging
 		DEBUG = 2, // For Debug Builds

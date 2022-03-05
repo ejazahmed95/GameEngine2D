@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "RavenStd/Logger.h"
 
 namespace Raven {
 	Application* Application::_instance = nullptr;
@@ -58,7 +59,7 @@ namespace Raven {
 
 	void Application::App_InitialiseSystems() const {
 		// TODO: Add Systems to list; Init and Destroy in order
-		SLib::Log::I("Initializing Systems...");
+		RavenStd::Log::I("Initializing Systems...");
 		m_PhysicsSystem->Initialize();
 		m_RenderingSystem->Initialize();
 		m_InputSystem->Initialize();
@@ -71,7 +72,7 @@ namespace Raven {
 	}
 
 	void Application::App_DestroySystems() const {
-		SLib::Log::I("Destroying Systems...");
+		RavenStd::Log::I("Destroying Systems...");
 		m_RenderingSystem->Destroy();
 		m_PhysicsSystem->Destroy();
 		m_InputSystem->Destroy();

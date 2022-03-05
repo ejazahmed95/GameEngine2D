@@ -2,6 +2,7 @@
 #include "../Components/InputComponent.h"
 #include "../Systems.h"
 #include "../CoreModule/Entity.h"
+#include "RavenStd/Logger.h"
 
 namespace Raven { namespace System {
 
@@ -36,7 +37,7 @@ namespace Raven { namespace System {
 	void OnInputChange(unsigned int i_VKeyID, bool bWentDown)
 	{
 		std::string s = (bWentDown) ? "PRESSED" : "RELEASED";
-		SLib::Log::D("Input ::" + s + " KeyID=" + std::to_string(i_VKeyID));
+		RavenStd::Log::D("Input ::" + s + " KeyID=" + std::to_string(i_VKeyID));
 		if(bWentDown && i_VKeyID == 0x0051) {
 			QuitGame();
 			return;

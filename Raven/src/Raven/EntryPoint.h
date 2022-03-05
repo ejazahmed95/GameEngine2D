@@ -1,6 +1,6 @@
 #pragma once
 #include "Application.h"
-#include "SLib/Logger.h"
+#include "RavenStd/Logger.h"
 // #include "../../test/Point2DTest.h"
 
 #ifdef PLATFORM_WINDOWS
@@ -30,7 +30,7 @@ int WINAPI wWinMain(_In_ HINSTANCE i_hInstance, _In_opt_ HINSTANCE i_hPrevInstan
 
 		bool success = GLib::Initialize(i_hInstance, i_nCmdShow, "RavenApp", -1, 800, 600, true);
 		if (!success) return 0;
-		SLib::Log::I("GLib Initialized\n");
+		RavenStd::Log::I("GLib Initialized\n");
 		app->App_StartGame();
 		
 		GLib::Shutdown();

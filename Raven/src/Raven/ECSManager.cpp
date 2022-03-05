@@ -1,8 +1,9 @@
 #include "ECSManager.h"
 #include "Systems.h"
-#include "SLib/Logger.h"
 #include "Systems/BaseSystem.h"
 #include <typeinfo>
+
+#include "RavenStd/Logger.h"
 
 namespace Raven {
 	ECSManager::~ECSManager() {
@@ -18,7 +19,7 @@ namespace Raven {
 	}
 
 	void ECSManager::OnComponentAdded(Types::t_uid entityId, Types::t_uid componentId) {
-		SLib::Log::D("Component Added:: EntityId = " + std::to_string(entityId) + " | ComponentId = " + std::to_string(componentId));
+		RavenStd::Log::D("Component Added:: EntityId = " + std::to_string(entityId) + " | ComponentId = " + std::to_string(componentId));
 		auto entity = m_AllEntities[entityId];
 		auto entityMask = entity->GetComponentMask();
 		for (const auto & system : m_AllSystems) {
@@ -39,7 +40,7 @@ namespace Raven {
 	}
 
 	void ECSManager::RegisterSystem(System::BaseSystem* system) {
-		SLib::Log::I("New System Registered: " + std::string(typeid(*system).name()));
+		RavenStd::Log::I("New System Registered: " + std::string(typeid(*system).name()));
 		m_AllSystems.push_back(system);
 	}
 

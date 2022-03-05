@@ -1,8 +1,6 @@
 #include "Timing.h"
-
 #include <cassert>
-
-#include "SLib/Logger.h"
+#include "RavenStd/Logger.h"
 
 namespace Raven {
 	float Timing::s_LastFrameTime = 0;

@@ -30,5 +30,5 @@ All the miscellaneous assignments that do not belong to any particular project
 ### 4. Raven
 Raven is the name of the game engine. It is a static library of all the game engine code
 
-### 5. StandardLib
-StandardLib contains all the custom functionalities used in other projects for convenience
+### 5. RavenStd
+RavenStd contains all the custom functionalities used in other projects for convenience
