@@ -18,6 +18,7 @@ namespace Raven {
 		delete m_PhysicsSystem;
 		delete m_InputSystem;
 		delete m_EcsManager;
+		delete m_Timing;
 	};
 
 	void Application::GameStart() {}
@@ -38,7 +39,7 @@ namespace Raven {
 		// TODO: Calculate and add the delta time for each of these
 		while(!m_GameEnded) {
 			float delta = m_Timing->GetFrameTime();
-			SLib::Log::I("Last Frame Time = " + std::to_string(static_cast<int>(delta*1000)) + "ms");
+			// SLib::Log::I("Last Frame Time = " + std::to_string(static_cast<int>(delta*1000)) + "ms");
 			App_UpdateSystems(delta);
 			Update(delta);
 		}
