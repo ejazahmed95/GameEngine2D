@@ -14,8 +14,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{f049ebd0-aa61-43b6-8dc0-64a4a706c64a}</ProjectGuid>
-    <RootNamespace>StandardLib</RootNamespace>
+    <RootNamespace>RavenStd</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>RavenStd</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -86,10 +87,12 @@
   <ItemGroup>
     <ClCompile Include="src\math\mathfutils.cpp" />
     <ClCompile Include="src\math\mathutils.cpp" />
-    <ClCompile Include="src\StandardLib.h" />
+    <ClCompile Include="src\RavenStd.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\math\mathutils.h" />
+    <ClInclude Include="src\memory\StrongPointer.h" />
+    <ClInclude Include="src\memory\WeakPointer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

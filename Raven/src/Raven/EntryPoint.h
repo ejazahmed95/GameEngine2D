@@ -22,19 +22,17 @@ int main(int argc, char** argv) {
 	_CrtDumpMemoryLeaks();
 }
 
-int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow) {
+int WINAPI wWinMain(_In_ HINSTANCE i_hInstance, _In_opt_ HINSTANCE i_hPrevInstance, _In_ LPWSTR i_lpCmdLine, _In_ int i_nCmdShow) {
 	// _CrtSetBreakAlloc(173);
 	{
-		// Raven::TEST_Point2DTest();
+		// Raven::TEST_Point2DTest();	
 		const auto app = Raven::CreateApplication();
 
 		bool success = GLib::Initialize(i_hInstance, i_nCmdShow, "RavenApp", -1, 800, 600, true);
 		if (!success) return 0;
 		SLib::Log::I("GLib Initialized\n");
 		app->App_StartGame();
-		//GLib::SetKeyStateChangeCallback(TestKeyCallback);
-
-		// app->RunWinApp();
+		
 		GLib::Shutdown();
 		
 		delete app;

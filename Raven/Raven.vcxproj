@@ -133,11 +133,6 @@
     <ClCompile Include="src\Raven\Timing.cpp" />
     <ClCompile Include="test\Point2DTest.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\StandardLib\StandardLib.vcxproj">
-      <Project>{f049ebd0-aa61-43b6-8dc0-64a4a706c64a}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
