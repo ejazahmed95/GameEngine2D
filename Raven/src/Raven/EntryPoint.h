@@ -1,6 +1,7 @@
 #pragma once
 #include "Application.h"
 #include "RavenStd/Logger.h"
+#include "RavenStd/test/Testing.h"
 // #include "../../test/Point2DTest.h"
 
 #ifdef PLATFORM_WINDOWS
@@ -36,6 +37,8 @@ int WINAPI wWinMain(_In_ HINSTANCE i_hInstance, _In_opt_ HINSTANCE i_hPrevInstan
 		GLib::Shutdown();
 		
 		delete app;
+
+		RavenStd::TestStrongWeakPtr();
 	}
 	_CrtDumpMemoryLeaks();
 	return 0;

@@ -89,12 +89,15 @@
     <ClCompile Include="src\RavenStd\math\mathfutils.cpp" />
     <ClCompile Include="src\RavenStd\math\mathutils.cpp" />
     <ClCompile Include="src\RavenStd.h" />
+    <ClCompile Include="src\RavenStd\test\Testing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RavenStd\Logger.h" />
     <ClInclude Include="src\RavenStd\math\mathutils.h" />
+    <ClInclude Include="src\RavenStd\memory\ReferenceCounters.h" />
     <ClInclude Include="src\RavenStd\memory\StrongPointer.h" />
     <ClInclude Include="src\RavenStd\memory\WeakPointer.h" />
+    <ClInclude Include="src\RavenStd\test\Testing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

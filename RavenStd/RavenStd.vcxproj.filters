@@ -27,6 +27,9 @@
     <ClCompile Include="src\RavenStd\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\RavenStd\test\Testing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RavenStd\math\mathutils.h">
@@ -39,6 +42,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\RavenStd\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RavenStd\memory\ReferenceCounters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RavenStd\test\Testing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
