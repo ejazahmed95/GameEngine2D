@@ -11,7 +11,7 @@
 namespace Raven { namespace System {
 
 	BaseSystem::BaseSystem() {
-		GetECS()->RegisterSystem(this);
+		GetECS().AcquireOwnership()->RegisterSystem(this);
 	}
 
 	void BaseSystem::Initialize() {

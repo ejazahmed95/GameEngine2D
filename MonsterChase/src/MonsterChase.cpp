@@ -18,7 +18,7 @@ void MonsterChase::GameStart() {
 	std::vector<std::string> sprites;
 	sprites.push_back("assets\\sprites\\pikachu.dds");
 	sprites.push_back("assets\\sprites\\gastly.dds");
-	Raven::GetRenderer()->LoadSprites(sprites);
+	Raven::GetRenderer().AcquireOwnership()->LoadSprites(sprites);
 
 	srand(static_cast<int>(time(nullptr)));
 	using namespace Raven::Components;

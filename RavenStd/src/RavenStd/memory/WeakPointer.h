@@ -33,6 +33,7 @@ namespace RavenStd {
 
 		// Destructor
 		~WeakPtr() {
+			Log::D("Reducing Weak References; Strong References = " + std::to_string(m_Counters->StrongRefs()) + " | WeakRef=" + std::to_string(m_Counters->WeakRefs()));
 			if (m_Counters->DecWeakRefs() == 0) {
 				if (m_Counters->StrongRefs() == 0) {
 					delete m_Counters;
@@ -87,7 +88,7 @@ namespace RavenStd {
 		// which should verify if the underlying object is valid and set itself
 		// into the appropriate state (valid underlying pointer or empty (m_Ptr is null)
 		inline StrongPtr<T> AcquireOwnership() {
-			return StrongPtr<T>(*this);
+			return StrongPtr<T>(this->m_Ptr, this->m_Counters);
 		}
 
 		inline bool operator==(const WeakPtr& i_other) {

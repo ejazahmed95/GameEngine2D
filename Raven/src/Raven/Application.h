@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "ECSManager.h"
 #include "Timing.h"
+#include "RavenStd/memory/StrongPointer.h"
+#include "RavenStd/memory/WeakPointer.h"
 #include "Systems/InputSystem.h"
 #include "Systems/PhysicsSystem.h"
 #include "Systems/RenderingSystem.h"
@@ -20,9 +22,9 @@ namespace Raven {
 		void Quit();
 		static Application* Instance();
 	private:
-		void App_InitialiseSystems() const;
-		void App_UpdateSystems(float delta) const;
-		void App_DestroySystems() const;
+		void App_InitialiseSystems();
+		void App_UpdateSystems(float delta);
+		void App_DestroySystems();
 		//StandardInputReader input_reader_;
 
 		bool m_GameStarted = false;
@@ -31,16 +33,16 @@ namespace Raven {
 
 		// Gameplay Systems
 	public:
-		ECSManager* ECS() const { return m_EcsManager;  }
-		System::RenderingSystem* Renderer() const { return m_RenderingSystem; }
-		System::InputSystem* InputSystem() const { return m_InputSystem; }
-		System::PhysicsSystem* Physics() const { return m_PhysicsSystem; }
+		RavenStd::WeakPtr<ECSManager> ECS() const { return m_EcsManager;  }
+		RavenStd::WeakPtr<System::RenderingSystem> Renderer() const { return m_RenderingSystem; }
+		RavenStd::WeakPtr<System::InputSystem> InputSystem() const { return m_InputSystem; }
+		RavenStd::WeakPtr<System::PhysicsSystem> Physics() const { return m_PhysicsSystem; }
 	private:
-		Timing* m_Timing;
-		ECSManager* m_EcsManager;
-		System::RenderingSystem* m_RenderingSystem;
-		System::InputSystem* m_InputSystem;
-		System::PhysicsSystem* m_PhysicsSystem;
+		RavenStd::StrongPtr<Timing> m_Timing;
+		RavenStd::StrongPtr<ECSManager> m_EcsManager;
+		RavenStd::StrongPtr<System::RenderingSystem> m_RenderingSystem;
+		RavenStd::StrongPtr<System::InputSystem> m_InputSystem;
+		RavenStd::StrongPtr<System::PhysicsSystem> m_PhysicsSystem;
 	};
 
 	// To be defined in Client

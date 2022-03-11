@@ -7,19 +7,20 @@ namespace Raven {
 	Application::Application() {
 		// _physicsSystem = new Physics::PhysicsSystem();
 		_instance = this;
-		m_Timing = new Timing();
-		m_EcsManager = new ECSManager();
-		m_InputSystem = new System::InputSystem();
-		m_PhysicsSystem = new System::PhysicsSystem();
-		m_RenderingSystem = new System::RenderingSystem();
+		using namespace System;
+		m_Timing = RavenStd::StrongPtr<Timing>(new Timing());
+		m_EcsManager = RavenStd::StrongPtr<ECSManager>(new ECSManager());
+		m_InputSystem = RavenStd::StrongPtr<System::InputSystem>(new System::InputSystem());
+		m_PhysicsSystem = RavenStd::StrongPtr<PhysicsSystem>(new PhysicsSystem());
+		m_RenderingSystem = RavenStd::StrongPtr<RenderingSystem>(new RenderingSystem());
 	}
 
 	Application::~Application() {
-		delete m_RenderingSystem;
-		delete m_PhysicsSystem;
-		delete m_InputSystem;
-		delete m_EcsManager;
-		delete m_Timing;
+		// delete m_RenderingSystem;
+		// delete m_PhysicsSystem;
+		// delete m_InputSystem;
+		// delete m_EcsManager;
+		// delete m_Timing;
 	};
 
 	void Application::GameStart() {}
@@ -57,7 +58,7 @@ namespace Raven {
 		return Application::_instance;
 	}
 
-	void Application::App_InitialiseSystems() const {
+	void Application::App_InitialiseSystems() {
 		// TODO: Add Systems to list; Init and Destroy in order
 		RavenStd::Log::I("Initializing Systems...");
 		m_PhysicsSystem->Initialize();
@@ -65,29 +66,29 @@ namespace Raven {
 		m_InputSystem->Initialize();
 	}
 
-	void Application::App_UpdateSystems(float delta) const {
+	void Application::App_UpdateSystems(float delta) {
 		m_InputSystem->Update(delta);
 		m_PhysicsSystem->Update(delta);
 		m_RenderingSystem->Update(delta);
 	}
 
-	void Application::App_DestroySystems() const {
+	void Application::App_DestroySystems() {
 		RavenStd::Log::I("Destroying Systems...");
 		m_RenderingSystem->Destroy();
 		m_PhysicsSystem->Destroy();
 		m_InputSystem->Destroy();
 	}
 
-
-	ECSManager* GetECS() {
+	// Systems.h Implementation
+	RavenStd::WeakPtr<ECSManager> GetECS() {
 		return Application::Instance()->ECS();
 	}
 
-	System::RenderingSystem* GetRenderer() {
+	RavenStd::WeakPtr<System::RenderingSystem> GetRenderer() {
 		return Application::Instance()->Renderer();
 	}
 
-	System::InputSystem* GetInputSystem() {
+	RavenStd::WeakPtr<System::InputSystem> GetInputSystem() {
 		return Application::Instance()->InputSystem();
 	}
 

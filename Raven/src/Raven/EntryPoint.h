@@ -38,7 +38,7 @@ int WINAPI wWinMain(_In_ HINSTANCE i_hInstance, _In_opt_ HINSTANCE i_hPrevInstan
 		
 		delete app;
 
-		RavenStd::TestStrongWeakPtr();
+		//RavenStd::TestStrongWeakPtr();
 	}
 	_CrtDumpMemoryLeaks();
 	return 0;

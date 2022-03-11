@@ -1,3 +1,4 @@
+#include "RavenStd/memory/WeakPointer.h"
 #include "Systems/RenderingSystem.h"
 
 namespace Raven {
@@ -6,9 +7,9 @@ namespace Raven {
 	}
 
 	class ECSManager;
-	ECSManager* GetECS();
-	System::RenderingSystem* GetRenderer();
-	System::InputSystem* GetInputSystem();
+	RavenStd::WeakPtr<ECSManager> GetECS();
+	RavenStd::WeakPtr<System::RenderingSystem> GetRenderer();
+	RavenStd::WeakPtr<System::InputSystem> GetInputSystem();
 
 	void QuitGame();
 }

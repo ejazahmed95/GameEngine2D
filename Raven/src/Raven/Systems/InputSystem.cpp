@@ -43,7 +43,7 @@ namespace Raven { namespace System {
 			return;
 		}
 
-		GetInputSystem()->OnInChange(i_VKeyID, bWentDown);
+		GetInputSystem().AcquireOwnership()->OnInChange(i_VKeyID, bWentDown);
 
 	}
 }

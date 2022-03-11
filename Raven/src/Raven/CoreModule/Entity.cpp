@@ -14,7 +14,7 @@ namespace Raven { namespace Core {
 	}
 
 	void Entity::componentAdded(Types::t_uid componentId) const {
-		GetECS()->OnComponentAdded(m_Id, componentId);
+		GetECS().AcquireOwnership()->OnComponentAdded(m_Id, componentId);
 	}
 
 	void Entity::componentAdded2(Types::t_uid) const {
