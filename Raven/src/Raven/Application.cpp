@@ -1,5 +1,9 @@
 #include "Application.h"
+
+#include <fstream>
+
 #include "RavenStd/Logger.h"
+#include "Editor/Editor.h"
 
 namespace Raven {
 	Application* Application::_instance = nullptr;
@@ -23,7 +27,10 @@ namespace Raven {
 		// delete m_Timing;
 	};
 
-	void Application::GameStart() {}
+	void Application::GameStart() {
+		Editor::LoadGameObjectsFromFile("assets/data/scene.json");
+	}
+	
 	void Application::Update(float delta) {}
 	void Application::GameEnd() {}
 

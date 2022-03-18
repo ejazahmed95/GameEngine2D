@@ -12,7 +12,7 @@ namespace Raven { namespace Components {
 		float coefficientOfFriction = 0.0f;
 		void ApplyForce(const Core::Point3D& additionalForce) {
 			force += additionalForce;
-		};
+		}
 	};
 }
 }

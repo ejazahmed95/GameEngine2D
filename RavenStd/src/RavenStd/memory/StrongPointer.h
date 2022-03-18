@@ -175,7 +175,7 @@ namespace RavenStd {
 			if (!m_Ptr) {
 				return;
 			}
-			Log::D("Reducing Strong References; Strong References = " + std::to_string(m_Counters->StrongRefs()) + " | WeakRef=" + std::to_string(m_Counters->WeakRefs()));
+			Log::T("Reducing Strong References; Strong References = " + std::to_string(m_Counters->StrongRefs()) + " | WeakRef=" + std::to_string(m_Counters->WeakRefs()));
 			if (m_Counters->DecStrongRefs() == 0) {
 				delete m_Ptr;
 				m_Ptr = nullptr;

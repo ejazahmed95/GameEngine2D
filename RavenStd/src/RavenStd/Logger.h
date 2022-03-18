@@ -14,6 +14,14 @@ namespace RavenStd {
 	
 	class Log {
 	public:
+		static void E(std::string arg) {
+			if (level > ELogLevel::ERR) return;
+
+			char buffer[100];
+			sprintf_s(buffer, 100, "[ERROR] %s\n", arg.c_str());
+			OutputDebugStringA(buffer);
+		}
+
 		// template<typename... Args>
 		static void I(std::string arg) {
 			if (level > ELogLevel::INFO) return;
@@ -28,6 +36,14 @@ namespace RavenStd {
 
 			char buffer[400];
 			sprintf_s(buffer, 100, "[DEBUG] %s\n", arg.c_str());
+			OutputDebugStringA(buffer);
+		}
+
+		static void T(std::string arg) {
+			if (level > ELogLevel::INFO) return;
+
+			char buffer[100];
+			sprintf_s(buffer, 100, "[TRACE] %s\n", arg.c_str());
 			OutputDebugStringA(buffer);
 		}
 	private:

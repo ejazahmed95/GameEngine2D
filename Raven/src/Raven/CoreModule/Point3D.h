@@ -2,6 +2,9 @@
 #include <string>
 
 #include "../Core.h"
+#include "../nlohmann/json.hpp"
+
+using json = nlohmann::json;
 
 namespace Raven { namespace Core {
 	class RAVEN_API Point3D {
@@ -42,6 +45,16 @@ namespace Raven { namespace Core {
 		float Mag2() const;
 	private:
 		float m_X, m_Y, m_Z;
+	public:
+		void to_json(json& j, const Point3D& p) {
+			j = json{ {"x", p.m_X}, {"y", p.m_Y}, {"z", p.m_Z} };
+		}
+
+		static void from_json(const json& j, Point3D& p) {
+			j.at("x").get_to(p.m_X);
+			j.at("y").get_to(p.m_Y);
+			j.at("z").get_to(p.m_Z);
+		}
 	};
 
 	// Outside scope overloading

@@ -35,7 +35,7 @@ namespace Raven { namespace System {
 			auto spriteRenderer = element->GetComponent<Components::SpriteRenderer>();
 			auto transform = element->GetComponent<Components::Transform>();
 			GLib::Point2D	Offset = { -180.0f + transform->position.X(), -100.0f + transform->position.Y() };
-			GLib::Sprite* sprite = getSprite(spriteRenderer->m_spriteRef);
+			GLib::Sprite* sprite = getSprite(spriteRenderer->spriteRef);
 			// SLib::Log::D("Rendering Sprite::" + std::to_string(reinterpret_cast<uintptr_t>(sprite)));
 			GLib::Render(*sprite, Offset, 0.0f, 0.0f);
 		}

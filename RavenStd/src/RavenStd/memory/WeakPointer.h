@@ -33,7 +33,7 @@ namespace RavenStd {
 
 		// Destructor
 		~WeakPtr() {
-			Log::D("Reducing Weak References; Strong References = " + std::to_string(m_Counters->StrongRefs()) + " | WeakRef=" + std::to_string(m_Counters->WeakRefs()));
+			Log::T("Reducing Weak References; Strong References = " + std::to_string(m_Counters->StrongRefs()) + " | WeakRef=" + std::to_string(m_Counters->WeakRefs()));
 			if (m_Counters->DecWeakRefs() == 0) {
 				if (m_Counters->StrongRefs() == 0) {
 					delete m_Counters;

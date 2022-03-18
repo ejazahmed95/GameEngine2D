@@ -101,9 +101,11 @@
     <ClInclude Include="src\Raven\Core.h" />
     <ClInclude Include="src\Raven\CoreModule\Point3D.h" />
     <ClInclude Include="src\Raven\ECSManager.h" />
+    <ClInclude Include="src\Raven\Editor\Editor.h" />
     <ClInclude Include="src\Raven\EntryPoint.h" />
     <ClInclude Include="src\Raven\ECS_Backup\Managers\ComponentManager.h" />
     <ClInclude Include="src\Raven\Components\PhysicsComponent.h" />
+    <ClInclude Include="src\Raven\nlohmann\json.hpp" />
     <ClInclude Include="src\Raven\Systems\InputSystem.h" />
     <ClInclude Include="src\Raven\Systems\PhysicsSystem.h" />
     <ClInclude Include="src\Raven\Systems.h" />
@@ -122,6 +124,7 @@
     <ClCompile Include="src\Raven\CoreModule\Point3D.cpp" />
     <ClCompile Include="src\Raven\ECSManager.cpp" />
     <ClCompile Include="src\Raven\ECS_Backup\Managers\ComponentManager.cpp" />
+    <ClCompile Include="src\Raven\Editor\Editor.cpp" />
     <ClCompile Include="src\Raven\Systems\BaseSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\InputSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\PhysicsSystem.cpp" />
