@@ -7,9 +7,12 @@
 #include "../Components/Transform.h"
 #include "../Components/SpriteRenderer.h"
 
+#include "JobSystem/JobSystem.h"
+
 using json = nlohmann::json;
 
 namespace Raven { namespace Editor {
+	void CreateGameObject(json gameObjectJson);
 	void AddComponentsToEntity(Core::Entity* entity, json componentObj);
 	void LoadConfig() {
 		// TODO: Load the configuration file using a JSON
@@ -34,14 +37,26 @@ namespace Raven { namespace Editor {
 			return;
 		}
 
-		int entityCount = 0;
-		for(auto& go: gameObjects) {
-			auto entity = ECSManager::CreateEntity();
-			AddComponentsToEntity(entity, go["components"]);
-			entityCount++;
-		}
+		Engine::JobSystem::JobStatus JobStatus;
+		int entityCount = gameObjects.size();
+		Engine::JobSystem::RunJob(
+			Engine::JobSystem::GetDefaultQueueName(),
+			[gameObjects]() {
+
+				for (auto& go : gameObjects) {
+					CreateGameObject(go);
+				}
+			},
+			&JobStatus);
+		JobStatus.WaitForZeroJobsLeft();
 
 		RavenStd::Log::I("Finished loading entities. Total Entities = " + std::to_string(entityCount));
+	}
+
+	void CreateGameObject(json gameObjectJson) {
+		RavenStd::Log::I("Creating a game object");
+		auto entity = ECSManager::CreateEntity();
+		AddComponentsToEntity(entity, gameObjectJson["components"]);
 	}
 
 	void AddComponentsToEntity(Core::Entity* entity, json componentObj) {

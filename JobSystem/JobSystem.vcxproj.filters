@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Console">
+      <UniqueIdentifier>{8470f456-1e27-4760-ac2b-a089d7309a30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\JobSystem">
+      <UniqueIdentifier>{15df8c67-2f52-4988-b42e-b596ade1fd57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HashedString">
+      <UniqueIdentifier>{6b386d4d-d78b-41fe-9790-8ec99032fd99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Syncronization">
+      <UniqueIdentifier>{7960259d-0887-4c9b-a62c-4b781cbd187a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Windows">
+      <UniqueIdentifier>{3235b373-3668-447a-8f77-77682e367697}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Console\ConsolePrint.Win32.cpp">
+      <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="JobSystem\SharedJobQueue.cpp">
+      <Filter>Source Files\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="JobSystem\JobRunner.cpp">
+      <Filter>Source Files\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="HashedString\HashedString.cpp">
+      <Filter>Source Files\HashedString</Filter>
+    </ClCompile>
+    <ClCompile Include="JobSystem\JobSystem.cpp">
+      <Filter>Source Files\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Syncronization\AtomicOperations.cpp">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="Syncronization\Events.Win.cpp">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="Syncronization\Mutex.Win.cpp">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="Syncronization\Semaphore.Win.cpp">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Console\ConsolePrint.h">
+      <Filter>Source Files\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="JobSystem\SharedJobQueue.h">
+      <Filter>Source Files\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="JobSystem\SharedJobQueue-inl.h">
+      <Filter>Source Files\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="JobSystem\JobRunner.h">
+      <Filter>Source Files\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="HashedString\HashedString.h">
+      <Filter>Source Files\HashedString</Filter>
+    </ClInclude>
+    <ClInclude Include="HashedString\HashedString-inl.h">
+      <Filter>Source Files\HashedString</Filter>
+    </ClInclude>
+    <ClInclude Include="JobSystem\JobSystem.h">
+      <Filter>Source Files\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Syncronization\AtomicOperations.h">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Syncronization\Events.h">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Syncronization\Mutex.h">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Syncronization\ScopeLock.h">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Syncronization\Semaphore.h">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Syncronization\SingleWriterMultipleReader.h">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Syncronization\SingleWriterMultipleReader.Win.h">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Syncronization\WaitableObject.h">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Syncronization\WaitableObject.Win.h">
+      <Filter>Source Files\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Windows\WindowsHelpers.h">
+      <Filter>Source Files\Windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="File.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

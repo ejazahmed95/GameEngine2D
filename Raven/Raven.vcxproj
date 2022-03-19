@@ -59,9 +59,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PLATFORM_WINDOWS;WIN_64;RAVEN_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PLATFORM_WINDOWS;WIN_64;RAVEN_BUILD_DLL;_DEBUG;_CONSOLE;_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Imports\GLib;$(SolutionDir)RavenStd\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Imports\GLib;$(SolutionDir)JobSystem;$(SolutionDir)RavenStd\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -74,9 +74,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PLATFORM_WINDOWS;WIN_64;RAVEN_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PLATFORM_WINDOWS;WIN_64;RAVEN_BUILD_DLL;NDEBUG;_CONSOLE;_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Imports\GLib;$(SolutionDir)RavenStd\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Imports\GLib;$(SolutionDir)JobSystem;$(SolutionDir)RavenStd\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

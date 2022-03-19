@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 }
 
 int WINAPI wWinMain(_In_ HINSTANCE i_hInstance, _In_opt_ HINSTANCE i_hPrevInstance, _In_ LPWSTR i_lpCmdLine, _In_ int i_nCmdShow) {
-	// _CrtSetBreakAlloc(256);
+	_CrtSetBreakAlloc(253);
 	{
 		// Raven::TEST_Point2DTest();	
 		const auto app = Raven::CreateApplication();

@@ -40,7 +40,7 @@ namespace RavenStd {
 		}
 
 		static void T(std::string arg) {
-			if (level > ELogLevel::INFO) return;
+			if (level > ELogLevel::TRACE) return;
 
 			char buffer[100];
 			sprintf_s(buffer, 100, "[TRACE] %s\n", arg.c_str());

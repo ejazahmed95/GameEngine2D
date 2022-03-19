@@ -1,13 +1,47 @@
 [
-    {
-        "name": "Gastly",
-        "components": {
-            "transform": {
-                "position": {"x": 100, "y": 100, "z": 0}
-            },
-            "sprite_renderer": {
-                "spriteRef": "assets\\sprites\\gastly.dds"
-            }
+  {
+    "name": "Gastly",
+    "components": {
+      "transform": {
+        "position": {
+          "x": 100,
+          "y": 250,
+          "z": 0
         }
+      },
+      "sprite_renderer": {
+        "spriteRef": "assets\\sprites\\gastly.dds"
+      }
     }
+  },
+  {
+    "name": "Gastly 1",
+    "components": {
+      "transform": {
+        "position": {
+          "x": 100,
+          "y": 100,
+          "z": 0
+        }
+      },
+      "sprite_renderer": {
+        "spriteRef": "assets\\sprites\\gastly.dds"
+      }
+    }
+  },
+  {
+    "name": "Gastly 2",
+    "components": {
+      "transform": {
+        "position": {
+          "x": 400,
+          "y": 100,
+          "z": 0
+        }
+      },
+      "sprite_renderer": {
+        "spriteRef": "assets\\sprites\\gastly.dds"
+      }
+    }
+  }
 ]

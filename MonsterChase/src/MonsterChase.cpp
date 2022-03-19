@@ -16,6 +16,8 @@ MonsterChase::~MonsterChase() = default;
 void MonsterChase::GameStart() {
 	Application::GameStart();
 	std::vector<std::string> sprites;
+
+	// TODO: Add list of sprites in JSON
 	sprites.push_back("assets\\sprites\\pikachu.dds");
 	sprites.push_back("assets\\sprites\\gastly.dds");
 	Raven::GetRenderer().AcquireOwnership()->LoadSprites(sprites);
@@ -48,26 +50,6 @@ void MonsterChase::GameStart() {
 			break;
 		}
 		}));
-
-	CreateMonsters();
-}
-
-void MonsterChase::CreateMonsters() {
-	using namespace Raven::Components;
-	
-	for(int i=0;i<3;i++) {
-		std::string monsterSprite = "assets\\sprites\\gastly.dds";
-		auto entity = Raven::ECSManager::CreateEntity();
-		auto transform = new Transform();
-		transform->Translate({ rand() % 400 - 1.0f, rand() % 400 - 2.0f, 0 });
-		entity->AddComponent(transform);
-		entity->AddComponent(new SpriteRenderer(monsterSprite));
-
-		auto physicsComp = new PhysicsComponent();
-		physicsComp->vel.SetX(0.1f * (rand() % 100 - 50));
-		physicsComp->vel.SetY(0.1f * (rand() % 100 - 50));
-		entity->AddComponent(physicsComp);
-	}
 }
 
 void MonsterChase::Update(float delta) {
@@ -75,5 +57,6 @@ void MonsterChase::Update(float delta) {
 }
 
 void MonsterChase::GameEnd() {
+	Application::GameEnd();
 	// GLib::Release(playerSprite);
 }
