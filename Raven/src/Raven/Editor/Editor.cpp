@@ -7,7 +7,7 @@
 #include "../Components/Transform.h"
 #include "../Components/SpriteRenderer.h"
 
-#include "JobSystem/JobSystem.h"
+// #include "JobSystem/JobSystem.h"
 
 using json = nlohmann::json;
 
@@ -37,18 +37,18 @@ namespace Raven { namespace Editor {
 			return;
 		}
 
-		Engine::JobSystem::JobStatus JobStatus;
-		int entityCount = gameObjects.size();
-		Engine::JobSystem::RunJob(
-			Engine::JobSystem::GetDefaultQueueName(),
-			[gameObjects]() {
+		// Engine::JobSystem::JobStatus JobStatus;
+		size_t entityCount = gameObjects.size();
+		// Engine::JobSystem::RunJob(
+			// Engine::JobSystem::GetDefaultQueueName(),
+			// [gameObjects]() {
 
 				for (auto& go : gameObjects) {
 					CreateGameObject(go);
 				}
-			},
-			&JobStatus);
-		JobStatus.WaitForZeroJobsLeft();
+			// },
+			// &JobStatus);
+		// JobStatus.WaitForZeroJobsLeft();
 
 		RavenStd::Log::I("Finished loading entities. Total Entities = " + std::to_string(entityCount));
 	}

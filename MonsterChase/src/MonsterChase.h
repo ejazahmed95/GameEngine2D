@@ -4,7 +4,7 @@
 class MonsterChase: public Raven::Application
 {
 public:
-	MonsterChase() = default;
+	MonsterChase() {};
 	~MonsterChase() override;
 
 	void GameStart() override;

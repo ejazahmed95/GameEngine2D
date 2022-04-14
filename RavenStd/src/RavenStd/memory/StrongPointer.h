@@ -63,7 +63,8 @@ namespace RavenStd {
 		// StrongPtr(const WeakPtr<U>& i_other);
 
 		// Assignment Operators
-		StrongPtr& operator=(const StrongPtr& i_other) {
+		StrongPtr& operator=(const StrongPtr& i_other) noexcept {
+			if (&i_other == this) return *this;
 			reduceCount();
 			m_Ptr = i_other.m_Ptr;
 			m_Counters = i_other.m_Counters;
@@ -80,7 +81,7 @@ namespace RavenStd {
 			return (*this);
 		}
 		// Move Assignment Operators
-		StrongPtr& operator=(StrongPtr&& i_other) {
+		StrongPtr& operator=(StrongPtr&& i_other) noexcept {
 			reduceCount();
 			m_Ptr = i_other.m_Ptr;
 			m_Counters = i_other.m_Counters;
@@ -101,6 +102,7 @@ namespace RavenStd {
 		StrongPtr& operator=(std::nullptr_t i_null) {
 			reduceCount();
 			m_Ptr = nullptr;
+			return *this;
 		}
 		// Destructor
 		~StrongPtr() {

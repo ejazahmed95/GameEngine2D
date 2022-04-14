@@ -4,7 +4,7 @@
 
 #include "RavenStd/Logger.h"
 #include "Editor/Editor.h"
-#include "JobSystem/JobSystem.h"
+// #include "JobSystem/JobSystem.h"
 
 namespace Raven {
 	Application* Application::_instance = nullptr;
@@ -12,8 +12,10 @@ namespace Raven {
 	Application::Application() {
 		// _physicsSystem = new Physics::PhysicsSystem();
 		_instance = this;
+
 		using namespace System;
-		m_Timing = RavenStd::StrongPtr<Timing>(new Timing());
+		auto timing = new Timing();
+		m_Timing = RavenStd::StrongPtr<Timing>(timing);
 		m_EcsManager = RavenStd::StrongPtr<ECSManager>(new ECSManager());
 		m_InputSystem = RavenStd::StrongPtr<System::InputSystem>(new System::InputSystem());
 		m_PhysicsSystem = RavenStd::StrongPtr<PhysicsSystem>(new PhysicsSystem());
@@ -29,13 +31,13 @@ namespace Raven {
 	};
 
 	void Application::GameStart() {
-		Engine::JobSystem::Init();
+		// Engine::JobSystem::Init();
 		Editor::LoadGameObjectsFromFile("assets/data/scene.json");
 	}
 	
 	void Application::Update(float delta) {}
 	void Application::GameEnd() {
-		Engine::JobSystem::RequestShutdown();
+		// Engine::JobSystem::RequestShutdown();
 	}
 
 	// StandardInputReader Application::standardInputReader() const
@@ -70,6 +72,8 @@ namespace Raven {
 	}
 
 	void Application::App_InitialiseSystems() {
+		
+
 		// TODO: Add Systems to list; Init and Destroy in order
 		RavenStd::Log::I("Initializing Systems...");
 		m_PhysicsSystem->Initialize();
