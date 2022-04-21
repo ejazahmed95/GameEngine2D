@@ -1,7 +1,6 @@
 #pragma once
 #include "Application.h"
 #include "RavenStd/Logger.h"
-#include "RavenStd/test/Testing.h"
 // #include "../../test/Point2DTest.h"
 
 #ifdef PLATFORM_WINDOWS
@@ -24,7 +23,8 @@ int main(int argc, char** argv) {
 }
 
 int WINAPI wWinMain(_In_ HINSTANCE i_hInstance, _In_opt_ HINSTANCE i_hPrevInstance, _In_ LPWSTR i_lpCmdLine, _In_ int i_nCmdShow) {
-	_CrtSetBreakAlloc(253);
+	// _CrtSetBreakAlloc(251);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	{
 		// Raven::TEST_Point2DTest();	
 		const auto app = Raven::CreateApplication();
@@ -40,7 +40,8 @@ int WINAPI wWinMain(_In_ HINSTANCE i_hInstance, _In_opt_ HINSTANCE i_hPrevInstan
 
 		//RavenStd::TestStrongWeakPtr();
 	}
-	_CrtDumpMemoryLeaks();
+	// Dump memory leaks is not needed as _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF) is set at the start of program
+	// _CrtDumpMemoryLeaks();
 	return 0;
 }
 

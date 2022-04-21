@@ -36,7 +36,9 @@ namespace Raven {
 	}
 	
 	void Application::Update(float delta) {}
+
 	void Application::GameEnd() {
+		RavenStd::Log::I("Shutting down game");
 		// Engine::JobSystem::RequestShutdown();
 	}
 

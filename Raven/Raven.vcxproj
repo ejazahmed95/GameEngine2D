@@ -133,6 +133,9 @@
     <ClCompile Include="test\Point2DTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JobSystem\JobSystem.vcxproj">
+      <Project>{84b31536-5b3f-498e-ab66-ff803df2a1b0}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\RavenStd\RavenStd.vcxproj">
       <Project>{f049ebd0-aa61-43b6-8dc0-64a4a706c64a}</Project>
     </ProjectReference>
