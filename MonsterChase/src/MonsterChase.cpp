@@ -2,8 +2,6 @@
 //
 #include "MonsterChase.h"
 
-#include <ctime>
-
 #include "Raven/Components/InputComponent.h"
 #include "Raven/Components/PhysicsComponent.h"
 

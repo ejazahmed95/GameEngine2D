@@ -4,7 +4,7 @@
 
 #include "RavenStd/Logger.h"
 #include "Editor/Editor.h"
-// #include "JobSystem/JobSystem.h"
+#include "JobSystem/JobSystem.h"
 
 namespace Raven {
 	Application* Application::_instance = nullptr;
@@ -31,7 +31,7 @@ namespace Raven {
 	};
 
 	void Application::GameStart() {
-		// Engine::JobSystem::Init();
+		Engine::JobSystem::Init();
 		Editor::LoadGameObjectsFromFile("assets/data/scene.json");
 	}
 	
@@ -39,7 +39,7 @@ namespace Raven {
 
 	void Application::GameEnd() {
 		RavenStd::Log::I("Shutting down game");
-		// Engine::JobSystem::RequestShutdown();
+		Engine::JobSystem::RequestShutdown();
 	}
 
 	// StandardInputReader Application::standardInputReader() const
