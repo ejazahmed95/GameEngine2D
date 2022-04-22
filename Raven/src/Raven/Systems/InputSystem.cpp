@@ -37,7 +37,7 @@ namespace Raven { namespace System {
 	void OnInputChange(unsigned int i_VKeyID, bool bWentDown)
 	{
 		std::string s = (bWentDown) ? "PRESSED" : "RELEASED";
-		RavenStd::Log::D("Input ::" + s + " KeyID=" + std::to_string(i_VKeyID));
+		RavenStd::Log::T("Input ::" + s + " KeyID=" + std::to_string(i_VKeyID));
 		if(bWentDown && i_VKeyID == 0x0051) {
 			QuitGame();
 			return;

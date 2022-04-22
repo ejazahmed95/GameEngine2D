@@ -15,6 +15,7 @@ namespace Raven { namespace System {
 		void OnComponentAdded(Types::t_uid entityId, Types::t_uid componentId);
 		void OnComponentRemoved(Types::t_uid entityId, Types::t_uid componentId);
 		void RegisterSystem(System::BaseSystem* system);
+		Core::Entity* GetEntityByName(const std::string&) const;
 	private:
 		std::vector<System::BaseSystem*> m_AllSystems;
 		std::unordered_map<Types::t_uid, Core::Entity*> m_AllEntities;

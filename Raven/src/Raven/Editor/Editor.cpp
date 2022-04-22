@@ -6,6 +6,7 @@
 #include "../nlohmann/json.hpp"
 #include "../Components/Transform.h"
 #include "../Components/SpriteRenderer.h"
+#include "../Components/PhysicsComponent.h"
 
 // #include "JobSystem/JobSystem.h"
 
@@ -56,11 +57,17 @@ namespace Raven { namespace Editor {
 	void CreateGameObject(json gameObjectJson) {
 		RavenStd::Log::I("Creating a game object");
 		auto entity = ECSManager::CreateEntity();
+		if (gameObjectJson.contains("name")) {
+			std::string name;
+			gameObjectJson.at("name").get_to(name);
+			entity->SetName(name);
+		}
 		AddComponentsToEntity(entity, gameObjectJson["components"]);
 	}
 
 	void AddComponentsToEntity(Core::Entity* entity, json componentObj) {
 		if (!componentObj.is_object()) return;
+
 		if(componentObj.contains("transform")) {
 			auto transform = new Components::Transform();
 			Components::Transform::from_json(componentObj.at("transform"), *transform);
@@ -72,6 +79,12 @@ namespace Raven { namespace Editor {
 			auto renderer = new Components::SpriteRenderer(spriteRef);
 			Components::SpriteRenderer::from_json(componentObj.at("sprite_renderer"), *renderer);
 			entity->AddComponent(renderer);
+		}
+
+		if(componentObj.contains("physics")) {
+			auto phyComp = new Components::PhysicsComponent();
+			Components::PhysicsComponent::from_json(componentObj.at("physics"), *phyComp);
+			entity->AddComponent(phyComp);
 		}
 	}
 }}

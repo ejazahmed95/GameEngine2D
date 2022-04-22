@@ -42,6 +42,14 @@ namespace Raven { namespace Core {
 			return dynamic_cast<T*>(m_Components[id]);
 		}
 
+		void SetName(std::string name) {
+			// std::move(name, m_Name);
+			m_Name = name;
+		}
+
+		std::string GetName() const { return m_Name; }
+
+
 		static int s_EntityCount;
 
 		Types::t_uid Id() const { return m_Id; }
@@ -51,6 +59,7 @@ namespace Raven { namespace Core {
 		void componentAdded2(Types::t_uid) const;
 	private:
 		int m_Id;
+		std::string m_Name;
 		std::unordered_map<Types::t_uid, Components::IComponent*> m_Components;
 		BitMask componentMask;
 	};

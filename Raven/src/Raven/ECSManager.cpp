@@ -19,8 +19,8 @@ namespace Raven {
 	}
 
 	void ECSManager::OnComponentAdded(Types::t_uid entityId, Types::t_uid componentId) {
-		RavenStd::Log::D("Component Added:: EntityId = " + std::to_string(entityId) + " | ComponentId = " + std::to_string(componentId));
 		auto entity = m_AllEntities[entityId];
+		RavenStd::Log::D("Component Added:: Entity[" + entity->GetName() + "] = " + std::to_string(entityId) + " | ComponentId = " + std::to_string(componentId));
 		auto entityMask = entity->GetComponentMask();
 		for (const auto & system : m_AllSystems) {
 			BitMask systemCompMask = system->GetComponentMask();
@@ -42,6 +42,16 @@ namespace Raven {
 	void ECSManager::RegisterSystem(System::BaseSystem* system) {
 		RavenStd::Log::I("New System Registered: " + std::string(typeid(*system).name()));
 		m_AllSystems.push_back(system);
+	}
+
+	Core::Entity* ECSManager::GetEntityByName(const std::string& name) const {
+		for (const auto& entity : m_AllEntities) {
+			if(entity.second->GetName() == name) {
+				return entity.second;
+			}
+		}
+		RavenStd::Log::E("Could not find entity with name = " + name);
+		return nullptr;
 	}
 
 }
