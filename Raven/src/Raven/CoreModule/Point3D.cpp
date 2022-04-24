@@ -23,7 +23,7 @@ namespace Raven { namespace Core {
 	}
 
 	bool Point3D::operator==(Point3D const& rhs) const {
-		return (m_X == rhs.m_X) && (m_Y == rhs.m_Y);
+		return (m_X == rhs.m_X) && (m_Y == rhs.m_Y) && (m_Z == rhs.m_Z);
 	}
 
 	bool Point3D::operator!=(Point3D const& rhs) const {
