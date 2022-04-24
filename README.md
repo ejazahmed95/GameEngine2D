@@ -1,3 +1,26 @@
+# Monster Chase
+This is a game engine development project. 
+
+#### Projects
+Following are the core projects used in the 
+- RavenStd: Standard library with common functionality
+- Raven: Core Game Engine
+- MonsterChase: A sample game developed using Raven
+
+#### Dependencies
+Apart from the above, a few dependencies are added to the project
+- GLib: A 2D rendering library
+
+
+## Raven
+The game engine is structured using the ECS Model
+
+### Systems
+#### Rendering System
+Sprites are rendered using the GLib library
+
+---
+
 # EAE 6300 Assignments
 
 ## Final Exam
