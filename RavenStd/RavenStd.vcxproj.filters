@@ -33,6 +33,9 @@
     <ClCompile Include="src\RavenStd\LinearAlgebra\Vec4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\RavenStd\LinearAlgebra\Matrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\RavenStd\math\mathutils.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\RavenStd\LinearAlgebra\Vec4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RavenStd\LinearAlgebra\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
