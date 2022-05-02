@@ -28,11 +28,13 @@ namespace RavenStd {
 
 		// Helpers
 		static Matrix Identity();
+		inline Vec4 MultiplyRow(Vec4 v) const;
+		inline Vec4 MultiplyColumn(Vec4 v) const;
 
 		// Properties
 		Matrix Transpose() const;
 		Matrix Inverse() const; // Inverts the current matrix
-		static Matrix Inverse(Matrix& matrix);
+		// static Matrix Inverse(Matrix& matrix);
 
 		// Transform
 		static Matrix CreateTranslation();
