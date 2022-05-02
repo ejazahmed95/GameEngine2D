@@ -6,9 +6,24 @@ namespace RavenStd {
 		return {};
 	}
 
-	Vec4 Matrix::Multiply(Vec4 v, bool left) const {
-		
-	}
+	inline Vec4 Matrix::MultiplyRow(Vec4 v) const {
+		return {
+			v.X() * m_M00 + v.Y() * m_M10 + v.Z() * m_M20 + v.A() * m_M30,
+			v.X() * m_M01 + v.Y() * m_M11 + v.Z() * m_M21 + v.A() * m_M31,
+			v.X() * m_M02 + v.Y() * m_M12 + v.Z() * m_M22 + v.A() * m_M32,
+			v.X() * m_M03 + v.Y() * m_M13 + v.Z() * m_M23 + v.A() * m_M33,
+		};
+	};
+
+	inline Vec4 Matrix::MultiplyColumn(Vec4 v) const {
+		return {
+			v.X() * m_M00 + v.Y() * m_M01 + v.Z() * m_M02 + v.A() * m_M03,
+			v.X() * m_M10 + v.Y() * m_M11 + v.Z() * m_M12 + v.A() * m_M13,
+			v.X() * m_M20 + v.Y() * m_M21 + v.Z() * m_M22 + v.A() * m_M23,
+			v.X() * m_M30 + v.Y() * m_M31 + v.Z() * m_M32 + v.A() * m_M33
+		};
+	};
+
 
 	Matrix Matrix::Transpose() const {
 		return {
@@ -23,13 +38,57 @@ namespace RavenStd {
 		//
 	}
 
+
 	// Matrix Matrix::Inverse(Matrix& matrix) {}
-	Matrix Matrix::CreateTranslation() {}
-	Matrix Matrix::CreateRotationX() {}
-	Matrix Matrix::CreateRotationY() {}
-	Matrix Matrix::CreateRotationZ() {}
+	Matrix Matrix::CreateTranslation(float transX, float transY, float transZ) {
+		return {
+			1, 0, 0, transX,
+			0, 1, 0, transY,
+			0, 0, 1, transZ,
+			0, 0, 0, 1,
+		};
+	}
+
+	// Rotation form [ [C, -S] [S, C] ]
+	Matrix Matrix::CreateRotationX(float radians) {
+		const float c = cosf(radians); // Cosine
+		const float s = sinf(radians); // Sine
+		return {
+			1, 0, 0, 0,
+			0, c, -s, 0,
+			0, s, c, 0,
+			0, 0, 0, 1
+		};
+	}
+
+	Matrix Matrix::CreateRotationY(float radians) {
+		const float c = cosf(radians); // Cosine
+		const float s = sinf(radians); // Sine
+		return {
+			c, 0, s, 0,
+			0, 1, 0, 0,
+			-s, 0, c, 0,
+			0, 0, 0, 1
+		};
+	}
+	Matrix Matrix::CreateRotationZ(float radians) {
+		const float c = cosf(radians); // Cosine
+		const float s = sinf(radians); // Sine
+		return {
+			c, -s, 0, 0,
+			s, c, 0, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 1
+		};
+	}
+
 	Matrix Matrix::CreateScale(Vec4 scale) {
-		
+		return {
+			scale.X(), 0, 0, 0,
+			0, scale.Y(), 0, 0,
+			0, 0, scale.Z(), 0,
+			0, 0, 0, scale.A()
+		};
 	}
 
 	Matrix& Matrix::operator=(const Matrix& m) {
@@ -56,14 +115,15 @@ namespace RavenStd {
 		return *this;
 	}
 
+	Matrix Matrix::operator*(Matrix& m) const {
+
+	}
+
 	Vec4 operator*(const Matrix& lhs, const Vec4& rhs) {
-		return {
-			lhs.
-		}
+		return lhs.MultiplyColumn(rhs);
 	}
 
 	Vec4 operator*(const Vec4& lhs, const Matrix& rhs) {
-		Vec4 lhs1(lhs);
-		return lhs1 *= rhs;
+		return rhs.MultiplyRow(lhs);
 	}
 }

@@ -37,11 +37,11 @@ namespace RavenStd {
 		// static Matrix Inverse(Matrix& matrix);
 
 		// Transform
-		static Matrix CreateTranslation();
+		static Matrix CreateTranslation(float transX, float transY, float transZ);
 
-		static Matrix CreateRotationX();
-		static Matrix CreateRotationY();
-		static Matrix CreateRotationZ();
+		static Matrix CreateRotationX(float radians);
+		static Matrix CreateRotationY(float radians);
+		static Matrix CreateRotationZ(float radians);
 
 		static Matrix CreateScale(Vec4 scale);
 
