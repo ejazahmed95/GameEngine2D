@@ -36,6 +36,14 @@ namespace RavenStd {
 		Matrix Inverse() const; // Inverts the current matrix
 		// static Matrix Inverse(Matrix& matrix);
 
+		/// <summary>
+		/// Get the inverse of a well behaved coordinate system matrix
+		/// </summary>
+		/// <param name="rot">Rotation Matrix</param>
+		/// <param name="trans">Translation Matrix</param>
+		/// <returns></returns>
+		static Matrix GetInverseWellBehaved(Matrix& rot, Matrix& trans);
+
 		// Transform
 		static Matrix CreateTranslation(float transX, float transY, float transZ);
 

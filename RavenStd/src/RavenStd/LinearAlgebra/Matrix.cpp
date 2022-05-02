@@ -38,6 +38,16 @@ namespace RavenStd {
 		//
 	}
 
+	Matrix Matrix::GetInverseWellBehaved(Matrix& rot, Matrix& trans) {
+		auto m = rot.Transpose() * trans;
+		return {
+			rot.m_M00, rot.m_M10, rot.m_M20, -m.m_M00,
+			rot.m_M01, rot.m_M11, rot.m_M21, -m.m_M11,
+			rot.m_M02, rot.m_M12, rot.m_M22, -m.m_M22,
+			0, 0, 0, 1
+		};
+	}
+
 
 	// Matrix Matrix::Inverse(Matrix& matrix) {}
 	Matrix Matrix::CreateTranslation(float transX, float transY, float transZ) {
