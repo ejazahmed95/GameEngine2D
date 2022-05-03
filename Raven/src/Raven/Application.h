@@ -5,6 +5,7 @@
 #include "Timing.h"
 #include "RavenStd/memory/StrongPointer.h"
 #include "RavenStd/memory/WeakPointer.h"
+#include "Systems/CollisionSystem2D.h"
 #include "Systems/InputSystem.h"
 #include "Systems/PhysicsSystem.h"
 #include "Systems/RenderingSystem.h"
@@ -43,6 +44,7 @@ namespace Raven {
 		RavenStd::StrongPtr<System::RenderingSystem> m_RenderingSystem;
 		RavenStd::StrongPtr<System::InputSystem> m_InputSystem;
 		RavenStd::StrongPtr<System::PhysicsSystem> m_PhysicsSystem;
+		RavenStd::StrongPtr<System::CollisionSystem2D> m_CollisionSystem;
 	};
 
 	// To be defined in Client

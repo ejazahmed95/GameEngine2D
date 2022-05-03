@@ -7,6 +7,7 @@
 #include "../Components/Transform.h"
 #include "../Components/SpriteRenderer.h"
 #include "../Components/PhysicsComponent.h"
+#include "../Components/Collider2D.h"
 
 #include "JobSystem/JobSystem.h"
 
@@ -68,7 +69,7 @@ namespace Raven { namespace Editor {
 	void AddComponentsToEntity(Core::Entity* entity, json componentObj) {
 		if (!componentObj.is_object()) return;
 
-		if(componentObj.contains("transform")) {
+		if (componentObj.contains("transform")) {
 			auto transform = new Components::Transform();
 			Components::Transform::from_json(componentObj.at("transform"), *transform);
 			entity->AddComponent(transform);
@@ -81,10 +82,15 @@ namespace Raven { namespace Editor {
 			entity->AddComponent(renderer);
 		}
 
-		if(componentObj.contains("physics")) {
+		if (componentObj.contains("physics")) {
 			auto phyComp = new Components::PhysicsComponent();
 			Components::PhysicsComponent::from_json(componentObj.at("physics"), *phyComp);
 			entity->AddComponent(phyComp);
+		}
+
+		if (componentObj.contains("collision")) {
+			auto collisionComp = new Components::Collider2D();
+			entity->AddComponent(collisionComp);
 		}
 	}
 }}

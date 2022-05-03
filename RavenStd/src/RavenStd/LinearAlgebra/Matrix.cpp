@@ -36,6 +36,7 @@ namespace RavenStd {
 
 	Matrix Matrix::Inverse() const {
 		//
+		return *this;
 	}
 
 	Matrix Matrix::GetInverseWellBehaved(Matrix& rot, Matrix& trans) {
@@ -126,7 +127,7 @@ namespace RavenStd {
 	}
 
 	Matrix Matrix::operator*(Matrix& m) const {
-
+		return *this;
 	}
 
 	Vec4 operator*(const Matrix& lhs, const Vec4& rhs) {

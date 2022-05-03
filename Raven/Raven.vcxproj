@@ -86,6 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Raven\Components\Collider2D.h" />
     <ClInclude Include="src\Raven\Components\InputComponent.h" />
     <ClInclude Include="src\Raven\CoreModule\BitMask.h" />
     <ClInclude Include="src\Raven\AppConfig.h" />
@@ -106,6 +107,7 @@
     <ClInclude Include="src\Raven\ECS_Backup\Managers\ComponentManager.h" />
     <ClInclude Include="src\Raven\Components\PhysicsComponent.h" />
     <ClInclude Include="src\Raven\nlohmann\json.hpp" />
+    <ClInclude Include="src\Raven\Systems\CollisionSystem2D.h" />
     <ClInclude Include="src\Raven\Systems\InputSystem.h" />
     <ClInclude Include="src\Raven\Systems\PhysicsSystem.h" />
     <ClInclude Include="src\Raven\Systems.h" />
@@ -126,6 +128,8 @@
     <ClCompile Include="src\Raven\ECS_Backup\Managers\ComponentManager.cpp" />
     <ClCompile Include="src\Raven\Editor\Editor.cpp" />
     <ClCompile Include="src\Raven\Systems\BaseSystem.cpp" />
+    <ClCompile Include="src\Raven\Components\Collider2D.cpp" />
+    <ClCompile Include="src\Raven\Systems\CollisionSystem2D.cpp" />
     <ClCompile Include="src\Raven\Systems\InputSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\PhysicsSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\RenderingSystem.cpp" />
