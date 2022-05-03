@@ -2,6 +2,7 @@
 #include <functional>
 #include "TComponent.h"
 #include "../CoreModule/Entity.h"
+#include "GLib.h"
 
 namespace Raven {namespace Components {
 
@@ -11,6 +12,7 @@ namespace Raven {namespace Components {
 	};
 
 	struct RAVEN_API Collider2D : TComponent<Collider2D> {
+
 		std::function<void(Core::Entity*)> OnCollisionEnterCb = nullptr;
 
 		Collider2D() {

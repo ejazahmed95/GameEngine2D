@@ -55,6 +55,41 @@ namespace Raven { namespace Editor {
 		RavenStd::Log::I("Finished loading entities. Total Entities = " + std::to_string(entityCount));
 	}
 
+	void LoadAssetsFromFile(const std::string fileName) {
+		RavenStd::Log::I("Loading game objects from file..");
+
+		// Load File into JSON Object
+		std::ifstream input(fileName);
+		if (!input) {
+			RavenStd::Log::E("Unable to read file; File does not exist " + fileName);
+			return;
+		}
+		json gameObjects;
+		input >> gameObjects;
+		input.close();
+
+		//RavenStd::Log::D(to_string(gameObjects));
+		if (!gameObjects.is_array()) {
+			RavenStd::Log::E("JSON File must be an array");
+			return;
+		}
+
+		Engine::JobSystem::JobStatus JobStatus;
+		size_t entityCount = gameObjects.size();
+		Engine::JobSystem::RunJob(
+			Engine::JobSystem::GetDefaultQueueName(),
+			[gameObjects]() {
+
+				for (auto& go : gameObjects) {
+					CreateGameObject(go);
+				}
+			},
+			&JobStatus);
+		JobStatus.WaitForZeroJobsLeft();
+
+		RavenStd::Log::I("Finished loading entities. Total Entities = " + std::to_string(entityCount));
+	}
+
 	void CreateGameObject(json gameObjectJson) {
 		RavenStd::Log::I("Creating a game object");
 		auto entity = ECSManager::CreateEntity();

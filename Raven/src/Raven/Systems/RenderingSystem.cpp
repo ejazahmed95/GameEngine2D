@@ -5,12 +5,9 @@
 
 #include "../Components/SpriteRenderer.h"
 #include "../Components/Transform.h"
+#include "../Components/Collider2D.h"
 #include "../CoreModule/Entity.h"
 
-namespace Raven {namespace Components {
-	struct Transform;
-	struct SpriteRenderer;
-}}
 
 namespace Raven { namespace System {
 
@@ -37,7 +34,11 @@ namespace Raven { namespace System {
 			GLib::Point2D	Offset = { transform->position.X(), transform->position.Y() };
 			GLib::Sprite* sprite = getSprite(spriteRenderer->spriteRef);
 			// SLib::Log::D("Rendering Sprite::" + std::to_string(reinterpret_cast<uintptr_t>(sprite)));
-			GLib::Render(*sprite, Offset, 0.0f, 0.0f);
+			GLib::Render(*sprite, Offset, 0.0f, transform->rotation.Z());
+
+			// If Debug
+			auto collider = element->GetComponent<Components::Collider2D>();
+			if(collider != nullptr) GLib::Render(*collisionBox, Offset, 0.0f, transform->rotation.Z());
 		}
 		GLib::Sprites::EndRendering();
 		GLib::EndRendering();
@@ -59,6 +60,7 @@ namespace Raven { namespace System {
 			}
 			m_Sprites.insert({ path, sprite });
 		}
+		collisionBox = m_Sprites["assets\\sprites\\collision_box.dds"];
 	}
 
 	GLib::Sprite* RenderingSystem::getSprite(const std::string& string) {

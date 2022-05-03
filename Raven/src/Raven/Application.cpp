@@ -33,6 +33,7 @@ namespace Raven {
 
 	void Application::GameStart() {
 		Engine::JobSystem::Init();
+		Editor::LoadAssetsFromFile("assets/data/assets.json");
 		Editor::LoadGameObjectsFromFile("assets/data/scene.json");
 	}
 	

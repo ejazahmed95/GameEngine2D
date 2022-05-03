@@ -20,6 +20,7 @@ namespace Raven { namespace System {
 	private:
 		GLib::Sprite* getSprite(const std::string& string);
 		std::unordered_map<std::string, GLib::Sprite*> m_Sprites;
+		GLib::Sprite* collisionBox;
 
 		// Static Helpers
 	private:

@@ -19,6 +19,7 @@ void MonsterChase::GameStart() {
 	// TODO: Add list of sprites in JSON
 	sprites.push_back("assets\\sprites\\pikachu.dds");
 	sprites.push_back("assets\\sprites\\gastly.dds");
+	sprites.push_back("assets\\sprites\\collision_box.dds");
 	Raven::GetRenderer().AcquireOwnership()->LoadSprites(sprites);
 
 	// srand(static_cast<int>(time(nullptr)));
