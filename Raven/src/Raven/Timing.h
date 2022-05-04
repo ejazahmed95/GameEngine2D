@@ -11,7 +11,7 @@ namespace Raven {
 	class Timing {
 	public:
 		Timing();
-		float GetFrameTime();
+		float GetFrameTime(const float minTime = 0.0f);
 		float GetTimeDiff_ms(tick_t startTime, tick_t endTime = GetCurrentTickCounter()) const;
 
 		static float GetLastFrameTime_ms();

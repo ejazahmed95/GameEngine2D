@@ -1,5 +1,7 @@
 #include "CollisionSystem2D.h"
 #include "../CoreModule/Entity.h"
+#include "../Components/Transform.h"
+#include "../Components/PhysicsComponent.h"
 #include "RavenStd/Logger.h"
 #include "RavenStd/LinearAlgebra/Matrix.h"
 
@@ -9,19 +11,22 @@ namespace Raven { namespace System {
 		using namespace Components;
 		m_Mask.Add(Transform::Id());
 		m_Mask.Add(Collider2D::Id());
+		m_Mask.Add(PhysicsComponent::Id());
 	}
 
 	void CollisionSystem2D::Update(float dt) {
 		for (int i = 0; i < m_RegisteredEntities.size(); i++) {
 			const auto element1 = m_RegisteredEntities[i];
 			const auto collider1 = element1->GetComponent<Components::Collider2D>();
-			const auto transform1 = element1->GetComponent<Components::Transform>();
 			for (int j = i+1; j < m_RegisteredEntities.size(); j++) {
 				const auto element2 = m_RegisteredEntities[j];
 				const auto collider2 = element2->GetComponent<Components::Collider2D>();
-				auto transform2 = element2->GetComponent<Components::Transform>();
 
-				if(checkCollision(collider1, transform1, collider2, transform2)) {
+				bool colliding = (collider1->continuous || collider2->continuous)
+					                 ? checkCollisionContinuous(element1, element2, collider1, collider2)
+					                 : checkCollision(element1, element2, collider1, collider2);
+
+				if(colliding) {
 					collider1->OnCollisionEnterCb(element2);
 					collider2->OnCollisionEnterCb(element1);
 				}
@@ -29,8 +34,10 @@ namespace Raven { namespace System {
 		}
 	}
 
-	bool CollisionSystem2D::checkCollision(Components::Collider2D* collider1, Components::Transform* transform1,
-		Components::Collider2D* collider2, Components::Transform* transform2) {
+	bool CollisionSystem2D::checkCollision(Core::Entity* element1, Core::Entity* element2, Components::Collider2D* collider1, Components::Collider2D* collider2) {
+
+		const auto transform1 = element1->GetComponent<Components::Transform>();
+		auto transform2 = element2->GetComponent<Components::Transform>();
 
 		// Matrix from A to B
 		auto matARot = RavenStd::Matrix::CreateRotationZ(transform1->rotation.Z());
@@ -42,7 +49,7 @@ namespace Raven { namespace System {
 		auto matBRot = RavenStd::Matrix::CreateRotationZ(transform2->rotation.Z());
 		auto matBTrans = RavenStd::Matrix::CreateTranslation(transform2->position.X(), transform2->position.Y(), transform2->position.Z());
 
-		// auto matB2World = matBTrans * matBRot;
+		auto matB2World = matBTrans * matBRot;
 		auto transVec4 = transform2->position.ToVec4();
 
 		auto matWorld2B = RavenStd::Matrix::GetInverseWellBehaved(matBRot, transVec4);
@@ -89,10 +96,17 @@ namespace Raven { namespace System {
 			"|| Y = " + std::to_string(ACenterInB.Y() - collider2->bounds.center.Y()));
 
 		return true;
+	}
 
-		if((transform1->position - transform2->position).Mag() < 20) {
-			return true;
-		}
+	// "Swept" Separation Axis Theorem
+	bool CollisionSystem2D::checkCollisionContinuous(Core::Entity* entityA, Core::Entity* entityB, Components::Collider2D* colliderA, Components::Collider2D* colliderB) {
+		auto physicsA = entityA->GetComponent<Components::PhysicsComponent>();
+		auto physicsB = entityB->GetComponent<Components::PhysicsComponent>();
+		// Coordinate System B - X Axis
+		auto VelARelB = physicsA->vel - physicsB->vel;
+		// auto DistARelB = VelARelB * 
+		// Coordinate System B - Y Axis
+
 		return false;
 	}
 

@@ -19,10 +19,11 @@ namespace Raven {namespace Components {
 	};
 
 	struct RAVEN_API Collider2D : public TComponent<Collider2D> {
-
-		std::function<void(Core::Entity*)> OnCollisionEnterCb = nullptr;
 		AABB bounds;
+		bool continuous = false;
+		std::function<void(Core::Entity*)> OnCollisionEnterCb = nullptr;
 
+	public:
 		Collider2D() {
 			OnCollisionEnterCb = [](Core::Entity*)->void*{return nullptr; };
 		}
@@ -33,6 +34,7 @@ namespace Raven {namespace Components {
 
 		static void from_json(const json& j, Components::Collider2D& c) {
 			auto bounds = j.at("bounds");
+			if (j.contains("continuous")) j.at("continuous").get_to(c.continuous);
 			Core::Point3D::from_json(bounds.at("center"), c.bounds.center);
 			Core::Point3D::from_json(bounds.at("extents"), c.bounds.extents);
 		}

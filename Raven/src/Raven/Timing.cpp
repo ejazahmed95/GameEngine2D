@@ -10,11 +10,16 @@ namespace Raven {
 		assert(success);
 	}
 
-	float Timing::GetFrameTime() {
+	float Timing::GetFrameTime(const float minTime) {
 		static tick_t lastFrameStartTick = 0;
 
 		tick_t currentFrameStartTick = GetCurrentTickCounter();
 		float frameTime = (lastFrameStartTick == 0) ? (1.0f/60) : (GetTimeDiff_ms(lastFrameStartTick, currentFrameStartTick) / 1000.0f);
+
+		while(lastFrameStartTick!= 0 && frameTime < minTime) {
+			currentFrameStartTick = GetCurrentTickCounter();
+			frameTime = (lastFrameStartTick == 0) ? (1.0f / 60) : (GetTimeDiff_ms(lastFrameStartTick, currentFrameStartTick) / 1000.0f);
+		}
 		// if(frameTime*1000 < 10) {
 		// 	Sleep(16 - static_cast<int>(frameTime * 1000));
 		// 	currentFrameStartTick = GetCurrentTickCounter();

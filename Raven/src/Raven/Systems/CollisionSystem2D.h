@@ -1,7 +1,6 @@
 #pragma once
 #include "BaseSystem.h"
 #include "../Components/Collider2D.h"
-#include "../Components/Transform.h"
 
 namespace Raven { namespace System {
 
@@ -12,7 +11,8 @@ namespace Raven { namespace System {
 		void Update(float dt) override;
 
 	private:
-		bool checkCollision(Components::Collider2D* collider1, Components::Transform* transform1, Components::Collider2D* collider2, Components::Transform* transform2);
+		bool checkCollision(Core::Entity* element1, Core::Entity* element2, Components::Collider2D* collider1, Components::Collider2D* collider2);
+		bool checkCollisionContinuous(Core::Entity* entityA, Core::Entity* entityB, Components::Collider2D* colliderA, Components::Collider2D* colliderB);
 	};
 
 }

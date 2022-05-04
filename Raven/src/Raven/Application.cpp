@@ -57,8 +57,8 @@ namespace Raven {
 
 		// TODO: Calculate and add the delta time for each of these
 		while(!m_GameEnded) {
-			float delta = m_Timing->GetFrameTime();
-			// SLib::Log::I("Last Frame Time = " + std::to_string(static_cast<int>(delta*1000)) + "ms");
+			float delta = m_Timing->GetFrameTime(0.01f);
+			// RavenStd::Log::I("Last Frame Time = " + std::to_string(delta*1000) + "ms");
 			App_UpdateSystems(delta);
 			Update(delta);
 		}
