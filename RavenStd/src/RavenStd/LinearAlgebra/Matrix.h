@@ -42,7 +42,7 @@ namespace RavenStd {
 		/// <param name="rot">Rotation Matrix</param>
 		/// <param name="trans">Translation Matrix</param>
 		/// <returns></returns>
-		static Matrix GetInverseWellBehaved(Matrix& rot, Matrix& trans);
+		static Matrix GetInverseWellBehaved(Matrix& rot, Vec4& trans);
 
 		// Transform
 		static Matrix CreateTranslation(float transX, float transY, float transZ);
@@ -56,6 +56,8 @@ namespace RavenStd {
 		// Operator Overloading
 		Matrix& operator=(const Matrix& m); // Assignment Operator
 		Matrix operator*(Matrix& m) const;
+
+		std::string String() const;
 
 	private:
 		static Matrix m_Identity;

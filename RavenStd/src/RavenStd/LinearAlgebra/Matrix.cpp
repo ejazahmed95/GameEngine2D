@@ -35,16 +35,16 @@ namespace RavenStd {
 	}
 
 	Matrix Matrix::Inverse() const {
-		//
+		// TODO: Implementation if needed
 		return *this;
 	}
 
-	Matrix Matrix::GetInverseWellBehaved(Matrix& rot, Matrix& trans) {
+	Matrix Matrix::GetInverseWellBehaved(Matrix& rot, Vec4& trans) {
 		auto m = rot.Transpose() * trans;
 		return {
-			rot.m_M00, rot.m_M10, rot.m_M20, -m.m_M00,
-			rot.m_M01, rot.m_M11, rot.m_M21, -m.m_M11,
-			rot.m_M02, rot.m_M12, rot.m_M22, -m.m_M22,
+			rot.m_M00, rot.m_M10, rot.m_M20, -m.X(),
+			rot.m_M01, rot.m_M11, rot.m_M21, -m.Y(),
+			rot.m_M02, rot.m_M12, rot.m_M22, -m.Z(),
 			0, 0, 0, 1
 		};
 	}
@@ -127,7 +127,37 @@ namespace RavenStd {
 	}
 
 	Matrix Matrix::operator*(Matrix& m) const {
-		return *this;
+		Matrix result;
+		result.m_M00 = m_M00 * m.m_M00 + m_M01 * m.m_M10 + m_M02 * m.m_M20 + m_M03 * m.m_M30;
+		result.m_M01 = m_M00 * m.m_M01 + m_M01 * m.m_M11 + m_M02 * m.m_M21 + m_M03 * m.m_M31;
+		result.m_M02 = m_M00 * m.m_M02 + m_M01 * m.m_M12 + m_M02 * m.m_M22 + m_M03 * m.m_M32;
+		result.m_M03 = m_M00 * m.m_M03 + m_M01 * m.m_M13 + m_M02 * m.m_M23 + m_M03 * m.m_M33;
+
+		result.m_M10 = m_M10 * m.m_M00 + m_M11 * m.m_M10 + m_M12 * m.m_M20 + m_M13 * m.m_M30;
+		result.m_M11 = m_M10 * m.m_M01 + m_M11 * m.m_M11 + m_M12 * m.m_M21 + m_M13 * m.m_M31;
+		result.m_M12 = m_M10 * m.m_M02 + m_M11 * m.m_M12 + m_M12 * m.m_M22 + m_M13 * m.m_M32;
+		result.m_M13 = m_M10 * m.m_M03 + m_M11 * m.m_M13 + m_M12 * m.m_M23 + m_M13 * m.m_M33;
+
+		result.m_M20 = m_M20 * m.m_M00 + m_M21 * m.m_M10 + m_M22 * m.m_M20 + m_M23 * m.m_M30;
+		result.m_M21 = m_M20 * m.m_M01 + m_M21 * m.m_M11 + m_M22 * m.m_M21 + m_M23 * m.m_M31;
+		result.m_M22 = m_M20 * m.m_M02 + m_M21 * m.m_M12 + m_M22 * m.m_M22 + m_M23 * m.m_M32;
+		result.m_M23 = m_M20 * m.m_M03 + m_M21 * m.m_M13 + m_M22 * m.m_M23 + m_M23 * m.m_M33;
+
+		result.m_M30 = m_M30 * m.m_M00 + m_M31 * m.m_M10 + m_M32 * m.m_M20 + m_M33 * m.m_M30;
+		result.m_M31 = m_M30 * m.m_M01 + m_M31 * m.m_M11 + m_M32 * m.m_M21 + m_M33 * m.m_M31;
+		result.m_M32 = m_M30 * m.m_M02 + m_M31 * m.m_M12 + m_M32 * m.m_M22 + m_M33 * m.m_M32;
+		result.m_M33 = m_M30 * m.m_M03 + m_M31 * m.m_M13 + m_M32 * m.m_M23 + m_M33 * m.m_M33;
+
+		return result;
+	}
+
+	std::string Matrix::String() const {
+		std::string result = "";
+		result = result + "[ "+ std::to_string(m_M00) + ", " + std::to_string(m_M01) + ", " + std::to_string(m_M02) + ", " + std::to_string(m_M03) + "]\n";
+		result = result + "[ "+ std::to_string(m_M10) + ", " + std::to_string(m_M11) + ", " + std::to_string(m_M12) + ", " + std::to_string(m_M13) + "]\n";
+		result = result + "[ "+ std::to_string(m_M20) + ", " + std::to_string(m_M21) + ", " + std::to_string(m_M22) + ", " + std::to_string(m_M23) + "]\n";
+		result = result + "[ "+ std::to_string(m_M30) + ", " + std::to_string(m_M31) + ", " + std::to_string(m_M32) + ", " + std::to_string(m_M33) + "]\n\n";
+		return result;
 	}
 
 	Vec4 operator*(const Matrix& lhs, const Vec4& rhs) {

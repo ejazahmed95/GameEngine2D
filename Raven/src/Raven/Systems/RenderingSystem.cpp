@@ -38,7 +38,9 @@ namespace Raven { namespace System {
 
 			// If Debug
 			auto collider = element->GetComponent<Components::Collider2D>();
-			if(collider != nullptr) GLib::Render(*collisionBox, Offset, 0.0f, transform->rotation.Z());
+			if (collider == nullptr) continue;
+			GLib::Point2D boxLoc = { Offset.x, Offset.y };
+			GLib::Render(*collisionBox, boxLoc, 0.0f, transform->rotation.Z());
 		}
 		GLib::Sprites::EndRendering();
 		GLib::EndRendering();

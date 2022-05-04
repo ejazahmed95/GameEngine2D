@@ -3,6 +3,7 @@
 
 #include "../Core.h"
 #include "../nlohmann/json.hpp"
+#include "RavenStd/LinearAlgebra/Vec4.h"
 
 using json = nlohmann::json;
 
@@ -48,6 +49,10 @@ namespace Raven { namespace Core {
 	public:
 		void to_json(json& j, const Point3D& p) {
 			j = json{ {"x", p.m_X}, {"y", p.m_Y}, {"z", p.m_Z} };
+		}
+
+		RavenStd::Vec4 ToVec4(float a = 0) const {
+			return { m_X, m_Y, m_Z, a};
 		}
 
 		static void from_json(const json& j, Point3D& p) {

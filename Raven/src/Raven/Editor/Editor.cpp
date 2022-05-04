@@ -125,6 +125,7 @@ namespace Raven { namespace Editor {
 
 		if (componentObj.contains("collision")) {
 			auto collisionComp = new Components::Collider2D();
+			Components::Collider2D::from_json(componentObj.at("collision"), *collisionComp);
 			entity->AddComponent(collisionComp);
 		}
 	}

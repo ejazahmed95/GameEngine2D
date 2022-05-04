@@ -26,8 +26,8 @@ namespace RavenStd {
 		static void I(std::string arg) {
 			if (level > ELogLevel::INFO) return;
 
-			char buffer[100];
-			sprintf_s(buffer, 100, "[INFO] %s\n", arg.c_str());
+			char buffer[1000];
+			sprintf_s(buffer, 1000, "[INFO] %s\n", arg.c_str());
 			OutputDebugStringA(buffer);
 		}
 
