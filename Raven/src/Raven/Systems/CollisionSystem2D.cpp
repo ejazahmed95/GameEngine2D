@@ -23,7 +23,7 @@ namespace Raven { namespace System {
 				const auto collider2 = element2->GetComponent<Components::Collider2D>();
 
 				bool colliding = (collider1->continuous || collider2->continuous)
-					                 ? checkCollisionContinuous(element1, element2, collider1, collider2)
+					                 ? checkCollisionContinuous(element1, element2, collider1, collider2, dt)
 					                 : checkCollision(element1, element2, collider1, collider2);
 
 				if(colliding) {
@@ -98,16 +98,63 @@ namespace Raven { namespace System {
 		return true;
 	}
 
+	void CollisionSystem2D::UpdateTimes(float center, float bLeft, float bRight, float distance, float& tOpen, float& tClose, bool& separated) {
+		if(distance == 0) {
+			if(center < bLeft || center > bRight) {
+				separated = true;
+				return;
+			}
+		}
+	}
+
 	// "Swept" Separation Axis Theorem
-	bool CollisionSystem2D::checkCollisionContinuous(Core::Entity* entityA, Core::Entity* entityB, Components::Collider2D* colliderA, Components::Collider2D* colliderB) {
+	bool CollisionSystem2D::checkCollisionContinuous(Core::Entity* entityA, Core::Entity* entityB, Components::Collider2D* colliderA, Components::Collider2D* colliderB, float dt) {
 		auto physicsA = entityA->GetComponent<Components::PhysicsComponent>();
 		auto physicsB = entityB->GetComponent<Components::PhysicsComponent>();
-		// Coordinate System B - X Axis
+
+		float tClose = 0;
+		float tOpen = 10;
+
+		const auto transformA = entityA->GetComponent<Components::Transform>();
+		const auto transformB = entityB->GetComponent<Components::Transform>();
+
+		bool separated = false;
+		/*
+		 * B's Coordinate System
+		 * B's X-Axis
+		 */ 
+		const auto& matA2B = GetMatA2B(transformA, transformB);
+		auto ACenterInB = matA2B * colliderA->bounds.center.ToVec4(1);
+
+		auto AExtentXInB = matA2B * RavenStd::Vec4{ colliderA->bounds.extents.X(), 0, 0, 0 };
+		auto AExtentYInB = matA2B * RavenStd::Vec4{ 0, colliderA->bounds.extents.Y(), 0, 0 };
+		auto AProjInB = Core::Point3D{ fabs(AExtentXInB.X()) + fabs(AExtentYInB.X()), fabs(AExtentXInB.Y()) + fabs(AExtentYInB.Y()), 0 };
+		Core::Point3D expandedExtents = colliderB->bounds.extents + AProjInB;
+
 		auto VelARelB = physicsA->vel - physicsB->vel;
-		// auto DistARelB = VelARelB * 
+		auto VelADist = VelARelB * dt;
+		auto VelADistInB = RavenStd::Vec4::Dot(transformB->World2ObjectMatrix().Column(0), VelADist.ToVec4());
+
+		auto bLeft = colliderB->bounds.center.X() - expandedExtents.X();
+		auto bRight = colliderB->bounds.center.X() + expandedExtents.X();
+		auto dLeft = bLeft - ACenterInB.X();
+		auto dRight = bRight - ACenterInB.X();
+
+		UpdateTimes(ACenterInB.X(), bLeft, bRight, VelADistInB, tOpen, tClose, separated);
+
+		if (separated) return false;
+
 		// Coordinate System B - Y Axis
 
-		return false;
+		return true;
+	}
+
+	RavenStd::Matrix GetMatA2B(Components::Transform* transformA, Components::Transform* transformB) {
+		auto matWorld2B = transformB->World2ObjectMatrix();
+		auto matA2World = transformA->Object2WorldMatrix();
+
+		
+		return matWorld2B * matA2World;
 	}
 
 }

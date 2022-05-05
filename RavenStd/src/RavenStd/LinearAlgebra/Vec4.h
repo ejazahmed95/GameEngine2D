@@ -41,6 +41,7 @@ namespace RavenStd {
 		void SetA(float i);
 		float Mag() const;
 		float Mag2() const;
+		static float Dot(const Vec4& v1, const Vec4& v2);
 	private:
 		float m_X, m_Y, m_Z, m_A;
 	};

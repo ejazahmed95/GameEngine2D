@@ -93,6 +93,10 @@ namespace RavenStd {
 		return (m_X * m_X + m_Y * m_Y + m_Z * m_Z + m_A*m_A);
 	}
 
+	float Vec4::Dot(const Vec4& v1, const Vec4& v2) {
+		return v1.m_X * v2.m_X + v1.m_Y * v2.m_Y + v1.m_Z * v2.m_Z + v1.m_A * v2.m_A;
+	}
+
 	Vec4 operator*(float const lhs, Vec4 const& rhs)
 	{
 		return rhs * lhs;

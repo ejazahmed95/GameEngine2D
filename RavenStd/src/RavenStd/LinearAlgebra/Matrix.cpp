@@ -1,5 +1,7 @@
 #include "Matrix.h"
 
+#include <cassert>
+
 namespace RavenStd {
 
 	Matrix Matrix::Identity() {
@@ -37,6 +39,19 @@ namespace RavenStd {
 	Matrix Matrix::Inverse() const {
 		// TODO: Implementation if needed
 		return *this;
+	}
+
+	Vec4 Matrix::Column(int index) const {
+		switch (index) {
+		case 0:
+			return {m_M00, m_M10, m_M20, 0};
+		case 1:
+			return { m_M01, m_M11, m_M21, 0 };
+		case 2:
+			return { m_M02, m_M12, m_M22, 0 };
+		default:
+			assert(false);
+		}
 	}
 
 	Matrix Matrix::GetInverseWellBehaved(Matrix& rot, Vec4& trans) {

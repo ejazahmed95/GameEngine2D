@@ -34,6 +34,7 @@ namespace RavenStd {
 		// Properties
 		Matrix Transpose() const;
 		Matrix Inverse() const; // Inverts the current matrix
+		Vec4 Column(int index) const;
 		// static Matrix Inverse(Matrix& matrix);
 
 		/// <summary>

@@ -16,7 +16,7 @@ namespace Raven {
 
 		static float GetLastFrameTime_ms();
 		static tick_t GetCurrentTickCounter();
-		
+
 	private:
 		static float s_LastFrameTime;
 		LARGE_INTEGER m_PerformanceFreq = { 0 };

@@ -3,6 +3,7 @@
 #include "../CoreModule/Point3D.h"
 #include "../Core.h"
 #include "../nlohmann/json.hpp"
+#include "RavenStd/LinearAlgebra/Matrix.h"
 
 namespace Raven { namespace Components {
 	struct RAVEN_API Transform: public TComponent<Transform> {
@@ -12,6 +13,9 @@ namespace Raven { namespace Components {
 		Transform() : position(0), rotation(0) {}
 		void Translate(Core::Point3D);
 		void Rotate(Core::Point3D);
+
+		RavenStd::Matrix Object2WorldMatrix() const;
+		RavenStd::Matrix World2ObjectMatrix() const;
 
 		static void from_json(const json& j, Components::Transform& t) {
 			Core::Point3D::from_json(j.at("position"), t.position);
