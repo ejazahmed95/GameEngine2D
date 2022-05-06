@@ -1,5 +1,7 @@
 #include "Vec4.h"
 
+#include <cmath>
+
 namespace RavenStd {
 	Vec4 Vec4::operator+(Vec4 const& rhs) const {
 		return { m_X + rhs.X(), m_Y + rhs.Y(), m_Z + rhs.Z(), m_A + rhs.A() };
@@ -86,11 +88,20 @@ namespace RavenStd {
 	}
 
 	float Vec4::Mag() const {
-		return sqrt(Mag2());
+		return std::sqrt(Mag2());
 	}
 
 	float Vec4::Mag2() const {
 		return (m_X * m_X + m_Y * m_Y + m_Z * m_Z + m_A*m_A);
+	}
+
+	Vec4& Vec4::Normalize() {
+		const float mag = Mag();
+		m_X /= mag;
+		m_Y /= mag;
+		m_Z /= mag;
+		m_A /= mag;
+		return *this;
 	}
 
 	float Vec4::Dot(const Vec4& v1, const Vec4& v2) {

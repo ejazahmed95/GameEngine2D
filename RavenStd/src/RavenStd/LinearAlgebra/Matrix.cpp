@@ -51,6 +51,7 @@ namespace RavenStd {
 			return { m_M02, m_M12, m_M22, 0 };
 		default:
 			assert(false);
+			return { 0, 0, 0, 0 };
 		}
 	}
 
