@@ -1,0 +1,16 @@
+{
+  "Textures": [
+    {
+      "name": "gastly",
+      "path": "assets\\sprites\\gastly.dds"
+    },
+    {
+      "name": "pikachu",
+      "path": "assets\\sprites\\pikachu.dds"
+    },
+    {
+      "name": "collision_box",
+      "path": "assets\\sprites\\collision_box.dds"
+    }
+  ]
+}

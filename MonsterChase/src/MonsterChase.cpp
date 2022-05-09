@@ -20,7 +20,9 @@ void MonsterChase::GameStart() {
 	sprites.push_back("assets\\sprites\\pikachu.dds");
 	sprites.push_back("assets\\sprites\\gastly.dds");
 	sprites.push_back("assets\\sprites\\collision_box.dds");
-	Raven::GetRenderer().AcquireOwnership()->LoadSprites(sprites);
+	sprites.push_back("assets\\sprites\\shadow-05.dds");
+	sprites.push_back("assets\\sprites\\test1.dds");
+	// Raven::GetRenderer().AcquireOwnership()->LoadSprites(sprites);
 
 	// srand(static_cast<int>(time(nullptr)));
 	using namespace Raven::Components;

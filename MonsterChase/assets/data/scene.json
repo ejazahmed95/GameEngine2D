@@ -15,7 +15,9 @@
         }
       },
       "sprite_renderer": {
-        "spriteRef": "assets\\sprites\\pikachu.dds"
+        "spriteRef": "assets\\sprites\\pikachu.dds",
+        "texture": "pikachu",
+        "scale": {"x": 1, "y": 1, "z": 1}
       },
       "physics": {
         "mass": 1,
@@ -45,7 +47,9 @@
         }
       },
       "sprite_renderer": {
-        "spriteRef": "assets\\sprites\\gastly.dds"
+        "spriteRef": "assets\\sprites\\gastly.dds",
+        "texture": "gastly",
+        "scale": {"x": 1, "y": 1, "z": 1}
       },
       "physics": {
         "mass": 1,

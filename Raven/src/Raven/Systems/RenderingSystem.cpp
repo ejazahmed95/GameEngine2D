@@ -22,6 +22,10 @@ namespace Raven { namespace System {
 		BaseSystem::Initialize();
 	}
 
+	void RenderingSystem::UpdateComponent(Components::SpriteRenderer* component) {
+		component->sprite = CreateSprite(m_Textures[component->texName]);
+	}
+
 	void RenderingSystem::Update(float dt) {
 		bool quit = false;
 		GLib::Service(quit);
@@ -30,11 +34,12 @@ namespace Raven { namespace System {
 		GLib::Sprites::BeginRendering();
 		for (const auto& element : m_RegisteredEntities) {
 			auto spriteRenderer = element->GetComponent<Components::SpriteRenderer>();
+			if (spriteRenderer->sprite == nullptr) UpdateComponent(spriteRenderer);
 			auto transform = element->GetComponent<Components::Transform>();
 			GLib::Point2D	Offset = { transform->position.X(), transform->position.Y() };
 			GLib::Sprite* sprite = getSprite(spriteRenderer->spriteRef);
 			// SLib::Log::D("Rendering Sprite::" + std::to_string(reinterpret_cast<uintptr_t>(sprite)));
-			GLib::Render(*sprite, Offset, 0.0f, transform->rotation.Z());
+			GLib::Render(*spriteRenderer->sprite, Offset, 0.0f, transform->rotation.Z());
 
 			// If Debug
 			auto collider = element->GetComponent<Components::Collider2D>();
@@ -49,9 +54,23 @@ namespace Raven { namespace System {
 	void RenderingSystem::Destroy() {
 		BaseSystem::Destroy();
 
+		for(const auto& tex: m_Textures) {
+			GLib::Release(tex.second);
+		}
 		for (const auto& spritePair : m_Sprites) {
 			GLib::Release(spritePair.second);
 		}
+	}
+
+	void RenderingSystem::LoadTextures(json textures) {
+		for (auto& tex: textures) {
+			std::string name = "";
+			std::string path = "";
+			tex.at("name").get_to(name);
+			tex.at("path").get_to(path);
+			m_Textures.insert({name, CreateTexture(path.c_str())});
+		}
+		collisionBox = CreateSprite(m_Textures["collision_box"]);
 	}
 
 	void RenderingSystem::LoadSprites(std::vector<std::string> paths) {
@@ -62,7 +81,7 @@ namespace Raven { namespace System {
 			}
 			m_Sprites.insert({ path, sprite });
 		}
-		collisionBox = m_Sprites["assets\\sprites\\collision_box.dds"];
+		
 	}
 
 	GLib::Sprite* RenderingSystem::getSprite(const std::string& string) {
@@ -70,6 +89,47 @@ namespace Raven { namespace System {
 		return m_Sprites[string];
 	}
 
+	GLib::Texture* RenderingSystem::CreateTexture(const char* fileName) {
+		assert(fileName);
+
+		size_t sizeTextureFile = 0;
+
+		// Load the source file (texture data)
+		void* pTextureFile = LoadFile(fileName, sizeTextureFile);
+
+		// Ask GLib to create a texture out of the data (assuming it was loaded successfully)
+		GLib::Texture* pTexture = pTextureFile ? GLib::CreateTexture(pTextureFile, sizeTextureFile) : nullptr;
+
+		// exit if something didn't work
+		// probably need some debug logging in here!!!!
+		if (pTextureFile)
+			delete[] pTextureFile;
+
+		return pTexture;
+	}
+
+	GLib::Sprite* RenderingSystem::CreateSprite(GLib::Texture* tex) {
+		if (tex == nullptr)
+			return nullptr;
+
+		unsigned int width = 0;
+		unsigned int height = 0;
+		unsigned int depth = 0;
+
+		// Get the dimensions of the texture. We'll use this to determine how big it is on screen
+		bool result = GLib::GetDimensions(*tex, width, height, depth);
+		assert(result == true);
+		assert((width > 0) && (height > 0));
+
+		// Define the sprite edges
+		GLib::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
+		GLib::SpriteUVs	UVs = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 0.0f, 1.0f }, { 1.0f, 1.0f } };
+		GLib::RGBA							Color = { 255, 255, 255, 255 };
+
+		// Create the sprite
+		GLib::Sprite* pSprite = GLib::CreateSprite(Edges, 0.1f, Color, UVs, tex);
+		return pSprite;
+	}
 
 	GLib::Sprite* RenderingSystem::CreateSprite(const char* i_pFilename) {
 		assert(i_pFilename);
