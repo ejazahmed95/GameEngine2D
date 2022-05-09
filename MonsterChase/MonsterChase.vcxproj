@@ -91,6 +91,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\MonsterChase.cpp" />
+    <ClCompile Include="src\PlayerController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MonsterChase.h" />

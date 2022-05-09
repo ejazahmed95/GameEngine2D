@@ -16,6 +16,11 @@ namespace Raven { namespace System {
 		using namespace Components;
 		m_Mask.Add(Transform::Id());
 		m_Mask.Add(SpriteRenderer::Id());
+		collisionBox = nullptr;
+	}
+
+	RenderingSystem::~RenderingSystem() {
+		GLib::Release(collisionBox);
 	}
 
 	void RenderingSystem::Initialize() {
@@ -23,7 +28,7 @@ namespace Raven { namespace System {
 	}
 
 	void RenderingSystem::UpdateComponent(Components::SpriteRenderer* component) {
-		component->sprite = CreateSprite(m_Textures[component->texName]);
+		component->sprite = CreateSprite(m_Textures[component->texName], component->scale);
 	}
 
 	void RenderingSystem::Update(float dt) {
@@ -70,12 +75,12 @@ namespace Raven { namespace System {
 			tex.at("path").get_to(path);
 			m_Textures.insert({name, CreateTexture(path.c_str())});
 		}
-		collisionBox = CreateSprite(m_Textures["collision_box"]);
+		collisionBox = CreateSprite(m_Textures["collision_box"], Core::Point3D(1, 1, 1));
 	}
 
 	void RenderingSystem::LoadSprites(std::vector<std::string> paths) {
 		for (const auto & path : paths) {
-			GLib::Sprite* sprite = CreateSprite(path.c_str());
+			GLib::Sprite* sprite = CreateSprite(path.c_str(), Core::Point3D(1, 1, 1));
 			if(sprite == nullptr) {
 				// SLib::Log::
 			}
@@ -108,7 +113,7 @@ namespace Raven { namespace System {
 		return pTexture;
 	}
 
-	GLib::Sprite* RenderingSystem::CreateSprite(GLib::Texture* tex) {
+	GLib::Sprite* RenderingSystem::CreateSprite(GLib::Texture* tex, Core::Point3D scale) {
 		if (tex == nullptr)
 			return nullptr;
 
@@ -122,7 +127,7 @@ namespace Raven { namespace System {
 		assert((width > 0) && (height > 0));
 
 		// Define the sprite edges
-		GLib::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
+		GLib::SpriteEdges	Edges = { -float(width * scale.X() / 2.0f), float(height * scale.Y()) , float(width * scale.X() / 2.0f), 0.0f };
 		GLib::SpriteUVs	UVs = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 0.0f, 1.0f }, { 1.0f, 1.0f } };
 		GLib::RGBA							Color = { 255, 255, 255, 255 };
 
@@ -131,7 +136,7 @@ namespace Raven { namespace System {
 		return pSprite;
 	}
 
-	GLib::Sprite* RenderingSystem::CreateSprite(const char* i_pFilename) {
+	GLib::Sprite* RenderingSystem::CreateSprite(const char* i_pFilename, Core::Point3D scale) {
 		assert(i_pFilename);
 
 		size_t sizeTextureFile = 0;
@@ -159,8 +164,9 @@ namespace Raven { namespace System {
 		assert(result == true);
 		assert((width > 0) && (height > 0));
 
+
 		// Define the sprite edges
-		GLib::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
+		GLib::SpriteEdges	Edges = { -float(width * scale.X() / 2.0f), float(height * scale.Y()) , float(width * scale.X() / 2.0f), 0.0f };
 		GLib::SpriteUVs	UVs = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 0.0f, 1.0f }, { 1.0f, 1.0f } };
 		GLib::RGBA							Color = { 255, 255, 255, 255 };
 

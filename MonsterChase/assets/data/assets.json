@@ -11,6 +11,14 @@
     {
       "name": "collision_box",
       "path": "assets\\sprites\\collision_box.dds"
+    },
+    {
+      "name": "elec-04",
+      "path": "assets\\sprites\\elec-04.dds"
+    },
+    {
+      "name": "shadow-04",
+      "path": "assets\\sprites\\shadow-04.dds"
     }
   ]
 }

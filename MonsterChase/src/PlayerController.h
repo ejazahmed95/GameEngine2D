@@ -5,3 +5,8 @@
 enum class InputAction {
 	LEFT, RIGHT, UP, DOWN, QUIT, UNKNOWN
 };
+
+class PlayerController {
+public:
+	void Init();
+};

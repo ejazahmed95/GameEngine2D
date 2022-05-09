@@ -10,53 +10,26 @@ Raven::Application* Raven::CreateApplication() {
     return new MonsterChase();
 }
 
-MonsterChase::~MonsterChase() = default;
+MonsterChase::~MonsterChase() {
+	delete pc;
+};
 
 void MonsterChase::GameStart() {
 	Application::GameStart();
-	std::vector<std::string> sprites;
-
-	// TODO: Add list of sprites in JSON
-	sprites.push_back("assets\\sprites\\pikachu.dds");
-	sprites.push_back("assets\\sprites\\gastly.dds");
-	sprites.push_back("assets\\sprites\\collision_box.dds");
-	sprites.push_back("assets\\sprites\\shadow-05.dds");
-	sprites.push_back("assets\\sprites\\test1.dds");
+	
 	// Raven::GetRenderer().AcquireOwnership()->LoadSprites(sprites);
 
 	// srand(static_cast<int>(time(nullptr)));
-	using namespace Raven::Components;
-
-	auto pikachu = Raven::GetECS().AcquireOwnership()->GetEntityByName("Pikachu");
-	auto physics = pikachu->GetComponent<PhysicsComponent>();
-	auto collider = pikachu->GetComponent<Collider2D>();
-
-	collider->SetCallback([](Raven::Core::Entity* entity) {
-		RavenStd::Log::I("Player Is Colliding with:: " + entity->GetName());
-	});
-
-	pikachu->AddComponent(new InputComponent([physics](unsigned keyID, bool pressed) {
-		float factor = pressed ? 1.0f : -1.0f;
-		float forceFactor = 500;
-		switch (keyID) {
-		case 0x0057: // W
-			physics->ApplyForce(Raven::Core::Point3D(0, forceFactor, 0)*factor);
-			break;
-		case 0x0041: // A
-			physics->ApplyForce(Raven::Core::Point3D( -forceFactor, 0.0f, 0 )*factor);
-			break;
-		case 0x0053: // S
-			physics->ApplyForce(Raven::Core::Point3D( 0, -forceFactor, 0 )*factor);
-			break;
-		case 0x0044: // D
-			physics->ApplyForce(Raven::Core::Point3D( forceFactor, 0.0f, 0 )*factor);
-			break;
-		}
-		}));
+	pc = new PlayerController();
+	pc->Init();
+	
 }
 
 void MonsterChase::Update(float delta) {
 	Application::Update(delta);
+
+
+
 }
 
 void MonsterChase::GameEnd() {
