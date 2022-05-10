@@ -27,8 +27,11 @@ namespace Raven { namespace System {
 		BaseSystem::Initialize();
 	}
 
-	void RenderingSystem::UpdateComponent(Components::SpriteRenderer* component) {
+	void RenderingSystem::UpdateComponent(Components::SpriteRenderer* component, Core::Entity* entity) {
 		component->sprite = CreateSprite(m_Textures[component->texName], component->scale);
+		auto collider = entity->GetComponent<Components::Collider2D>();
+		if (collider == nullptr) return;
+		collider->collisionBox = CreateSprite(m_Textures["collision_box"], collider->bounds.extents / 50);
 	}
 
 	void RenderingSystem::Update(float dt) {
@@ -40,7 +43,7 @@ namespace Raven { namespace System {
 		for (const auto& element : m_RegisteredEntities) {
 			if (element->Destroyed()) continue;
 			auto spriteRenderer = element->GetComponent<Components::SpriteRenderer>();
-			if (spriteRenderer->sprite == nullptr) UpdateComponent(spriteRenderer);
+			if (spriteRenderer->sprite == nullptr) UpdateComponent(spriteRenderer, element);
 			auto transform = element->GetComponent<Components::Transform>();
 			GLib::Point2D	Offset = { transform->position.X(), transform->position.Y() };
 			GLib::Sprite* sprite = getSprite(spriteRenderer->spriteRef);
@@ -51,7 +54,7 @@ namespace Raven { namespace System {
 			auto collider = element->GetComponent<Components::Collider2D>();
 			if (collider == nullptr) continue;
 			GLib::Point2D boxLoc = { Offset.x, Offset.y };
-			GLib::Render(*collisionBox, boxLoc, 0.0f, transform->rotation.Z());
+			GLib::Render(*collider->collisionBox, boxLoc, 0.0f, transform->rotation.Z());
 		}
 		GLib::Sprites::EndRendering();
 		GLib::EndRendering();

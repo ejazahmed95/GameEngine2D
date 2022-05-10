@@ -1,5 +1,7 @@
 #pragma once
 #include <functional>
+
+#include "SpriteRenderer.h"
 #include "TComponent.h"
 #include "../CoreModule/Point3D.h"
 #include "../CoreModule/Entity.h"
@@ -22,10 +24,14 @@ namespace Raven {namespace Components {
 	struct RAVEN_API Collider2D : public TComponent<Collider2D> {
 		AABB bounds;
 		bool continuous = false;
+		GLib::Sprite* collisionBox;
 		std::function<void(Core::Entity*)> OnCollisionEnterCb = nullptr;
 	public:
 		Collider2D() {
 			OnCollisionEnterCb = [](Core::Entity*)->void*{return nullptr; };
+		}
+		~Collider2D() {
+			GLib::Release(collisionBox);
 		}
 
 		void SetCallback(const std::function<void(Core::Entity*)>& cb) {

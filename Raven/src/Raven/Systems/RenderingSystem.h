@@ -22,7 +22,7 @@ namespace Raven { namespace System {
 		RenderingSystem();
 		~RenderingSystem() override;
 		void Initialize() override;
-		void UpdateComponent(Components::SpriteRenderer* sprite_renderer);
+		void UpdateComponent(Components::SpriteRenderer* sprite_renderer, Core::Entity* entity);
 		void Update(float dt) override;
 		void Destroy() override;
 

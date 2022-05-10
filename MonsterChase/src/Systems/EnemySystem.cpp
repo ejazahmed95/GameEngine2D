@@ -28,11 +28,10 @@ namespace Systems {
 				enemyComp->timeElapsed = 0;
 				auto transform = element->GetComponent<Raven::Components::Transform>();
 				auto pos = transform->Object2WorldMatrix() * Raven::Core::Point3D(0, 50, 0).ToVec4(1);
-				auto rot = transform->Object2WorldMatrix() * Raven::Core::Point3D(0, 1, 0).ToVec4();
 				auto dir = playerRef->GetComponent<Raven::Components::Transform>()->position;
 				dir = dir - transform->position;
 				
-				auto attack = RavenStd::StrongPtr<Attack>(new Attack({ pos.X(), pos.Y(), pos.Z() }, dir, true));
+				auto attack = RavenStd::StrongPtr<Attack>(new Attack({ pos.X(), pos.Y(), pos.Z() }, dir, false));
 			}
 		}
 	}

@@ -43,6 +43,7 @@
   },
   {
     "name": "Gastly",
+    "tag": "Enemy", 
     "components": {
       "transform": {
         "position": {
