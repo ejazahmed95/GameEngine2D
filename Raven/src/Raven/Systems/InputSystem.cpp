@@ -28,6 +28,7 @@ namespace Raven { namespace System {
 
 	void InputSystem::OnInChange(unsigned i_VKeyID, bool bWentDown) {
 		for (auto & entity : m_RegisteredEntities) {
+			if (entity->Destroyed()) continue;
 			auto inputComp = entity->GetComponent<Components::InputComponent>();
 
 			inputComp->OnInputChange(i_VKeyID, bWentDown);

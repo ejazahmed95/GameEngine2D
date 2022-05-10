@@ -18,9 +18,11 @@ namespace Raven { namespace System {
 	void CollisionSystem2D::Update(float dt) {
 		for (int i = 0; i < m_RegisteredEntities.size(); i++) {
 			const auto element1 = m_RegisteredEntities[i];
+			if (element1->Destroyed()) continue;
 			const auto collider1 = element1->GetComponent<Components::Collider2D>();
 			for (int j = i+1; j < m_RegisteredEntities.size(); j++) {
 				const auto element2 = m_RegisteredEntities[j];
+				if (element1->Destroyed() || element2->Destroyed()) continue;
 				const auto collider2 = element2->GetComponent<Components::Collider2D>();
 
 				bool colliding = (collider1->continuous || collider2->continuous)

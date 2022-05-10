@@ -16,7 +16,7 @@
       },
       "sprite_renderer": {
         "spriteRef": "assets\\sprites\\pikachu.dds",
-        "texture": "shadow-04",
+        "texture": "pikachu",
         "scale": {"x": 0.5, "y": 0.5, "z": 1}
       },
       "physics": {
@@ -25,10 +25,19 @@
       },
       "collision": {
         "bounds": {
-          "center": { "x": 0, "y": 50, "z": 0 },
-          "extents": { "x": 50, "y": 50, "z": 0 }
+          "center": {
+            "x": 0,
+            "y": 50,
+            "z": 0
+          },
+          "extents": {
+            "x": 50,
+            "y": 50,
+            "z": 0
+          }
         }
-      }
+      },
+      "health": {"health": 10}
     }
   },
   {
@@ -48,8 +57,12 @@
       },
       "sprite_renderer": {
         "spriteRef": "assets\\sprites\\gastly.dds",
-        "texture": "elec-04",
-        "scale": {"x": 0.5, "y": 0.5, "z": 0.5}
+        "texture": "gastly",
+        "scale": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        }
       },
       "physics": {
         "mass": 1,
@@ -62,10 +75,20 @@
       },
       "collision": {
         "bounds": {
-          "center": { "x": 0, "y": 50, "z": 0 },
-          "extents": { "x": 50, "y": 50, "z": 0 }
+          "center": {
+            "x": 0,
+            "y": 50,
+            "z": 0
+          },
+          "extents": {
+            "x": 50,
+            "y": 50,
+            "z": 0
+          }
         }
-      }
+      },
+      "health": { "health": 10 },
+      "EnemyAI": {}
     }
   }
 ]

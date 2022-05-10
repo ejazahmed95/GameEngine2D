@@ -2,10 +2,6 @@
 //
 #include "MonsterChase.h"
 
-#include "Raven/Components/Collider2D.h"
-#include "Raven/Components/InputComponent.h"
-#include "Raven/Components/PhysicsComponent.h"
-
 Raven::Application* Raven::CreateApplication() {
     return new MonsterChase();
 }
@@ -27,9 +23,6 @@ void MonsterChase::GameStart() {
 
 void MonsterChase::Update(float delta) {
 	Application::Update(delta);
-
-
-
 }
 
 void MonsterChase::GameEnd() {

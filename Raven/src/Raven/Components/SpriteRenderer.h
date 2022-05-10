@@ -8,14 +8,14 @@ namespace Raven { namespace Components {
 		std::string spriteRef;
 		std::string texName;
 		GLib::Sprite* sprite = nullptr;
-		Core::Point3D scale = Core::Point3D(1);
+		Core::Point3D scale;
 
 		~SpriteRenderer() {
 			if(sprite != nullptr) {
 				GLib::Release(sprite);
 			}
 		}
-		explicit SpriteRenderer(std::string& spriteRef): spriteRef(std::move(spriteRef)) {}
+		explicit SpriteRenderer(std::string& texName): texName(std::move(texName)), scale(Core::Point3D(1)) {}
 
 		static void from_json(const json& j, SpriteRenderer& sr) {
 			j.at("spriteRef").get_to(sr.spriteRef);

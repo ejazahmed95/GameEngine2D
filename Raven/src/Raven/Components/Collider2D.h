@@ -16,13 +16,13 @@ namespace Raven {namespace Components {
 		Core::Point3D extents;
 
 		AABB() : center(0), extents(0) {}
+		AABB(Core::Point3D center, Core::Point3D extents): center(center), extents(extents) {}
 	};
 
 	struct RAVEN_API Collider2D : public TComponent<Collider2D> {
 		AABB bounds;
 		bool continuous = false;
 		std::function<void(Core::Entity*)> OnCollisionEnterCb = nullptr;
-
 	public:
 		Collider2D() {
 			OnCollisionEnterCb = [](Core::Entity*)->void*{return nullptr; };

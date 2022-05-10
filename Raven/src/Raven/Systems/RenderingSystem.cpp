@@ -38,6 +38,7 @@ namespace Raven { namespace System {
 
 		GLib::Sprites::BeginRendering();
 		for (const auto& element : m_RegisteredEntities) {
+			if (element->Destroyed()) continue;
 			auto spriteRenderer = element->GetComponent<Components::SpriteRenderer>();
 			if (spriteRenderer->sprite == nullptr) UpdateComponent(spriteRenderer);
 			auto transform = element->GetComponent<Components::Transform>();

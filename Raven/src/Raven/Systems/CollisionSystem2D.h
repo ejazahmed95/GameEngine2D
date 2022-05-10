@@ -12,7 +12,7 @@ namespace Raven { namespace System {
 		CollisionSystem2D();
 
 		void Update(float dt) override;
-
+		
 	private:
 		bool checkCollision(Core::Entity* element1, Core::Entity* element2, Components::Collider2D* collider1, Components::Collider2D* collider2);
 		void updateTimes(float center, float bLeft, float bRight, float distance, float& tOpen, float& tClose, bool& separated);

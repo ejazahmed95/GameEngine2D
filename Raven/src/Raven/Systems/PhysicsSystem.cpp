@@ -13,6 +13,7 @@ namespace Raven { namespace System {
 
 	void PhysicsSystem::Update(float dt) {
 		for (const auto& element : m_RegisteredEntities) {
+			if (element->Destroyed()) continue;
 			const auto physics = element->GetComponent<Components::PhysicsComponent>();
 			const auto transform = element->GetComponent<Components::Transform>();
 

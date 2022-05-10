@@ -48,7 +48,8 @@ namespace Raven { namespace Core {
 		}
 
 		std::string GetName() const { return m_Name; }
-
+		bool Destroyed() const { return m_Destroyed; }
+		void Destroy() { m_Destroyed = true; }
 
 		static int s_EntityCount;
 
@@ -60,6 +61,7 @@ namespace Raven { namespace Core {
 	private:
 		int m_Id;
 		std::string m_Name;
+		bool m_Destroyed;
 		std::unordered_map<Types::t_uid, Components::IComponent*> m_Components;
 		BitMask componentMask;
 	};

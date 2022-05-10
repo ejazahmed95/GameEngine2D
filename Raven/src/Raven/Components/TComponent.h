@@ -35,7 +35,7 @@ namespace Raven { namespace Components {
 	// };
 	//
 	// class EntityWrapper {
-	// 	Entity entity;
+	// 	Entity m_Entity;
 	//
 	// public:
 	// 	template<typename T>

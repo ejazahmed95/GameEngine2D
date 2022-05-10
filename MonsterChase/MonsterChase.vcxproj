@@ -90,12 +90,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Attack.cpp" />
+    <ClCompile Include="src\GEditor.cpp" />
     <ClCompile Include="src\MonsterChase.cpp" />
     <ClCompile Include="src\PlayerController.cpp" />
+    <ClCompile Include="src\Systems\EnemySystem.cpp" />
+    <ClCompile Include="src\Systems\HealthSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Attack.h" />
+    <ClInclude Include="src\Components\EnemyAIComp.h" />
+    <ClInclude Include="src\Components\HealthComponent.h" />
     <ClInclude Include="src\MonsterChase.h" />
     <ClInclude Include="src\PlayerController.h" />
+    <ClInclude Include="src\Systems\EnemySystem.h" />
+    <ClInclude Include="src\Systems\HealthSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Raven\Raven.vcxproj">
