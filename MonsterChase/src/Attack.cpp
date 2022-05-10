@@ -13,12 +13,13 @@ Attack::Attack(Raven::Core::Point3D pos, Raven::Core::Point3D dir, bool isPlayer
 
 	m_Entity = Raven::GetECS().AcquireOwnership()->CreateEntity();
 	m_IsPlayer = isPlayer;
+	m_Entity->SetTag((isPlayer) ? "Player" : "Enemy");
+	std::string texName = isPlayer? "elec-04": "shadow-04";
+	m_Damage = isPlayer? 3.0f: 1.0f;
 
 	auto transform = new Transform();
 	transform->position = pos;
 
-	std::string texName = isPlayer? "elec-04": "shadow-04";
-	m_Damage = isPlayer? 3.0f: 1.0f;
 	auto renderComp = new SpriteRenderer(texName);
 	renderComp->scale = Raven::Core::Point3D(0.25);
 
@@ -29,11 +30,12 @@ Attack::Attack(Raven::Core::Point3D pos, Raven::Core::Point3D dir, bool isPlayer
 	collisionComp->bounds = AABB();
 	collisionComp->bounds.center = Raven::Core::Point3D(0, 20, 0);
 	collisionComp->bounds.extents = Raven::Core::Point3D(20, 20, 0);
-	collisionComp->SetCallback([isPlayer](Raven::Core::Entity* entity) {
+	collisionComp->SetCallback([isPlayer, this](Raven::Core::Entity* entity) {
 		auto healthComp = entity->GetComponent<Components::HealthComponent>();
 		if (healthComp == nullptr) return;
 		// Todo: Collision layer should ignore the collision
 		healthComp->Damage(3);
+		m_Entity->Destroy();
 		});
 
 	m_Entity->AddComponent(transform);

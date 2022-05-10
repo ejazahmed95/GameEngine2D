@@ -23,6 +23,7 @@ namespace Raven { namespace System {
 			for (int j = i+1; j < m_RegisteredEntities.size(); j++) {
 				const auto element2 = m_RegisteredEntities[j];
 				if (element1->Destroyed() || element2->Destroyed()) continue;
+				if (element1->GetTag() == element2->GetTag()) continue;
 				const auto collider2 = element2->GetComponent<Components::Collider2D>();
 
 				bool colliding = (collider1->continuous || collider2->continuous)

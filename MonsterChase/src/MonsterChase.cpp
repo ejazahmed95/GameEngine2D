@@ -12,13 +12,13 @@ MonsterChase::~MonsterChase() {
 
 void MonsterChase::GameStart() {
 	Application::GameStart();
-	
+	m_HealthSystem->Initialize();
+	m_EnemySystem->Initialize();
 	// Raven::GetRenderer().AcquireOwnership()->LoadSprites(sprites);
 
 	// srand(static_cast<int>(time(nullptr)));
 	pc = new PlayerController();
 	pc->Init();
-	
 }
 
 void MonsterChase::Update(float delta) {
@@ -27,5 +27,7 @@ void MonsterChase::Update(float delta) {
 
 void MonsterChase::GameEnd() {
 	Application::GameEnd();
+	m_EnemySystem->Destroy();
+	m_HealthSystem->Destroy();
 	// GLib::Release(playerSprite);
 }

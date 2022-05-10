@@ -2,6 +2,7 @@
 #include "TComponent.h"
 #include "../CoreModule/Point3D.h"
 #include "../Core.h"
+#include "GLib.h"
 
 namespace Raven { namespace Components {
 	struct RAVEN_API SpriteRenderer : public TComponent<SpriteRenderer> {

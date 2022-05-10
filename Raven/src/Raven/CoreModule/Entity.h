@@ -46,10 +46,12 @@ namespace Raven { namespace Core {
 			// std::move(name, m_Name);
 			m_Name = name;
 		}
+		void SetTag(std::string tag) { m_Tag = tag; }
 
 		std::string GetName() const { return m_Name; }
 		bool Destroyed() const { return m_Destroyed; }
 		void Destroy() { m_Destroyed = true; }
+		std::string GetTag() const { return m_Tag; }
 
 		static int s_EntityCount;
 
@@ -61,7 +63,8 @@ namespace Raven { namespace Core {
 	private:
 		int m_Id;
 		std::string m_Name;
-		bool m_Destroyed;
+		std::string m_Tag;
+		bool m_Destroyed = false;
 		std::unordered_map<Types::t_uid, Components::IComponent*> m_Components;
 		BitMask componentMask;
 	};

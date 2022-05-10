@@ -8,7 +8,6 @@
 #include "../Components/SpriteRenderer.h"
 #include "../Components/PhysicsComponent.h"
 #include "../Components/Collider2D.h"
-#include "../Components/EnemyComponent.h"
 
 #include "JobSystem/JobSystem.h"
 
@@ -96,9 +95,14 @@ namespace Raven { namespace Editor {
 		RavenStd::Log::I("Creating a game object");
 		auto entity = ECSManager::CreateEntity();
 		if (gameObjectJson.contains("name")) {
-			std::string name;
+			std::string name, tag;
 			gameObjectJson.at("name").get_to(name);
 			entity->SetName(name);
+		}
+		if (gameObjectJson.contains("tag")) {
+			std::string tag;
+			gameObjectJson.at("tag").get_to(tag);
+			entity->SetName(tag);
 		}
 		AddComponentsToEntity(entity, gameObjectJson["components"]);
 		AddGameplayComponentsToEntity(entity, gameObjectJson["components"]);
@@ -130,11 +134,6 @@ namespace Raven { namespace Editor {
 			auto collisionComp = new Components::Collider2D();
 			Components::Collider2D::from_json(componentObj.at("collision"), *collisionComp);
 			entity->AddComponent(collisionComp);
-		}
-
-		if(componentObj.contains("enemy")) {
-			auto enemyComp = new Components::EnemyComponent();
-			entity->AddComponent(enemyComp);
 		}
 	}
 }}

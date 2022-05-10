@@ -13,8 +13,7 @@ class PlayerController {
 public:
 	void Init();
 	void AddAttack();
-	~PlayerController();
 private:
 	Raven::Core::Entity* m_Entity;
-	std::vector<Attack*> m_Attacks;
+	// std::vector<Attack*> m_Attacks;
 };

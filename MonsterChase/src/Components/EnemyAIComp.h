@@ -11,7 +11,7 @@ namespace Components {
 		float timeElapsed = 0;
 
 		static void from_json(const json& j, EnemyAIComp& comp) {
-			j.at("attackInterval").get_to(comp.attackInterval);
+			if(j.contains("attackInterval")) j.at("attackInterval").get_to(comp.attackInterval);
 		}
 	};
 }

@@ -1,6 +1,7 @@
 [
   {
     "name": "Pikachu",
+    "tag": "Player",
     "components": {
       "transform": {
         "position": {
@@ -42,6 +43,7 @@
   },
   {
     "name": "Gastly",
+    "tag": "Enemy",
     "components": {
       "transform": {
         "position": {
@@ -87,8 +89,10 @@
           }
         }
       },
-      "health": { "health": 10 },
-      "EnemyAI": {}
+      "health": { "health": 1 },
+      "EnemyAI": {
+        "attackInterval": 2
+      }
     }
   }
 ]
