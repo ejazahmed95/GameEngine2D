@@ -102,7 +102,7 @@ namespace Raven { namespace Editor {
 		if (gameObjectJson.contains("tag")) {
 			std::string tag;
 			gameObjectJson.at("tag").get_to(tag);
-			entity->SetName(tag);
+			entity->SetTag(tag);
 		}
 		AddComponentsToEntity(entity, gameObjectJson["components"]);
 		AddGameplayComponentsToEntity(entity, gameObjectJson["components"]);

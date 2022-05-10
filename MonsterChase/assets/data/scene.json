@@ -1,7 +1,7 @@
 [
   {
     "name": "Pikachu",
-    "tag": "Player",
+    "tag":  "Player",
     "components": {
       "transform": {
         "position": {
@@ -43,7 +43,6 @@
   },
   {
     "name": "Gastly",
-    "tag": "Enemy",
     "components": {
       "transform": {
         "position": {

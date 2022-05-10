@@ -53,7 +53,7 @@ namespace Raven {
 		if (m_GameStarted) return;
 
 		App_InitialiseSystems();
-		GameStart();
+		GameStart(); // Virtual
 
 		// TODO: Calculate and add the delta time for each of these
 		while(!m_GameEnded) {
@@ -63,7 +63,7 @@ namespace Raven {
 			Update(delta);
 		}
 
-		GameEnd();
+		GameEnd(); // Virtual
 		App_DestroySystems();
 	}
 
