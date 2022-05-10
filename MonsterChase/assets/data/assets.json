@@ -17,6 +17,22 @@
       "path": "assets\\sprites\\elec-04.dds"
     },
     {
+      "name": "shadow-00",
+      "path": "assets\\sprites\\shadow-00.dds"
+    },
+    {
+      "name": "shadow-01",
+      "path": "assets\\sprites\\shadow-01.dds"
+    },
+    {
+      "name": "shadow-02",
+      "path": "assets\\sprites\\shadow-02.dds"
+    },
+    {
+      "name": "shadow-03",
+      "path": "assets\\sprites\\shadow-03.dds"
+    },
+    {
       "name": "shadow-04",
       "path": "assets\\sprites\\shadow-04.dds"
     }
