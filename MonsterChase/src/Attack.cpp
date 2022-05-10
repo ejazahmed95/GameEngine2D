@@ -30,12 +30,13 @@ Attack::Attack(Raven::Core::Point3D pos, Raven::Core::Point3D dir, bool isPlayer
 	collisionComp->bounds = AABB();
 	collisionComp->bounds.center = Raven::Core::Point3D(0, 20, 0);
 	collisionComp->bounds.extents = Raven::Core::Point3D(20, 20, 0);
-	collisionComp->SetCallback([isPlayer, this](Raven::Core::Entity* entity) {
+	auto entityRef = m_Entity;
+	collisionComp->SetCallback([isPlayer, entityRef](Raven::Core::Entity* entity) {
 		auto healthComp = entity->GetComponent<Components::HealthComponent>();
 		if (healthComp == nullptr) return;
 		// Todo: Collision layer should ignore the collision
 		healthComp->Damage(3);
-		m_Entity->Destroy();
+		entityRef->Destroy();
 		});
 
 	m_Entity->AddComponent(transform);

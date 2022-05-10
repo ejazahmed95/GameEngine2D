@@ -11,9 +11,9 @@ MonsterChase::~MonsterChase() {
 };
 
 void MonsterChase::GameStart() {
-	Application::GameStart();
 	m_HealthSystem->Initialize();
 	m_EnemySystem->Initialize();
+	Application::GameStart();
 	// Raven::GetRenderer().AcquireOwnership()->LoadSprites(sprites);
 
 	// srand(static_cast<int>(time(nullptr)));
@@ -23,6 +23,8 @@ void MonsterChase::GameStart() {
 
 void MonsterChase::Update(float delta) {
 	Application::Update(delta);
+	m_HealthSystem->Update(delta);
+	m_EnemySystem->Update(delta);
 }
 
 void MonsterChase::GameEnd() {
