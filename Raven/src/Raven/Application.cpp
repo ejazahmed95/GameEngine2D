@@ -26,18 +26,12 @@ namespace Raven {
 	void Application::Update(float delta) {}
 	void Application::GameEnd() {}
 
-	// StandardInputReader Application::standardInputReader() const
-	// {
-	// 	return input_reader_;
-	// }
-
 	void Application::App_StartGame() {
 		if (m_GameStarted) return;
 
 		App_InitialiseSystems();
 		GameStart();
-
-		// TODO: Calculate and add the delta time for each of these
+		
 		while(!m_GameEnded) {
 			float delta = m_Timing->GetFrameTime();
 			// SLib::Log::I("Last Frame Time = " + std::to_string(static_cast<int>(delta*1000)) + "ms");
