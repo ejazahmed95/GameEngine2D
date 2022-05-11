@@ -28,12 +28,12 @@
         "bounds": {
           "center": {
             "x": 0,
-            "y": 50,
+            "y": 25,
             "z": 0
           },
           "extents": {
-            "x": 50,
-            "y": 50,
+            "x": 25,
+            "y": 25,
             "z": 0
           }
         }
@@ -43,11 +43,65 @@
   },
   {
     "name": "Gastly",
-    "tag": "Enemy", 
+    "tag": "Enemy",
     "components": {
       "transform": {
         "position": {
           "x": 100,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "sprite_renderer": {
+        "spriteRef": "assets\\sprites\\gastly.dds",
+        "texture": "gastly",
+        "scale": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        }
+      },
+      "physics": {
+        "mass": 1,
+        "e": 0.01,
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "collision": {
+        "bounds": {
+          "center": {
+            "x": 0,
+            "y": 25,
+            "z": 0
+          },
+          "extents": {
+            "x": 25,
+            "y": 25,
+            "z": 0
+          }
+        }
+      },
+      "health": { "health": 1 },
+      "EnemyAI": {
+        "attackInterval": 2
+      }
+    }
+  },
+  {
+    "name": "Gastly 2",
+    "tag": "Enemy",
+    "components": {
+      "transform": {
+        "position": {
+          "x": -100,
           "y": 0,
           "z": 0
         },
@@ -91,7 +145,61 @@
       },
       "health": { "health": 1 },
       "EnemyAI": {
-        "attackInterval": 2
+        "attackInterval": 3
+      }
+    }
+  },
+  {
+    "name": "Gastly 2",
+    "tag": "Enemy",
+    "components": {
+      "transform": {
+        "position": {
+          "x": 10,
+          "y": 100,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "sprite_renderer": {
+        "spriteRef": "assets\\sprites\\gastly.dds",
+        "texture": "gastly",
+        "scale": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        }
+      },
+      "physics": {
+        "mass": 1,
+        "e": 0.01,
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "collision": {
+        "bounds": {
+          "center": {
+            "x": 0,
+            "y": 50,
+            "z": 0
+          },
+          "extents": {
+            "x": 50,
+            "y": 50,
+            "z": 0
+          }
+        }
+      },
+      "health": { "health": 1 },
+      "EnemyAI": {
+        "attackInterval": 3.5
       }
     }
   }
