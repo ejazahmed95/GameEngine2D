@@ -54,7 +54,11 @@ Check [Basic Flow](#basic-flow) section for an overview of the code design
 - Physics and Input Systems are located in `[EngineSrc]>Systems`
 - Timing located in `[EngineSrc]>Timing`
 
-#### 2.03 Smart Pointers
+#### 2.03 Strong and Weak Pointers
+- `[StdSrc]>memory` contains the implementation for strong and weak pointers
+- Strong/Weak pointers are used in the application for storing references of game systems
+
+
 ---
 
 ## Raven

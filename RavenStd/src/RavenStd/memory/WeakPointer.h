@@ -10,6 +10,7 @@ namespace RavenStd {
 		template<class U>
 		friend class WeakPtr;
 	public:
+		WeakPtr() : m_Ptr(nullptr), m_Counters(nullptr) {}
 		// Constructor from StrongPtrs
 		WeakPtr(const StrongPtr<T>& i_owner) : m_Ptr(i_owner.m_Ptr), m_Counters(i_owner.m_Counters) {
 			m_Counters->IncWeakRefs();
