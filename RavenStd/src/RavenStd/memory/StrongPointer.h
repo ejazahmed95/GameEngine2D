@@ -51,6 +51,12 @@ namespace RavenStd {
 			if (m_Counters) m_Counters->IncStrongRefs();
 		}
 
+		explicit StrongPtr(WeakPtr<T> weakPtr) {
+			m_Ptr = weakPtr.m_Ptr;
+			m_Counters = weakPtr.m_Counters;
+			if (m_Counters) m_Counters->IncStrongRefs();
+		}
+
 		template<class U>
 		explicit StrongPtr(U* i_ptr, ReferenceCounters* counters) {
 			m_Ptr = static_cast<T*>(i_ptr);
@@ -156,7 +162,7 @@ namespace RavenStd {
 		}
 		// bool operator - used for using inside if() checks to see if it's a valid StrongPtr(underlying object hasn't been released)
 		inline operator bool() const {
-			return (*this) == nullptr;
+			return m_Ptr == nullptr;
 		}
 		// Access operator
 		T* operator->() {
