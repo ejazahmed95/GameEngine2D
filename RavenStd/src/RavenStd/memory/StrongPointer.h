@@ -154,7 +154,7 @@ namespace RavenStd {
 		}
 		// bool operator - used for using inside if() checks to see if it's a valid StrongPtr(underlying object hasn't been released)
 		inline operator bool() const {
-			return (*this) == nullptr;
+			return m_Ptr == nullptr;
 		}
 		// Access operator
 		T* operator->() {
@@ -175,7 +175,7 @@ namespace RavenStd {
 			if (!m_Ptr) {
 				return;
 			}
-			Log::D("Reducing Strong References; Strong References = " + std::to_string(m_Counters->StrongRefs()) + " | WeakRef=" + std::to_string(m_Counters->WeakRefs()));
+			//Log::D("Reducing Strong References; Strong References = " + std::to_string(m_Counters->StrongRefs()) + " | WeakRef=" + std::to_string(m_Counters->WeakRefs()));
 			if (m_Counters->DecStrongRefs() == 0) {
 				delete m_Ptr;
 				m_Ptr = nullptr;
