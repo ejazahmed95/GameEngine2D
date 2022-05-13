@@ -38,66 +38,72 @@ namespace Raven { namespace System {
 		}
 	}
 
-	bool CollisionSystem2D::checkCollision(Core::Entity* element1, Core::Entity* element2, Components::Collider2D* collider1, Components::Collider2D* collider2) const {
+	bool CollisionSystem2D::checkCollision(Core::Entity* elementA, Core::Entity* elementB, Components::Collider2D* colliderA, Components::Collider2D* colliderB) const {
 
-		const auto transform1 = element1->GetComponent<Components::Transform>();
-		auto transform2 = element2->GetComponent<Components::Transform>();
+		const auto transformA = elementA->GetComponent<Components::Transform>();
+		auto transformB = elementB->GetComponent<Components::Transform>();
 
 		// Matrix from A to B
-		auto matARot = RavenStd::Matrix::CreateRotationZ(transform1->rotation.Z());
-		auto matATrans = RavenStd::Matrix::CreateTranslation(transform1->position.X(), transform1->position.Y(), transform1->position.Z());
+		auto matARot = RavenStd::Matrix::CreateRotationZ(transformA->rotation.Z());
+		auto matATrans = RavenStd::Matrix::CreateTranslation(transformA->position.X(), transformA->position.Y(), transformA->position.Z());
 
 		auto matA2World = matATrans * matARot;
 		// auto matWorld2A = RavenStd::Matrix::GetInverseWellBehaved(matARot, matATrans);
 
-		auto matBRot = RavenStd::Matrix::CreateRotationZ(transform2->rotation.Z());
-		auto matBTrans = RavenStd::Matrix::CreateTranslation(transform2->position.X(), transform2->position.Y(), transform2->position.Z());
+		auto matBRot = RavenStd::Matrix::CreateRotationZ(transformB->rotation.Z());
+		auto matBTrans = RavenStd::Matrix::CreateTranslation(transformB->position.X(), transformB->position.Y(), transformB->position.Z());
 
 		auto matB2World = matBTrans * matBRot;
-		auto transVec4 = transform2->position.ToVec4();
+		auto transVec4 = transformB->position.ToVec4();
 
 		auto matWorld2B = RavenStd::Matrix::GetInverseWellBehaved(matBRot, transVec4);
 
 		auto matA2B = matWorld2B * matA2World;
 
 		// A in B's X Axis
-		auto ACenterInB = matA2B * collider1->bounds.center.ToVec4(1);
-		auto AExtentXInB = matA2B * RavenStd::Vec4{ collider1->bounds.extents.X(), 0, 0, 0};
-		auto AExtentYInB = matA2B * RavenStd::Vec4{ 0, collider1->bounds.extents.Y(), 0, 0 };
+		auto ACenterInB = matA2B * colliderA->bounds.center.ToVec4(1);
+		auto AExtentXInB = matA2B * RavenStd::Vec4{ colliderA->bounds.extents.X(), 0, 0, 0};
+		auto AExtentYInB = matA2B * RavenStd::Vec4{ 0, colliderA->bounds.extents.Y(), 0, 0 };
 
 		auto AProjXInB = fabs(AExtentXInB.X()) + fabs(AExtentYInB.X());
 		auto AProjYInB = fabs(AExtentXInB.Y()) + fabs(AExtentYInB.Y());
 
-		// auto ALeftEdgeInB = ACenterInB.X() - AProjXInB;
-		// auto ARightEdgeInB = ACenterInB.X() + AProjXInB;
 
-		{
-			// RavenStd::Log::I("matARot\n" + matARot.String());
-			// RavenStd::Log::I("matATrans\n" + matATrans.String());
-			// RavenStd::Log::I("matA2World\n" + matA2World.String());
-			//
-			// RavenStd::Log::I("matBRot\n" + matBRot.String());
-			// RavenStd::Log::I("matBTrans\n" + matBTrans.String());
-			// RavenStd::Log::I("matWorld2B\n" + matWorld2B.String());
-			//
-			// RavenStd::Log::I("ACenterInB\n" + ACenterInB.toString());
-			// RavenStd::Log::I("AExtentXInB\n" + AExtentXInB.toString());
-			// RavenStd::Log::I("AExtentYInB\n" + AExtentYInB.toString());
-		}
-
-		if(fabs(ACenterInB.X() - collider2->bounds.center.X()) > fabs(collider2->bounds.extents.X()) + fabs(AProjXInB)) {
+		if(fabs(ACenterInB.X() - colliderB->bounds.center.X()) > fabs(colliderB->bounds.extents.X()) + fabs(AProjXInB)) {
 			// Separation along B's vertical axis
-			// RavenStd::Log::I("No Separa")
 			return false;
 		}
 
-		if (fabs(ACenterInB.Y() - collider2->bounds.center.Y()) > fabs(collider2->bounds.extents.Y()) + fabs(AProjYInB)) {
+		if (fabs(ACenterInB.Y() - colliderB->bounds.center.Y()) > fabs(colliderB->bounds.extents.Y()) + fabs(AProjYInB)) {
 			// Separation along B's Horizontal Axis
 			return false;
 		}
 
-		//RavenStd::Log::I("Distance between 2 objects is:: X = " + std::to_string(ACenterInB.X() - collider2->bounds.center.X()) +
-			//"|| Y = " + std::to_string(ACenterInB.Y() - collider2->bounds.center.Y()));
+
+		// B in A's X Axis
+		auto tVec = transformA->position.ToVec4();
+		auto matWorld2A = RavenStd::Matrix::GetInverseWellBehaved(matARot, tVec);
+		auto matB2A = matWorld2A * matB2World;
+
+		auto BCenterInA = matB2A * colliderB->bounds.center.ToVec4(1);
+		auto BExtentXInA = matB2A * RavenStd::Vec4{ colliderA->bounds.extents.X(), 0, 0, 0 };
+		auto BExtentYInA = matB2A * RavenStd::Vec4{ 0, colliderA->bounds.extents.Y(), 0, 0 };
+
+		auto BProjXInA = fabs(BExtentXInA.X()) + fabs(BExtentYInA.X());
+		auto BProjYInA = fabs(BExtentXInA.Y()) + fabs(BExtentYInA.Y());
+
+		if (fabs(BCenterInA.X() - colliderA->bounds.center.X()) > fabs(colliderA->bounds.extents.X()) + fabs(BProjXInA)) {
+			// Separation along B's vertical axis
+			return false;
+		}
+
+		if (fabs(BCenterInA.Y() - colliderA->bounds.center.Y()) > fabs(colliderA->bounds.extents.Y()) + fabs(BProjYInA)) {
+			// Separation along B's Horizontal Axis
+			return false;
+		}
+
+		//RavenStd::Log::I("Distance between 2 objects is:: X = " + std::to_string(ACenterInB.X() - colliderB->bounds.center.X()) +
+			//"|| Y = " + std::to_string(ACenterInB.Y() - colliderB->bounds.center.Y()));
 
 		return true;
 	}
@@ -115,6 +121,7 @@ namespace Raven { namespace System {
 		const auto transformB = entityB->GetComponent<Components::Transform>();
 
 		bool separated = false;
+
 		/*
 		 * B's Coordinate System
 		 * B's X-Axis
@@ -125,21 +132,79 @@ namespace Raven { namespace System {
 		auto AExtentXInB = matA2B * RavenStd::Vec4{ colliderA->bounds.extents.X(), 0, 0, 0 };
 		auto AExtentYInB = matA2B * RavenStd::Vec4{ 0, colliderA->bounds.extents.Y(), 0, 0 };
 		auto AProjInB = Core::Point3D{ fabs(AExtentXInB.X()) + fabs(AExtentYInB.X()), fabs(AExtentXInB.Y()) + fabs(AExtentYInB.Y()), 0 };
-		Core::Point3D expandedExtents = colliderB->bounds.extents + AProjInB;
+		Core::Point3D expandedExtentsB = colliderB->bounds.extents + AProjInB;
 
 		auto VelARelB = physicsA->vel - physicsB->vel;
 		auto VelADist = VelARelB * dt;
-		auto VelADistInB = RavenStd::Vec4::Dot(transformB->World2ObjectMatrix().Column(0).Normalize(), VelADist.ToVec4());
+		auto VelADistInBx = RavenStd::Vec4::Dot(transformB->World2ObjectMatrix().Column(0).Normalize(), VelADist.ToVec4());
 
-		auto bLeft = colliderB->bounds.center.X() - expandedExtents.X();
-		auto bRight = colliderB->bounds.center.X() + expandedExtents.X();
+		auto bLeft = colliderB->bounds.center.X() - expandedExtentsB.X();
+		auto bRight = colliderB->bounds.center.X() + expandedExtentsB.X();
 
-		updateTimes(ACenterInB.X(), bLeft, bRight, VelADistInB, tOpen, tClose, separated);
+		updateTimes(ACenterInB.X(), bLeft, bRight, VelADistInBx, tOpen, tClose, separated);
 
-		RavenStd::Log::D("CS = B | X-Axis || Point = " + std::to_string(ACenterInB.X()) + "| Edge_L = " + std::to_string(bLeft) +
-			"| Edge_R = " + std::to_string(bRight) + "| Distance = " + std::to_string(VelADistInB));
+		//RavenStd::Log::D("CS = B | X-Axis || Point = " + std::to_string(ACenterInB.X()) + "| Edge_L = " + std::to_string(bLeft) +
+			//"| Edge_R = " + std::to_string(bRight) + "| Distance = " + std::to_string(VelADistInBx));
 
 		if (separated) return false;
+
+
+		/*
+		 * B's Coordinate System
+		 * B's Y-Axis
+		 */
+		auto VelADistInBy = RavenStd::Vec4::Dot(transformB->World2ObjectMatrix().Column(1).Normalize(), VelADist.ToVec4());
+
+		auto bBottom = colliderB->bounds.center.Y() - expandedExtentsB.Y();
+		auto bTop = colliderB->bounds.center.Y() + expandedExtentsB.Y();
+		updateTimes(ACenterInB.Y(), bBottom, bTop, VelADistInBy, tOpen, tClose, separated);
+
+		if (separated) return false;
+
+
+		/*
+		 * A's Coordinate System
+		 * A's X-Axis
+		 */
+
+		const auto& matB2A = getMatA2B(transformB, transformA);
+		auto BCenterInA = matB2A * colliderA->bounds.center.ToVec4(1);
+
+		auto BExtentXInA = matB2A * RavenStd::Vec4{ colliderB->bounds.extents.X(), 0, 0, 0 };
+		auto BExtentYInA = matB2A * RavenStd::Vec4{ 0, colliderB->bounds.extents.Y(), 0, 0 };
+		auto BProjInA = Core::Point3D{ fabs(BExtentXInA.X()) + fabs(BExtentYInA.X()), fabs(BExtentXInA.Y()) + fabs(BExtentYInA.Y()), 0 };
+		Core::Point3D expandedExtentsA = colliderA->bounds.extents + BProjInA;
+
+		auto VelBRelA = physicsB->vel - physicsA->vel;
+		auto VelBDist = VelBRelA * dt;
+		auto VelBDistInAx = RavenStd::Vec4::Dot(transformA->World2ObjectMatrix().Column(0).Normalize(), VelBDist.ToVec4());
+
+		bLeft = colliderA->bounds.center.X() - expandedExtentsA.X();
+		bRight = colliderA->bounds.center.X() + expandedExtentsA.X();
+
+		updateTimes(BCenterInA.X(), bLeft, bRight, VelBDistInAx, tOpen, tClose, separated);
+
+		//RavenStd::Log::D("CS = B | X-Axis || Point = " + std::to_string(ACenterInB.X()) + "| Edge_L = " + std::to_string(bLeft) +
+			//"| Edge_R = " + std::to_string(bRight) + "| Distance = " + std::to_string(VelADistInBx));
+
+		if (separated) return false;
+
+
+		/*
+		 * A's Coordinate System
+		 * A's Y-Axis
+		 */
+		auto VelBDistInAy = RavenStd::Vec4::Dot(transformA->World2ObjectMatrix().Column(1).Normalize(), VelBDist.ToVec4());
+
+		bBottom = colliderA->bounds.center.Y() - expandedExtentsA.Y();
+		bTop = colliderA->bounds.center.Y() + expandedExtentsA.Y();
+		updateTimes(BCenterInA.X(), bBottom, bTop, VelBDistInAy, tOpen, tClose, separated);
+
+		if (separated) return false;
+
+		// Time of Collision
+		// Todo: Use time of collision to update the velocities
+		auto tCol = tClose * dt;
 
 		// Coordinate System B - Y Axis
 		return tOpen > tClose;
