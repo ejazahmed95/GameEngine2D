@@ -62,6 +62,14 @@ Check [Basic Flow](#basic-flow) section for an overview of the code design
 - `MonsterChase>assets>data>scene.json`: This contains the scene heirarchy and a list of game objects to be loaded
 - `[EngineSrc]>Editor>Editor.cpp`: This file contains the implementation for loading game objects using the json file
 
+#### 2.06 Job System
+The Job System is added as an additional dependency to the project.
+`[EngineSrc]\Editor\Editor.cpp` contains a static method `LoadGameObjectsFromFile` that launches a job in the ==JobSystem's Default Queue== for creating game objects from the file.
+
+The components are also added to the Entities(GameObject) in the job itself.
+
+#### 2.07 Vector4 and Matrices
+
 
 ---
 
