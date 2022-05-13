@@ -44,18 +44,12 @@ namespace Raven {
 		Engine::JobSystem::RequestShutdown();
 	}
 
-	// StandardInputReader Application::standardInputReader() const
-	// {
-	// 	return input_reader_;
-	// }
-
 	void Application::App_StartGame() {
 		if (m_GameStarted) return;
 
 		App_InitialiseSystems();
 		GameStart(); // Virtual
-
-		// TODO: Calculate and add the delta time for each of these
+		
 		while(!m_GameEnded) {
 			float delta = m_Timing->GetFrameTime(0.01f);
 			// RavenStd::Log::I("Last Frame Time = " + std::to_string(delta*1000) + "ms");
