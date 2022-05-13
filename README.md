@@ -10,6 +10,7 @@ Following are the core projects used in the
 #### Dependencies
 Apart from the above, a few dependencies are added to the project
 - GLib: A 2D rendering library
+- JobSystem: A library for launching tasks/jobs
 
 #### Basic Flow {#basic-flow}
 - `Raven>src>Raven`: Source Directory for the game engine (Raven). Let's call this `[EngineSrc]`
@@ -74,11 +75,20 @@ The components are also added to the Entities(GameObject) in the job itself.
 - `[StdSrc]>LinearAlgebra` contains both the vector4 and matrix classes
 - `[StdSrc]>test` contains the MatrixTest function to test the basic functionality of a matrix.
 
-
+#### 2.08 Collision
+- `[EngineSrc]>Systems\CollisionSystem2D`: This system handles the collision detection for objects that have a transform and collision component
+- `[EngineSrc]>Components\Collider2D`: This is the collision component that contains both the bounding box and a callback on collision detection
+- Collider component also contains a variable `Continuous`. Enabling this will update the collision system to perform a Swept-Separating Axis check on those objects
 ---
 
 ## Raven
 The game engine is structured using the ECS Model
+
+### Entities
+Basic form of a game object. Every entity is unique, and has a list of components that can be added to it.
+
+### Components
+Components are basic data structs that contain information. These can be accessed by the systems that act upon it.
 
 ### Systems
 #### Rendering System
