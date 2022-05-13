@@ -54,9 +54,13 @@ Check [Basic Flow](#basic-flow) section for an overview of the code design
 - Physics and Input Systems are located in `[EngineSrc]>Systems`
 - Timing located in `[EngineSrc]>Timing`
 
-#### 2.03 Strong and Weak Pointers
+#### 2.03/2.04 Strong and Weak Pointers
 - `[StdSrc]>memory` contains the implementation for strong and weak pointers
 - Strong/Weak pointers are used in the application for storing references of game systems
+
+#### 2.05 JSON Loader
+- `MonsterChase>assets>data>scene.json`: This contains the scene heirarchy and a list of game objects to be loaded
+- `[EngineSrc]>Editor>Editor.cpp`: This file contains the implementation for loading game objects using the json file
 
 
 ---
@@ -67,6 +71,11 @@ The game engine is structured using the ECS Model
 ### Systems
 #### Rendering System
 Sprites are rendered using the GLib library
+
+#### Editor
+The Editor namespace contains the logic for engine initialization using json files. The editor supports the following functionalities
+- Loads the game objects from a given Json file (`scene.json`)
+
 
 ---
 
