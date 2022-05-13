@@ -38,7 +38,7 @@ namespace Raven { namespace System {
 		}
 	}
 
-	bool CollisionSystem2D::checkCollision(Core::Entity* element1, Core::Entity* element2, Components::Collider2D* collider1, Components::Collider2D* collider2) {
+	bool CollisionSystem2D::checkCollision(Core::Entity* element1, Core::Entity* element2, Components::Collider2D* collider1, Components::Collider2D* collider2) const {
 
 		const auto transform1 = element1->GetComponent<Components::Transform>();
 		auto transform2 = element2->GetComponent<Components::Transform>();
@@ -143,8 +143,6 @@ namespace Raven { namespace System {
 
 		// Coordinate System B - Y Axis
 		return tOpen > tClose;
-
-		return true;
 	}
 
 	void CollisionSystem2D::updateTimes(float center, float bLeft, float bRight, float distance, float& tOpen, float& tClose, bool& separated) {

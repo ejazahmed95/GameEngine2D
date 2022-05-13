@@ -17,4 +17,5 @@ namespace RavenStd {
 	};
 
 	void TestStrongWeakPtr();
+	void TestMatrix();
 }

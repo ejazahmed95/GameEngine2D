@@ -34,8 +34,8 @@ namespace RavenStd {
 		static void D(std::string arg) {
 			if (level > ELogLevel::DEBUG) return;
 
-			char buffer[400];
-			sprintf_s(buffer, 100, "[DEBUG] %s\n", arg.c_str());
+			char buffer[1000];
+			sprintf_s(buffer, 1000, "[DEBUG] %s\n", arg.c_str());
 			OutputDebugStringA(buffer);
 		}
 

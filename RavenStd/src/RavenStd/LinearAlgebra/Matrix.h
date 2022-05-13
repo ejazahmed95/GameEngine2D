@@ -33,9 +33,8 @@ namespace RavenStd {
 
 		// Properties
 		Matrix Transpose() const;
-		Matrix Inverse() const; // Inverts the current matrix
+		//Matrix Inverse() const; // Inverts the current matrix
 		Vec4 Column(int index) const;
-		// static Matrix Inverse(Matrix& matrix);
 
 		/// <summary>
 		/// Get the inverse of a well behaved coordinate system matrix
@@ -45,7 +44,13 @@ namespace RavenStd {
 		/// <returns></returns>
 		static Matrix GetInverseWellBehaved(Matrix& rot, Vec4& trans);
 
-		// Transform
+		/**
+		 * \brief Generates a translation matrix
+		 * \param transX Translation in X direction
+		 * \param transY Translation in Y direction
+		 * \param transZ Translation in Z direction
+		 * \return a Translation Matrix
+		 */
 		static Matrix CreateTranslation(float transX, float transY, float transZ);
 
 		static Matrix CreateRotationX(float radians);
@@ -57,6 +62,8 @@ namespace RavenStd {
 		// Operator Overloading
 		Matrix& operator=(const Matrix& m); // Assignment Operator
 		Matrix operator*(Matrix& m) const;
+
+		bool operator==(const Matrix& m) const;
 
 		std::string String() const;
 
@@ -71,4 +78,5 @@ namespace RavenStd {
 	// Multiplication with a Vec4
 	Vec4 operator*(const Matrix& lhs, const Vec4& rhs);
 	Vec4 operator*(const Vec4& lhs, const Matrix& rhs);
+
 }

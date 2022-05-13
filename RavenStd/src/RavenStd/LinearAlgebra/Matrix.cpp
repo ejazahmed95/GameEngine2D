@@ -1,4 +1,5 @@
 #include "Matrix.h"
+#include "../math/mathutils.h"
 
 #include <cassert>
 
@@ -36,11 +37,6 @@ namespace RavenStd {
 		};
 	}
 
-	Matrix Matrix::Inverse() const {
-		// TODO: Implementation if needed
-		return *this;
-	}
-
 	Vec4 Matrix::Column(int index) const {
 		switch (index) {
 		case 0:
@@ -49,6 +45,8 @@ namespace RavenStd {
 			return { m_M01, m_M11, m_M21, 0 };
 		case 2:
 			return { m_M02, m_M12, m_M22, 0 };
+		case 3:
+			return { m_M03, m_M13, m_M23, 0 };
 		default:
 			assert(false);
 			return { 0, 0, 0, 0 };
@@ -165,6 +163,14 @@ namespace RavenStd {
 		result.m_M33 = m_M30 * m.m_M03 + m_M31 * m.m_M13 + m_M32 * m.m_M23 + m_M33 * m.m_M33;
 
 		return result;
+	}
+
+	bool Matrix::operator==(const Matrix& m) const {
+		return
+			IsEqual(m_M00, m.m_M00) && IsEqual(m_M01, m.m_M01) && IsEqual(m_M02, m.m_M02) && IsEqual(m_M03, m.m_M03) &&
+			IsEqual(m_M10, m.m_M10) && IsEqual(m_M11, m.m_M11) && IsEqual(m_M12, m.m_M12) && IsEqual(m_M13, m.m_M13) &&
+			IsEqual(m_M20, m.m_M20) && IsEqual(m_M21, m.m_M21) && IsEqual(m_M22, m.m_M22) && IsEqual(m_M23, m.m_M23) &&
+			IsEqual(m_M30, m.m_M30) && IsEqual(m_M31, m.m_M31) && IsEqual(m_M32, m.m_M32) && IsEqual(m_M33, m.m_M33);
 	}
 
 	std::string Matrix::String() const {

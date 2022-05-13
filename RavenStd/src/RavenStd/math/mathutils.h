@@ -1,13 +1,8 @@
 #pragma once
+#include <cmath>
 
-namespace raven_std {
-	// Utilities for math with integers
-	namespace math {
-		
-	}
-
-	// Utilities for math with floats
-	namespace mathf {
-		
+namespace RavenStd {
+	inline bool IsEqual(const float& p1, const float& p2) {
+		return fabs(p1 - p2) < 0.0001f;
 	}
 }

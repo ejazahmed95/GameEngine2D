@@ -1,6 +1,7 @@
 #pragma once
 #include "Application.h"
 #include "RavenStd/Logger.h"
+#include "RavenStd/test/Testing.h"
 // #include "../../test/Point2DTest.h"
 
 #ifdef PLATFORM_WINDOWS
@@ -26,6 +27,9 @@ int WINAPI wWinMain(_In_ HINSTANCE i_hInstance, _In_opt_ HINSTANCE i_hPrevInstan
 	// _CrtSetBreakAlloc(682);
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	{
+		// Tests
+		RavenStd::TestMatrix();
+
 		// Raven::TEST_Point2DTest();	
 		const auto app = Raven::CreateApplication();
 

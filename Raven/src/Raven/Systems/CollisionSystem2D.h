@@ -14,7 +14,7 @@ namespace Raven { namespace System {
 		void Update(float dt) override;
 		
 	private:
-		bool checkCollision(Core::Entity* element1, Core::Entity* element2, Components::Collider2D* collider1, Components::Collider2D* collider2);
+		bool checkCollision(Core::Entity* element1, Core::Entity* element2, Components::Collider2D* collider1, Components::Collider2D* collider2) const;
 		void updateTimes(float center, float bLeft, float bRight, float distance, float& tOpen, float& tClose, bool& separated);
 		bool checkCollisionContinuous(Core::Entity* entityA, Core::Entity* entityB, Components::Collider2D* colliderA, Components::Collider2D* colliderB, float dt);
 		RavenStd::Matrix getMatA2B(Components::Transform* transformA, Components::Transform* transformB);

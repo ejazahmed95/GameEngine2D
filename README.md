@@ -71,6 +71,8 @@ The Job System is added as an additional dependency to the project.
 The components are also added to the Entities(GameObject) in the job itself.
 
 #### 2.07 Vector4 and Matrices
+- `[StdSrc]>LinearAlgebra` contains both the vector4 and matrix classes
+- `[StdSrc]>test` contains the MatrixTest function to test the basic functionality of a matrix.
 
 
 ---
