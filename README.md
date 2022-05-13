@@ -64,7 +64,9 @@ Check [Basic Flow](#basic-flow) section for an overview of the code design
 
 #### 2.06 Job System
 The Job System is added as an additional dependency to the project.
-`[EngineSrc]\Editor\Editor.cpp` contains a static method `LoadGameObjectsFromFile` that launches a job in the ==JobSystem's Default Queue== for creating game objects from the file.
+`[EngineSrc]\Editor\Editor.cpp` contains a static method `LoadGameObjectsFromFile` that launches 2 Jobs in the ==JobSystem's Default Queue==.
+1. First Job loads the `scene.json` file
+2. Second Job loads the game objects from the filled json
 
 The components are also added to the Entities(GameObject) in the job itself.
 

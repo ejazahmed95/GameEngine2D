@@ -22,23 +22,32 @@ namespace Raven { namespace Editor {
 	void LoadGameObjectsFromFile(const std::string fileName) {
 		RavenStd::Log::I("Loading game objects from file..");
 
-		// Load File into JSON Object
-		std::ifstream input(fileName);
-		if (!input) {
-			RavenStd::Log::E("Unable to read file; File does not exist " + fileName);
-			return;
-		}
+		Engine::JobSystem::JobStatus JobStatus;
 		json gameObjects;
-		input >> gameObjects;
-		input.close();
+
+		Engine::JobSystem::RunJob(
+			Engine::JobSystem::GetDefaultQueueName(),
+			[&gameObjects, fileName]() {
+				// Load File into JSON Object
+				std::ifstream input(fileName);
+				if (!input) {
+					RavenStd::Log::E("Unable to read file; File does not exist " + fileName);
+					return;
+				}
+				input >> gameObjects;
+				input.close();
+				RavenStd::Log::I("Loaded the scene file; closing stream");
+			},
+			&JobStatus);
+
+		JobStatus.WaitForZeroJobsLeft();
 
 		//RavenStd::Log::D(to_string(gameObjects));
 		if(!gameObjects.is_array()) {
 			RavenStd::Log::E("JSON File must be an array");
 			return;
 		}
-
-		Engine::JobSystem::JobStatus JobStatus;
+		
 		size_t entityCount = gameObjects.size();
 		Engine::JobSystem::RunJob(
 			Engine::JobSystem::GetDefaultQueueName(),
