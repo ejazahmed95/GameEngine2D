@@ -30,8 +30,8 @@ namespace Raven {namespace Components {
 		Collider2D() {
 			OnCollisionEnterCb = [](Core::Entity*)->void*{return nullptr; };
 		}
-		~Collider2D() {
-			GLib::Release(collisionBox);
+		~Collider2D() override{
+			if(collisionBox) GLib::Release(collisionBox);
 		}
 
 		void SetCallback(const std::function<void(Core::Entity*)>& cb) {

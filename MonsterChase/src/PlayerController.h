@@ -1,8 +1,4 @@
 #pragma once
-#include <string>
-
-#include "Attack.h"
-#include "Raven/CoreModule/CoreModule.h"
 #include "Raven/CoreModule/Entity.h"
 
 enum class InputAction {

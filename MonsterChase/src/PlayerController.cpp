@@ -1,5 +1,6 @@
 #include "PlayerController.h"
 
+#include "Attack.h"
 #include "Raven/ECSManager.h"
 #include "Raven/Systems.h"
 #include "Raven/Components/Collider2D.h"
@@ -17,7 +18,7 @@ void PlayerController::Init() {
 	auto attackSpawner = m_Entity->GetComponent<Collider2D>();
 
 	collider->SetCallback([](Raven::Core::Entity* entity) {
-		RavenStd::Log::I("Player Is Colliding with:: " + entity->GetName());
+		// RavenStd::Log::I("Player Is Colliding with:: " + entity->GetName());
 		});
 
 	m_Entity->AddComponent(new InputComponent([physics, transform, this](unsigned keyID, bool pressed) {

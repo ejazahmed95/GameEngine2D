@@ -96,8 +96,8 @@ namespace Raven { namespace System {
 			return false;
 		}
 
-		RavenStd::Log::I("Distance between 2 objects is:: X = " + std::to_string(ACenterInB.X() - collider2->bounds.center.X()) +
-			"|| Y = " + std::to_string(ACenterInB.Y() - collider2->bounds.center.Y()));
+		//RavenStd::Log::I("Distance between 2 objects is:: X = " + std::to_string(ACenterInB.X() - collider2->bounds.center.X()) +
+			//"|| Y = " + std::to_string(ACenterInB.Y() - collider2->bounds.center.Y()));
 
 		return true;
 	}
