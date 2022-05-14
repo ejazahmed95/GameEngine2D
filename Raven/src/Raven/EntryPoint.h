@@ -29,6 +29,7 @@ int WINAPI wWinMain(_In_ HINSTANCE i_hInstance, _In_opt_ HINSTANCE i_hPrevInstan
 	{
 		// Tests
 		RavenStd::TestMatrix();
+		RavenStd::TestSIMD();
 
 		// Raven::TEST_Point2DTest();	
 		const auto app = Raven::CreateApplication();

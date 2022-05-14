@@ -65,5 +65,8 @@
     <ClInclude Include="src\RavenStd\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\RavenStd\LinearAlgebra\Vec3SSE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

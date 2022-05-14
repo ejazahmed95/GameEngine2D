@@ -49,4 +49,5 @@ namespace RavenStd {
 
 	// Outside scope overloading
 	Vec4 operator*(float const lhs, Vec4 const& rhs);
+
 }

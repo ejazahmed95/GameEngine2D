@@ -1,10 +1,13 @@
 #include "Testing.h"
 
 #include <cassert>
+#include <intrin.h>
 
 #include "../memory/StrongPointer.h"
 #include "../memory/WeakPointer.h"
 #include "../LinearAlgebra/Matrix.h"
+#include "../LinearAlgebra/Vec3SSE.h"
+#include "../math/mathutils.h"
 
 namespace RavenStd {
 	void TestStrongWeakPtr() {
@@ -50,6 +53,26 @@ namespace RavenStd {
 
 		// assert()
 		// Matrix worldMat = tMat * rMat;
+	}
+
+	void TestSIMD() {
+		// __m128 v = { 0, 1, 5, 10 };
+		Opt::Vec3SSE v1(3, 4, 5);
+		Opt::Vec3SSE v2(5, 12, 13);
+
+		
+
+		float dot = v1.X() * v2.X() + v1.Y() * v2.Y() + v1.Z() * v2.Z();
+		assert(IsEqual(Opt::Vec3SSE::Dot(v1, v2), dot));
+
+		float crossX = v1.Y() * v2.Z() - v1.Z() * v2.Y();
+		float crossY = v1.Z() * v2.X() - v1.X() * v2.Z();
+		float crossZ = v1.X() * v2.Y() - v1.Y() * v2.X();
+
+		auto crossVec = Opt::Vec3SSE::Cross(v1, v2);
+		assert(IsEqual(crossVec.X(), crossX));
+		assert(IsEqual(crossVec.Y(), crossY));
+		assert(IsEqual(crossVec.Z(), crossZ));
 	}
 
 }

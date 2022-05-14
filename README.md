@@ -96,6 +96,10 @@ The components are also added to the Entities(GameObject) in the job itself.
 - `[EngineSrc]>Components\Collider2D`: This is the collision component that contains both the bounding box and a callback on collision detection
 - Collider component also contains a variable `Continuous`. Enabling this will update the collision system to perform a Swept-Separating Axis check on those objects
 
+#### 2.09 SIMD
+- `[StdSrc]>LinearAlgebra>Vec3SSE` contains an implementation of dot and cross products using the compiler intrinsics
+- `[StdSrc]>test>Testing.cpp` contains a test case for testing the dot and cross product. This is already being called in the `EntryPoint` file from Engine.
+
 ---
 
 ## Raven
