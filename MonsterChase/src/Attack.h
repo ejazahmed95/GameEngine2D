@@ -8,5 +8,6 @@ public:
 private:
 	Raven::Core::Entity* m_Entity;
 	float m_Damage = 3.0f;
+	float m_Size = 10;
 	bool m_IsPlayer;
 };

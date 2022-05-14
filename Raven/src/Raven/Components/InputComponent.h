@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include "TComponent.h"
 
 namespace Raven { namespace Components {

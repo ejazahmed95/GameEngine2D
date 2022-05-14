@@ -4,7 +4,7 @@
 
 namespace Systems {
 
-	HealthSystem::HealthSystem() {
+	HealthSystem::HealthSystem() : m_EnemyDeadCount(0), m_PlayerDeadCount(0){
 		m_Mask.Add(Components::HealthComponent::Id());
 	}
 
@@ -16,6 +16,11 @@ namespace Systems {
 
 			if (healthComp->health <= 0) {
 				element->Destroy();
+				if (element->GetTag() == "Player") {
+					m_PlayerDeadCount++;
+				} else if(element->GetTag() == "Enemy") {
+					m_EnemyDeadCount++;
+				}
 			}
 		}
 	}

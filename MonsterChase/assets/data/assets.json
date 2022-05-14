@@ -5,6 +5,14 @@
       "path": "assets\\sprites\\gastly.dds"
     },
     {
+      "name": "haunter",
+      "path": "assets\\sprites\\haunter.dds"
+    },
+    {
+      "name": "gengar",
+      "path": "assets\\sprites\\gengar.dds"
+    },
+    {
       "name": "pikachu",
       "path": "assets\\sprites\\pikachu.dds"
     },
@@ -35,6 +43,14 @@
     {
       "name": "shadow-04",
       "path": "assets\\sprites\\shadow-04.dds"
+    },
+    {
+      "name": "game-over",
+      "path": "assets\\sprites\\game-over.dds"
+    },
+    {
+      "name": "win",
+      "path": "assets\\sprites\\win.dds"
     }
   ]
 }

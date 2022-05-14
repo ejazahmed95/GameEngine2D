@@ -50,6 +50,22 @@ void Application::App_StartGame() {
 
 ## EAE - 6310 Assignments
 Check [Basic Flow](#basic-flow) section for an overview of the code design
+
+#### Final Project
+This is a gameplay of player vs monsters. Player can shoot the enemies using `SPACE`.
+
+Stats:
+- Player Health = 10
+- Normal Enemy Health = 1
+- Damage on Hit = 3
+
+Controls:
+- `WASD`: Moving the character around
+- `E`: Rotate Left
+- `R`: Rotate Right
+- `SPACE`: Attack with an electro ball
+- `Q`: Quit the game
+
 #### 2.02 Numerial Integration
 - Physics and Input Component located in `[EngineSrc]>Components`
 - Physics and Input Systems are located in `[EngineSrc]>Systems`
@@ -79,6 +95,7 @@ The components are also added to the Entities(GameObject) in the job itself.
 - `[EngineSrc]>Systems\CollisionSystem2D`: This system handles the collision detection for objects that have a transform and collision component
 - `[EngineSrc]>Components\Collider2D`: This is the collision component that contains both the bounding box and a callback on collision detection
 - Collider component also contains a variable `Continuous`. Enabling this will update the collision system to perform a Swept-Separating Axis check on those objects
+
 ---
 
 ## Raven

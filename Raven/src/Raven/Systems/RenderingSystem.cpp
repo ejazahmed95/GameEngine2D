@@ -16,19 +16,16 @@ namespace Raven { namespace System {
 		using namespace Components;
 		m_Mask.Add(Transform::Id());
 		m_Mask.Add(SpriteRenderer::Id());
-		collisionBox = nullptr;
+		m_CollisionBox = nullptr;
+		m_ClearColor = DirectX::Colors::Aqua;
 	}
 
 	RenderingSystem::~RenderingSystem() {
-		GLib::Release(collisionBox);
+		GLib::Release(m_CollisionBox);
 	}
 
-	void RenderingSystem::Initialize() {
-		BaseSystem::Initialize();
-	}
-
-	void RenderingSystem::UpdateComponent(Components::SpriteRenderer* component, Core::Entity* entity) {
-		component->sprite = CreateSprite(m_Textures[component->texName], component->scale);
+	void RenderingSystem::UpdateComponent(Components::SpriteRenderer* spriteRenderer, Core::Entity* entity) {
+		spriteRenderer->sprite = CreateSprite(m_Textures[spriteRenderer->texName], spriteRenderer->scale);
 		auto collider = entity->GetComponent<Components::Collider2D>();
 		if (collider == nullptr) return;
 		collider->collisionBox = CreateSprite(m_Textures["collision_box"], collider->bounds.extents / 50);
@@ -37,7 +34,7 @@ namespace Raven { namespace System {
 	void RenderingSystem::Update(float dt) {
 		bool quit = false;
 		GLib::Service(quit);
-		GLib::BeginRendering(DirectX::Colors::Aqua);
+		GLib::BeginRendering(m_ClearColor);
 
 		GLib::Sprites::BeginRendering();
 		for (const auto& element : m_RegisteredEntities) {
@@ -66,8 +63,11 @@ namespace Raven { namespace System {
 		for(const auto& tex: m_Textures) {
 			GLib::Release(tex.second);
 		}
-		for (const auto& spritePair : m_Sprites) {
-			GLib::Release(spritePair.second);
+		for (const auto& element : m_RegisteredEntities) {
+			auto renderer = element->GetComponent<Components::SpriteRenderer>();
+			auto collider = element->GetComponent<Components::Collider2D>();
+			GLib::Release(renderer->sprite);
+			if (collider) GLib::Release(collider->collisionBox);
 		}
 	}
 
@@ -79,7 +79,11 @@ namespace Raven { namespace System {
 			tex.at("path").get_to(path);
 			m_Textures.insert({name, CreateTexture(path.c_str())});
 		}
-		collisionBox = CreateSprite(m_Textures["collision_box"], Core::Point3D(1, 1, 1));
+		m_CollisionBox = CreateSprite(m_Textures["collision_box"], Core::Point3D(1, 1, 1));
+	}
+
+	void RenderingSystem::SetBgColor() {
+		m_ClearColor = DirectX::Colors::LightGray;
 	}
 
 	void RenderingSystem::LoadSprites(std::vector<std::string> paths) {

@@ -7,22 +7,20 @@
 class MonsterChase: public Raven::Application
 {
 public:
-	MonsterChase(): pc(nullptr) {
-		m_HealthSystem = RavenStd::StrongPtr<Systems::HealthSystem>(new Systems::HealthSystem());
-		m_EnemySystem = RavenStd::StrongPtr<Systems::EnemySystem>(new Systems::EnemySystem());
-	}
+	MonsterChase();
 	~MonsterChase() override;
 
 	void GameStart() override;
-	void GameEnd() override;
 	void Update(float delta) override;
+	void GameEnd() override;
 
 	// Removing copy constructors
 	MonsterChase& operator=(const MonsterChase& m) = delete;
 private:
-	void CreateMonsters();
-private:
+	void EndGamePlay();
+
 	PlayerController* pc;
 	RavenStd::StrongPtr<Systems::EnemySystem> m_EnemySystem;
 	RavenStd::StrongPtr<Systems::HealthSystem> m_HealthSystem;
+	bool m_GameEnded = false;
 };

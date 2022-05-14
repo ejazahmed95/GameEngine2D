@@ -117,7 +117,6 @@
     <ClInclude Include="test\Point2DTest.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Raven\Components\SpriteRenderer.cpp" />
     <ClCompile Include="src\Raven\Components\TComponent.cpp" />
     <ClCompile Include="src\Raven\Components\Transform.cpp" />
     <ClCompile Include="src\Raven\CoreModule\Entity.cpp" />
@@ -128,7 +127,6 @@
     <ClCompile Include="src\Raven\ECS_Backup\Managers\ComponentManager.cpp" />
     <ClCompile Include="src\Raven\Editor\Editor.cpp" />
     <ClCompile Include="src\Raven\Systems\BaseSystem.cpp" />
-    <ClCompile Include="src\Raven\Components\Collider2D.cpp" />
     <ClCompile Include="src\Raven\Systems\CollisionSystem2D.cpp" />
     <ClCompile Include="src\Raven\Systems\InputSystem.cpp" />
     <ClCompile Include="src\Raven\Systems\PhysicsSystem.cpp" />

@@ -13,8 +13,6 @@ namespace Raven { namespace System {
 
 	void InputSystem::Initialize() {
 		BaseSystem::Initialize();
-		// std::function<void(unsigned i_VKeyID, bool i_bDown)> OnInputChange;
-		//auto callback = [this] { OnInChange(); };
 		GLib::SetKeyStateChangeCallback(OnInputChange);
 	}
 
@@ -26,7 +24,7 @@ namespace Raven { namespace System {
 		BaseSystem::Destroy();
 	}
 
-	void InputSystem::OnInChange(unsigned i_VKeyID, bool bWentDown) {
+	void InputSystem::OnInChange(unsigned i_VKeyID, bool bWentDown) const {
 		for (auto & entity : m_RegisteredEntities) {
 			if (entity->Destroyed()) continue;
 			auto inputComp = entity->GetComponent<Components::InputComponent>();

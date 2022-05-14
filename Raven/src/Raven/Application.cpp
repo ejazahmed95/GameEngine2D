@@ -17,31 +17,28 @@ namespace Raven {
 		auto timing = new Timing();
 		m_Timing = RavenStd::StrongPtr<Timing>(timing);
 		m_EcsManager = RavenStd::StrongPtr<ECSManager>(new ECSManager());
+
 		m_InputSystem = RavenStd::StrongPtr<System::InputSystem>(new System::InputSystem());
 		m_CollisionSystem = RavenStd::StrongPtr<CollisionSystem2D>(new CollisionSystem2D());
 		m_PhysicsSystem = RavenStd::StrongPtr<PhysicsSystem>(new PhysicsSystem());
 		m_RenderingSystem = RavenStd::StrongPtr<RenderingSystem>(new RenderingSystem());
 	}
 
-	Application::~Application() {
-		// delete m_RenderingSystem;
-		// delete m_PhysicsSystem;
-		// delete m_InputSystem;
-		// delete m_EcsManager;
-		// delete m_Timing;
-	};
-
 	void Application::GameStart() {
 		Engine::JobSystem::Init();
+		m_EcsManager->Initialize();
 		Editor::LoadAssetsFromFile("assets/data/assets.json");
 		Editor::LoadGameObjectsFromFile("assets/data/scene.json");
 	}
 	
-	void Application::Update(float delta) {}
+	void Application::Update(float delta) {
+		m_EcsManager->Update(delta);
+	}
 
 	void Application::GameEnd() {
 		RavenStd::Log::I("Shutting down game");
 		Engine::JobSystem::RequestShutdown();
+		m_EcsManager->Shutdown();
 	}
 
 	void Application::App_StartGame() {
@@ -58,7 +55,6 @@ namespace Raven {
 		}
 
 		GameEnd(); // Virtual
-		App_DestroySystems();
 	}
 
 	void Application::Quit() {
@@ -72,19 +68,16 @@ namespace Raven {
 	void Application::App_InitialiseSystems() {
 		
 
-		// TODO: Add Systems to list; Init and Destroy in order
+		// TODO: Add Systems to list; Init and Shutdown in order
 		RavenStd::Log::I("Initializing Systems...");
-		m_CollisionSystem->Initialize();
-		m_PhysicsSystem->Initialize();
-		m_RenderingSystem->Initialize();
-		m_InputSystem->Initialize();
+		// m_CollisionSystem->Initialize();
+		// m_PhysicsSystem->Initialize();
+		// m_RenderingSystem->Initialize();
+		// m_InputSystem->Initialize();
 	}
 
 	void Application::App_UpdateSystems(float delta) {
-		m_InputSystem->Update(delta);
-		m_CollisionSystem->Update(delta);
-		m_PhysicsSystem->Update(delta);
-		m_RenderingSystem->Update(delta);
+
 	}
 
 	void Application::App_DestroySystems() {

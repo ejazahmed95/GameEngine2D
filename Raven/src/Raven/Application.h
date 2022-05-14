@@ -14,7 +14,7 @@ namespace Raven {
 	class RAVEN_API Application {
 	public:
 		Application();
-		virtual ~Application();
+		virtual ~Application() = default;
 		virtual void GameStart();
 		virtual void Update(float delta);
 		virtual void GameEnd();
@@ -41,6 +41,8 @@ namespace Raven {
 	private:
 		RavenStd::StrongPtr<Timing> m_Timing;
 		RavenStd::StrongPtr<ECSManager> m_EcsManager;
+
+		// Engine Systems
 		RavenStd::StrongPtr<System::RenderingSystem> m_RenderingSystem;
 		RavenStd::StrongPtr<System::InputSystem> m_InputSystem;
 		RavenStd::StrongPtr<System::PhysicsSystem> m_PhysicsSystem;

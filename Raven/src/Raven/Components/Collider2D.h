@@ -5,13 +5,14 @@
 #include "TComponent.h"
 #include "../CoreModule/Point3D.h"
 #include "../CoreModule/Entity.h"
+#include "GLib.h"
 
 namespace Raven {namespace Components {
 
-	struct CollisionLayer {
-		static Types::t_uid s_id;
-		static Types::t_uid Get();
-	};
+	//struct CollisionLayer {
+		//static Types::t_uid s_id;
+		//static Types::t_uid Get();
+	//};
 
 	struct RAVEN_API AABB {
 		Core::Point3D center;
@@ -29,9 +30,7 @@ namespace Raven {namespace Components {
 	public:
 		Collider2D() {
 			OnCollisionEnterCb = [](Core::Entity*)->void*{return nullptr; };
-		}
-		~Collider2D() override{
-			if(collisionBox) GLib::Release(collisionBox);
+			collisionBox = nullptr;
 		}
 
 		void SetCallback(const std::function<void(Core::Entity*)>& cb) {

@@ -12,6 +12,12 @@ namespace Raven {
 		}
 	}
 
+	void ECSManager::Initialize() const {
+		for (const auto& system : m_AllSystems) {
+			system->Initialize();
+		}
+	}
+
 	Core::Entity* ECSManager::CreateEntity() {
 		const auto entity = new Core::Entity();
 		GetECS().AcquireOwnership()->m_AllEntities.insert({ entity->Id(), entity });
@@ -32,7 +38,6 @@ namespace Raven {
 				system->RegisterEntity(entity);
 			}
 		}
-		
 	}
 
 	void ECSManager::OnComponentRemoved(Types::t_uid entityId, Types::t_uid componentId) {
@@ -42,6 +47,18 @@ namespace Raven {
 	void ECSManager::RegisterSystem(System::BaseSystem* system) {
 		RavenStd::Log::I("New System Registered: " + std::string(typeid(*system).name()));
 		m_AllSystems.push_back(system);
+	}
+
+	void ECSManager::Update(float delta) const {
+		for (const auto & system : m_AllSystems) {
+			system->Update(delta);
+		}
+	}
+
+	void ECSManager::Shutdown() const {
+		for (size_t i = m_AllSystems.size() - 1; i > 0; --i) {
+			m_AllSystems[i]->Destroy();
+		}
 	}
 
 	Core::Entity* ECSManager::GetEntityByName(const std::string& name) const {

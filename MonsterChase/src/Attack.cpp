@@ -21,15 +21,15 @@ Attack::Attack(Raven::Core::Point3D pos, Raven::Core::Point3D dir, bool isPlayer
 	transform->position = pos;
 
 	auto renderComp = new SpriteRenderer(texName);
-	renderComp->scale = Raven::Core::Point3D(0.25);
+	renderComp->scale = Raven::Core::Point3D(0.12);
 
 	auto physicsComp = new PhysicsComponent();
-	physicsComp->vel = dir * (200/dir.Mag());
+	physicsComp->vel = dir * (300/dir.Mag());
 	
 	auto collisionComp = new Collider2D();
 	collisionComp->bounds = AABB();
-	collisionComp->bounds.center = Raven::Core::Point3D(0, 20, 0);
-	collisionComp->bounds.extents = Raven::Core::Point3D(20, 20, 0);
+	collisionComp->bounds.center = Raven::Core::Point3D(0, m_Size, 0);
+	collisionComp->bounds.extents = Raven::Core::Point3D(m_Size, m_Size, 0);
 	auto entityRef = m_Entity;
 	collisionComp->SetCallback([isPlayer, entityRef](Raven::Core::Entity* entity) {
 		auto healthComp = entity->GetComponent<Components::HealthComponent>();

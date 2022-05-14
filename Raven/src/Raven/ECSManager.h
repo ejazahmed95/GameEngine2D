@@ -11,10 +11,13 @@ namespace Raven { namespace System {
 	public:
 		ECSManager() = default;
 		~ECSManager();
+		void Initialize() const;
 		static Core::Entity* CreateEntity();
 		void OnComponentAdded(Types::t_uid entityId, Types::t_uid componentId);
 		void OnComponentRemoved(Types::t_uid entityId, Types::t_uid componentId);
 		void RegisterSystem(System::BaseSystem* system);
+		void Update(float delta) const;
+		void Shutdown() const;
 		Core::Entity* GetEntityByName(const std::string&) const;
 	private:
 		std::vector<System::BaseSystem*> m_AllSystems;

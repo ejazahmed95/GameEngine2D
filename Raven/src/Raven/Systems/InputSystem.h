@@ -1,6 +1,5 @@
 #pragma once
 #include "BaseSystem.h"
-#include "GLib.h"
 
 namespace Raven { namespace System {
 	class InputSystem: public BaseSystem {
@@ -11,7 +10,7 @@ namespace Raven { namespace System {
 		void Update(float dt) override;
 		void Destroy() override;
 
-		void OnInChange(unsigned i_VKeyID, bool bWentDown);
+		void OnInChange(unsigned i_VKeyID, bool bWentDown) const;
 	private:
 	};
 	void OnInputChange(unsigned int i_VKeyID, bool bWentDown);

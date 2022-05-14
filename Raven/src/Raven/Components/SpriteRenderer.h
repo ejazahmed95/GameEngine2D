@@ -11,11 +11,6 @@ namespace Raven { namespace Components {
 		GLib::Sprite* sprite = nullptr;
 		Core::Point3D scale;
 
-		~SpriteRenderer() {
-			if(sprite != nullptr) {
-				GLib::Release(sprite);
-			}
-		}
 		explicit SpriteRenderer(std::string& texName): texName(std::move(texName)), scale(Core::Point3D(1)) {}
 
 		static void from_json(const json& j, SpriteRenderer& sr) {

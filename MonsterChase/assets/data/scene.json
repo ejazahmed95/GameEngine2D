@@ -1,7 +1,7 @@
 [
   {
     "name": "Pikachu",
-    "tag":  "Player",
+    "tag": "Player",
     "components": {
       "transform": {
         "position": {
@@ -18,7 +18,11 @@
       "sprite_renderer": {
         "spriteRef": "assets\\sprites\\pikachu.dds",
         "texture": "pikachu",
-        "scale": {"x": 0.5, "y": 0.5, "z": 1}
+        "scale": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 1
+        }
       },
       "physics": {
         "mass": 1,
@@ -38,7 +42,7 @@
           }
         }
       },
-      "health": {"health": 10}
+      "health": { "health": 10 }
     }
   },
   {
@@ -47,14 +51,14 @@
     "components": {
       "transform": {
         "position": {
-          "x": 100,
-          "y": 0,
+          "x": -300,
+          "y": -200,
           "z": 0
         },
         "rotation": {
           "x": 0,
           "y": 0,
-          "z": 1
+          "z": 0
         }
       },
       "sprite_renderer": {
@@ -67,11 +71,11 @@
         }
       },
       "physics": {
-        "mass": 1,
-        "e": 0.01,
+        "mass": 10,
+        "e": 0.05,
         "velocity": {
-          "x": 0,
-          "y": 0,
+          "x": 50,
+          "y": 50,
           "z": 0
         }
       },
@@ -96,19 +100,19 @@
     }
   },
   {
-    "name": "Gastly 2",
+    "name": "Gastly 1",
     "tag": "Enemy",
     "components": {
       "transform": {
         "position": {
-          "x": -100,
-          "y": 0,
+          "x": 300,
+          "y": -200,
           "z": 0
         },
         "rotation": {
           "x": 0,
           "y": 0,
-          "z": 1
+          "z": 0
         }
       },
       "sprite_renderer": {
@@ -121,11 +125,11 @@
         }
       },
       "physics": {
-        "mass": 1,
-        "e": 0.01,
+        "mass": 10,
+        "e": 0.05,
         "velocity": {
-          "x": 0,
-          "y": 0,
+          "x": -50,
+          "y": 50,
           "z": 0
         }
       },
@@ -133,12 +137,66 @@
         "bounds": {
           "center": {
             "x": 0,
-            "y": 50,
+            "y": 25,
             "z": 0
           },
           "extents": {
-            "x": 50,
-            "y": 50,
+            "x": 25,
+            "y": 25,
+            "z": 0
+          }
+        }
+      },
+      "health": { "health": 1 },
+      "EnemyAI": {
+        "attackInterval": 2.4
+      }
+    }
+  },
+  {
+    "name": "Gastly 2",
+    "tag": "Enemy",
+    "components": {
+      "transform": {
+        "position": {
+          "x": -350,
+          "y": 100,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "sprite_renderer": {
+        "spriteRef": "assets\\sprites\\gastly.dds",
+        "texture": "gastly",
+        "scale": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        }
+      },
+      "physics": {
+        "mass": 10,
+        "e": 0.05,
+        "velocity": {
+          "x": 50,
+          "y": 10,
+          "z": 0
+        }
+      },
+      "collision": {
+        "bounds": {
+          "center": {
+            "x": 0,
+            "y": 25,
+            "z": 0
+          },
+          "extents": {
+            "x": 25,
+            "y": 25,
             "z": 0
           }
         }
@@ -150,19 +208,19 @@
     }
   },
   {
-    "name": "Gastly 2",
+    "name": "Gastly 3",
     "tag": "Enemy",
     "components": {
       "transform": {
         "position": {
-          "x": 10,
+          "x": 350,
           "y": 100,
           "z": 0
         },
         "rotation": {
           "x": 0,
           "y": 0,
-          "z": 1
+          "z": 0
         }
       },
       "sprite_renderer": {
@@ -175,11 +233,11 @@
         }
       },
       "physics": {
-        "mass": 1,
-        "e": 0.01,
+        "mass": 10,
+        "e": 0.05,
         "velocity": {
-          "x": 0,
-          "y": 0,
+          "x": -50,
+          "y": -10,
           "z": 0
         }
       },
@@ -187,19 +245,19 @@
         "bounds": {
           "center": {
             "x": 0,
-            "y": 50,
+            "y": 25,
             "z": 0
           },
           "extents": {
-            "x": 50,
-            "y": 50,
+            "x": 25,
+            "y": 25,
             "z": 0
           }
         }
       },
       "health": { "health": 1 },
       "EnemyAI": {
-        "attackInterval": 3.5
+        "attackInterval": 3.3
       }
     }
   }
